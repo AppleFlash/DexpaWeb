@@ -1,0 +1,67 @@
+﻿<div class="row pageheader" >
+    <div class="col-sm-12" id="filterPanel">
+        <div class="form-inline">
+            <div class="btn-group filter-margin">
+                <label for="driver" class="filter-margin">Водитель:</label>
+                <div class="form-group">
+                    <input type="text" class="input-sm form-control driverOnTransaction" ng-model="driverQuery" placeholder="Водитель" id="driver" />
+                    <div class="form-control dropdownPanel dropdownPanel_driver">
+                        <li ng-click="filterAllOrderReport(undefined, true)">-</li>
+                        <li id="dropdownPanelLoader"><img src="/Content/Images/waiting.gif" alt=""></li>
+                        <li ng-repeat="driver in drivers | filter:driverQuery" ng-click="filterAllOrderReport(driver, true)">{{driver.name}}</li>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-group filter-margin">
+                <label for="filterFromDate" class="filter-margin">Период:</label>
+                <input ng-model="fromDate" type="text" class="form-control input-sm" id="filterFromDate" ng-change="filterAllOrderReport()" />
+                <label for="filterToDate">-</label>
+                <input ng-model="toDate" type="text" class="form-control input-sm" id="filterToDate" ng-change="filterAllOrderReport()" />
+            </div>
+            <div class="btn-group filter-margin">
+                <label for="filterOrderState" class="filter-margin">Статус:</label>
+                <select class="form-control input-sm" ng-model="filterOrderState" ng-options="state.name for state in orderStatesList track by state.type" id="filterOrderState" ng-change="filterAllOrderReport()"></select>
+            </div>
+            <div class="btn-group filter-margin">
+                <label for="filterOrderSource" class="filter-margin">Источник:</label>
+                <select class="form-control input-sm" ng-model="filterOrderSource" ng-options="source.name for source in orderSourcesList track by source.source" id="filterOrderSource" ng-change="filterAllOrderReport()"></select>
+            </div>
+            <div class="btn-group filter-margin">
+                <div class="form-control btn btn-success btn-sm" ng-click="Export('PDF','allOrders')">Экспорт в PDF</div>
+                <div class="form-control btn btn-success btn-sm" ng-click="Export('Excel','allOrders')">Экспорт в Excel</div>
+            </div>
+            <div class="btn-group filter-margin pull-right">
+                <div class="form-control btn btn-success btn-sm" title="Открыть панель поиска" ng-click="openCloseSearchPanel()"><i class="fa fa-search"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12" id="searchPanel">
+        <div class="form-inline">
+            <div class="btn-group filter-margin">
+                <label for="ordId" class="filter-margin">Номер заказа / Яндекс id:</label>
+                <input ng-model="searchObj.orderId" type="text" id="ordId" placeholder="id заказа" class="form-control input-sm" />
+            </div>
+            <div class="btn-group filter-margin">
+                <label for="searchCusPhone" class="filter-margin">Тел. клиента</label>
+                <input ng-model="searchObj.cusPhone" id="searchCusPhone" placeholder="Тел. клиента" numbers-only="numbers-only" type="text" class="form-control input-sm" />
+            </div>
+            <div class="btn-group filter-margin">
+                <label for="searchFromAddress" class="filter-margin">Адрес подачи:</label>
+                <input ng-model="searchObj.fromAddr" id="searchFromAddress" type="text" class="form-control input-sm" />
+            </div>
+            <div class="btn-group filter-margin">
+                <label for="searchFromDate" class="filter-margin">Период:</label>
+                <input ng-model="fromDate" type="text" class="form-control input-sm" id="searchFromDate" />
+                <label for="searchToDate">-</label>
+                <input ng-model="toDate" type="text" class="form-control input-sm" id="searchToDate" />
+            </div>
+            <div class="btn-group filter-margin">
+                <div class="form-control btn btn-success btn-sm" ng-click="searchAllOrderReport()"><i class="fa fa-search"></i> Найти</div>
+            </div>
+
+            <div class="btn-group filter-margin pull-right">
+                <div class="form-control btn btn-success btn-sm" title="Открыть панель фильтров" ng-click="openCloseSearchPanel()"><i class="fa fa-filter"></i></div>
+            </div>
+        </div>
+    </div>
+</div>

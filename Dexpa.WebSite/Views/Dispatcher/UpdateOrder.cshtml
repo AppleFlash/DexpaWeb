@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Изменить заказ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="angularControllerDiv" ng-controller="NewOrderCtrl" ng-init="initUpdate(@ViewData["id"])">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="containerWithPageHeader">
+                    @Html.Partial("_UpdateOrderForm")
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="row">
+                <div id="map" class="containerWithPageHeader"></div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="row">
+                <div class="containerWithPageHeader">
+                    @Html.Partial("_OrderHistory")
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("_SelectDriverModal")
+    @Html.Partial("_SelectLabelModal")
+</div>
+
+@section scripts{
+    <script src="~/Scripts/AngularControllers/NewOrderController.js"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    @Scripts.Render("~/bundles/mapTools")
+    <script src="~/Scripts/AdditionalScripts/NewOrderAddScripts.js"></script>
+}
+

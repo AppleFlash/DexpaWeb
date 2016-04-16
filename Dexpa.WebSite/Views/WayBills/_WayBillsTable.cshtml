@@ -1,0 +1,26 @@
+﻿<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th class="text-center" ng-click="sortBy('fromDate')">Дата выдачи <span id="fromDate"></span></th>
+            <th class="text-center" ng-click="sortBy('toDate')">Дата окончания <span id="toDate"></span></th>
+            <th class="text-center" ng-click="sortBy('period')">Период, дней <span id="period"></span></th>
+            <th class="text-center" ng-click="sortBy('driver')">Водитель <span id="driver"></span></th>
+            <th class="text-center" ng-click="sortBy('car')">ТС <span id="car"></span></th>
+            <th class="text-center" ng-click="sortBy('startMileage')">Начальный пробег <span id="startMileage"></span></th>
+            <th class="text-center" ng-click="sortBy('endMileage')">Конечный пробег <span id="endMileage"></span></th>
+            <th class="text-center" ng-click="sortBy('responsible')">Ответственный <span id="responsible"></span></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr id="waybillRow" ng-repeat="waybill in wayBills | filter:query" ng-class="{selectedElement:waybill.isSelected}" ng-click="selectEvent(waybill)">
+            <td id="waybillRowElement">{{convertDateTimeToNormalFormat(waybill.fromDate)}}</td>
+            <td id="waybillRowElement">{{convertDateTimeToNormalFormat(waybill.toDate)}}</td>
+            <td id="waybillRowElement">{{waybill.period.toFixed(0)}}</td>
+            <td id="waybillRowElement">[{{waybill.driver.callsign}}] - {{waybill.driver.lastName}} {{waybill.driver.firstName}} {{waybill.driver.middleName}}</td>
+            <td id="waybillRowElement">[{{waybill.car.regNumber}}] - {{waybill.car.brand}} {{waybill.car.model}}</td>
+            <td id="waybillRowElement">{{waybill.startMileage}}</td>
+            <td id="waybillRowElement">{{waybill.endMileage}}</td>
+            <td id="waybillRowElement">{{getMechanic(waybill.responsible)}}</td>
+        </tr>
+    </tbody>
+</table>

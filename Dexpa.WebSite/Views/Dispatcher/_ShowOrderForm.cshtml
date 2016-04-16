@@ -1,0 +1,225 @@
+﻿<form name="newOrderForm" id="newOrderForm" novalidate ng-submit="update(order)">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">Изменение заказа #{{order.id}}</h4>
+        </div>
+        <div class="panel-body">
+            <div class="row bottomBorder">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="orderState">Статус:</label>
+                        <input ng-model="order.state.name" readonly="readonly" type="text" class="form-control input-sm" id="orderState" placeholder="Статус" />
+                    </div>
+                </div>
+            </div>
+            <div class="row bottomBorder">
+                <label for="departureDate">Время подачи:</label>
+                <div class="form-group">
+                    <div class="col-sm-6">
+                        <input ng-model="order.Date" readonly="readonly" type="text" class="form-control input-sm" id="departureDate" placeholder="Дата подачи" />
+                    </div>
+                    <div class="col-sm-6">
+                        <input ng-model="order.Time" readonly="readonly" type="text" class="form-control input-sm" id="departureTime" placeholder="Время подачи" />
+                    </div>
+                </div>
+            </div>
+            <div class="row bottomBorder">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="customerPhone">Телефон:</label>
+                        <input ng-model="order.customer.phone" numbers-only="numbers-only" readonly="readonly" type="text" class="form-control input-sm" id="customerPhone" placeholder="Телефон" />
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="customerName">Имя клиента:</label>
+                        <input ng-model="order.customer.name" type="text" readonly="readonly" class="form-control input-sm" id="customerName" placeholder="Имя клиента" />
+                    </div>
+                </div>
+            </div>
+            <div class="row bottomBorder">
+                <label for="discount">Скидка, %:</label>
+                <div class="form-group">
+                    <div class="col-sm-6">
+                        <input ng-model="order.discount" readonly="readonly" class="form-control input-sm" placeholder="Скидка" id="discount" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <label for="fromAddressDetails">Адрес подачи:</label>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input validate="true" validationinfo="Город" readonly="readonly" ng-model="order.fromAddressDetails.city" class="orderFormInput50 topLeftCorner" placeholder="Город" id="fromAddressDetails" />
+                            <input ng-model="order.fromAddressDetails.street" readonly="readonly" class="orderFormInput50 topRightCorner" placeholder="Улица" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input ng-model="order.fromAddressDetails.house" readonly="readonly" type="text" class="orderFormInput25 bottomLeftCorner" placeholder="Дом" />
+                            <input ng-model="order.fromAddressDetails.housing" readonly="readonly" type="text" class="orderFormInput25" placeholder="Корпус" />
+                            <input ng-model="order.fromAddressDetails.building" readonly="readonly" type="text" class="orderFormInput25" placeholder="Строение" />
+                            <input ng-model="order.fromAddressDetails.staircase" readonly="readonly" type="text" class="orderFormInput25 bottomRightCorner" placeholder="Подъезд" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <input ng-model="order.fromAddressDetails.comment" readonly="readonly" type="text" class="form-control input-sm" placeholder="Комментарий" />
+                </div>
+            </div>
+            <div class="row">
+                <label for="toAddressDetails">Адрес назначения:</label>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input ng-model="order.toAddressDetails.city" readonly="readonly" class="orderFormInput50 topLeftCorner" placeholder="Город" id="toAddressDetails" />
+                            <input ng-model="order.toAddressDetails.street" readonly="readonly" class="orderFormInput50 topRightCorner" placeholder="Улица" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input ng-model="order.toAddressDetails.house" readonly="readonly" class="orderFormInput25 bottomLeftCorner" placeholder="Дом" />
+                            <input ng-model="order.toAddressDetails.housing" readonly="readonly" class="orderFormInput25" placeholder="Корпус" />
+                            <input ng-model="order.toAddressDetails.building" readonly="readonly" class="orderFormInput25" placeholder="Строение" />
+                            <input ng-model="order.toAddressDetails.staircase" readonly="readonly" class="orderFormInput25 bottomRightCorner" placeholder="Подъезд" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <input ng-model="order.toAddressDetails.comment" readonly="readonly" class="form-control input-sm" placeholder="Комментарий" />
+                </div>
+            </div>
+            <div class="row bottomBorder">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="notice">Примечание:</label>
+                        <input ng-model="order.comments" readonly="readonly" type="text" class="form-control input-sm" id="notice">
+                    </div>
+                </div>
+            </div>
+            <div class="row bottomBorder">
+                <label for="orderSource">Источник заказа:</label>
+                <div class="form-group">
+                    <div class="col-sm-6">
+                        <input readonly="readonly" type="text" class="form-control input-sm" ng-model="order.source.name" />
+                    </div>
+                </div>
+            </div>
+            <div class="row bottomBorder">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="tariff">Тариф:</label>
+                        <input readonly="readonly" class="form-control input-sm" ng-model="order.tariffShortName" />
+                    </div>
+                </div>
+            </div>
+            <div class="row bottomBorder">
+                <label for="service">Категории:</label>
+                <div id="service">
+                    <div class="col-sm-6">
+                        <ul>
+                            <li>
+                                <label class="checkbox-inline">
+                                    <input ng-model="order.orderOptions.carFeatures.bussiness" disabled="disabled" type="checkbox" ng-change="selectDriver()"> Бизнес
+                                </label>
+                            </li>
+                            <li>
+                                <label class="checkbox-inline">
+                                    <input ng-model="order.orderOptions.carFeatures.economy" disabled="disabled" type="checkbox" ng-change="selectDriver()"> Эконом
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6">
+                        <ul>
+                            <li>
+                                <label class="checkbox-inline">
+                                    <input ng-model="order.orderOptions.carFeatures.comfort" disabled="disabled" type="checkbox" ng-change="selectDriver()"> Комфорт
+                                </label>
+                            </li>
+                            <li>
+                                <label class="checkbox-inline">
+                                    <input ng-model="order.orderOptions.carFeatures.minivan" disabled="disabled" type="checkbox" ng-change="selectDriver()"> Минивэн
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row bottomBorder">
+                <label for="service">Услуги:</label>
+                <div id="service">
+                    <div class="col-sm-6">
+                        <ul>
+                            <li>
+                                <label class="checkbox-inline">
+                                    <input ng-model="order.orderOptions.carFeatures.conditioner" disabled="disabled" type="checkbox" ng-change="selectDriver()"> Кондиционер
+                                </label>
+                            </li>
+                            <li>
+                                <label class="checkbox-inline">
+                                    <input ng-model="order.orderOptions.carFeatures.smoke" disabled="disabled" type="checkbox" ng-change="selectDriver()"> Курить
+                                </label>
+                            </li>
+                            <li>
+                                <label class="checkbox-inline">
+                                    <input ng-model="order.orderOptions.carFeatures.withAnimals" disabled="disabled" type="checkbox" ng-change="selectDriver()"> Животные
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6">
+                        <ul>
+                            <li>
+                                <label class="checkbox-inline">
+                                    <input ng-model="order.orderOptions.carFeatures.stationWagon" disabled="disabled" type="checkbox" ng-change="selectDriver()"> Универсал
+                                </label>
+                            </li>
+                            <li>
+                                <label class="checkbox-inline">
+                                    <input ng-model="order.orderOptions.carFeatures.wifi" disabled="disabled" type="checkbox" ng-change="selectDriver()"> WiFi
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row bottomBorder">
+                <label for="orderSource">Детское кресло:</label>
+                <div class="form-group">
+                    <div class="col-sm-6">
+                        <input class="form-control input-sm" type="text" readonly="readonly" ng-model="order.orderOptions.childrenSeat.name" />
+                    </div>
+                </div>
+            </div>
+            <div class="row bottomBorder">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="findAuto">Найти водителя:</label>
+                        <div>
+                            Водитель: <input type="text" ng-model="driverQuery" readonly="readonly" class="form-control input-sm" id="driver" />
+                        </div>
+                        <input ng-model="order.driver.id" value="{{order.driver.id}}" type="hidden" class="form-control input-sm" id="findAuto" readonly="readonly" placeholder="Водитель" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <a href="@Url.Action("Index", "Dispatcher")" class="btn btn-success btn-sm pull-left"><i class="fa fa-chevron-left"></i> К списку</a>
+                    <div class="pull-right" ng-show="canEdit">
+                        <div class="btn btn-success btn-sm" ng-click="goTo('/Dispatcher/UpdateOrder/', order.id)">Редактировать</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,29 @@
+﻿<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th class="text-center" ng-click="sortBy('name')">Название <span id="name"></span></th>
+            <th class="text-center" ng-click="sortBy('category')">Категория <span id="category"></span></th>
+            <th class="text-center" ng-click="sortBy('abbreviation')">Сокращение <span id="abbreviation"></span></th>
+            <th class="text-center" ng-click="sortBy('minimumCost')">Мин. сумма <span id="minimumCost"></span></th>
+            <th class="text-center" ng-click="sortBy('days')">Дни <span id="days"></span></th>
+            <th class="text-center" ng-click="sortBy('timeFrom')">Время <span id="timeFrom"></span></th>
+            <th class="text-center" ng-click="sortBy('IsEnabled')">Включен <span id="IsEnabled"></span></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="tariff in tariffs | filter:query" ng-click="goTo('/Admin/EditTarif/',tariff.id)">
+            <td>{{tariff.name}}</td>
+            <td>{{tariff.category}}</td>
+            <td>{{tariff.abbreviation}}</td>
+            <td class="text-right">{{tariff.minimumCost.toFixed(2)}}</td>
+            <td>{{tariff.days}}</td>
+            <td>{{tariff.timeFrom}} - {{tariff.timeTo}}</td>
+            <td>
+                <span ng-if="tariff.IsEnabled == true"><i class="fa fa-check-circle-o"></i></span>
+                <span ng-if="tariff.IsEnabled == false"><i class="fa fa-square-o"></i></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+

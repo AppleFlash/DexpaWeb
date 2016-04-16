@@ -1,0 +1,25 @@
+﻿<div class="modal fade" id="labelModal" tabindex="-1" role="dialog" aria-labelledby="labelModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="labelModalLabel">Новый ярлык</h4>
+            </div>
+            <div class="modal-body">
+                <input type="text" class="form-control input-sm" ng-model="labelQuery"/>
+                <div class="labelPanel">
+                    <p ng-repeat="label in labels | filter:labelQuery" ng-click="selectLabelFromModal(label)">
+                        <span class="info-block">
+                            <span class="labelName">{{label.name}}</span>
+                            <span class="labelAddress">{{label.address.fullName}}</span>
+                        </span>
+                        <button class="deleteLabel" ng-click="deleteLabel(label)"><span class="glyphicon glyphicon-remove"></span></button>
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm" data-dismiss="modal" ng-show="labelQuery.length>0" ng-click="addLabel(labelQuery)">Добавить</button>
+            </div>
+        </div>
+    </div>
+</div>

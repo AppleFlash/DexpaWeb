@@ -1,0 +1,97 @@
+﻿<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row bottomBorder">
+            <div class="col-sm-6">
+                <label for="password" class="control-label">Пароль:</label><input type="text" class="form-control" value="{{driver.password}}" placeholder="Пароль" id="password" disabled>
+                <label for="taxometr" class="control-label">Таксометр:</label><input type="text" class="form-control" value="{{driver.device}}" placeholder="Таксометр" id="taxometr" disabled>
+            </div>
+            <div class="col-sm-6">
+                <label for="state" class="control-label">Смена:</label>
+                <select class="form-control" ng-model="driver.state" value="{{driver.state}}" id="state">
+                    <option>ReadyToWork</option>
+                    <option>NotAvailable</option>
+                    <option>Busy</option>
+                    <option>Fired</option>
+                </select>
+            </div>
+        </div>
+        <div class="row bottomBorder">
+            <div class="col-sm-6">
+                <label for="device" class="control-label">Устройство:</label><input type="text" class="form-control" value="{{driver.device}}" placeholder="Устройство" id="device" disabled>
+                <label for="deviceVersion" class="control-label">Версия:</label><input type="text" class="form-control" value="{{driver.deviceVersion}}" placeholder="Версия" id="deviceVersion" disabled>
+            </div>
+            <div class="col-sm-6">
+                <label for="coords" class="control-label">Координаты:</label><input type="text" class="form-control" value="{{driver.coords}}" placeholder="Координаты" id="coords" disabled>
+            </div>
+        </div>
+        <div class="clear checkbox">
+            <label>
+                <input type="checkbox" nvalue="{{driver.admittance}}" id="admittance" disabled> не допущен
+            </label>
+        </div>
+        <div>
+            <input type="text" class="form-control" value="{{driver.reason}}" placeholder="" id="reason" disabled>
+        </div>
+        <div class="row bottomBorder"></div>
+        <div>
+            <label for="driverStatus" class="control-label">Статус:</label><input type="text" class="form-control" value="{{driver.status}}" placeholder="Статус" id="driverStatus" disabled>
+        </div>
+        <div>
+            <label for="car" class="control-label">ТС:</label><input type="text" class="form-control" value="{{driver.car}}" placeholder="Транспортное средство" id="car" disabled>
+        </div>
+        <div class="row bottomBorder"></div>
+        <div>
+            <label for="lastname" class="control-label">Фамилия:</label><input type="text" class="form-control" value="{{driver.lastName}}" placeholder="Фамилия" id="lastname">
+        </div>
+        <div>
+            <div>
+                <label for="firstname" class="control-label">Имя:</label><input type="text" class="form-control" value="{{driver.firstName}}" placeholder="Имя" id="firstname">
+            </div>
+            <div>
+                <label for="firstname" class="control-label">Отчество:</label><input type="text" class="form-control" value="{{driver.middleName}}" placeholder="Отчество" id="middlename">
+            </div>
+        </div>
+        <div>
+            <label for="address" class="control-label">Адрес:</label><input type="text" class="form-control" value="{{driver.address}}" placeholder="Адрес" id="address" disabled>
+        </div>
+        <div>
+            <label for="phones" class="control-label">Телефоны:</label><input type="text" class="form-control" value="{{driver.phones.join(', ')}}" placeholder="Телефоны" id="phones" required>
+        </div>
+        <div>
+            <label for="email" class="control-label">E-mail:</label><input type="text" class="form-control" value="{{driver.email}}" placeholder="E-mail" id="email" disabled>
+        </div>
+        <div class="row bottomBorder"></div>
+        <h4>Условия работы</h4>
+        <div>
+            <div>
+                <label for="algorithm" class="control-label">Алгоритм:</label><input type="text" class="form-control" value="{{driver.algorithm}}" placeholder="Алгоритм" id="algorithm" disabled>
+                <label for="hiredate" class="control-label">Дата приема:</label><input type="text" class="form-control" value="{{driver.hireDate}}" placeholder="Дата приема" id="hireDate" disabled>
+                <label for="schedule" class="control-label">График:</label><input type="text" class="form-control" value="{{driver.schedule}}" placeholder="График" id="schedule" disabled>
+                <label for="weekends" class="control-label">Выходные:</label><input type="text" class="form-control" value="{{driver.weekends}}" placeholder="Выходные" id="weekends" disabled>
+            </div>
+            <div>
+                <label for="leavedate" class="control-label">Дата увольнения:</label><input type="text" class="form-control" value="{{driver.leaveDate}}" placeholder="Дата увольнения" id="leaveDate" disabled>
+                <label for="rent" class="control-label">Аренда:</label><input type="text" class="form-control" value="{{driver.rent}}" placeholder="Аренда" id="rent" disabled>
+                <label for="account" class="control-label">На счете:</label><input type="text" class="form-control" value="{{driver.account}}" placeholder="На счете" id="account" disabled>
+                <label for="limit" class="control-label">Лимит:</label><input type="text" class="form-control" value="{{driver.limit}}" placeholder="Лимит" id="limit" disabled>
+            </div>
+        </div>
+        <div class="row bottomBorder"></div>
+        <h4>Водительское удостоверение</h4>
+        <div>
+            <div>
+                <label for="series" class="control-label">Серия:</label><input type="text" class="form-control" value="{{dirver.licenseSeries}}" placeholder="Серия" id="licenseSeries" disabled>
+                <label for="number" class="control-label">Номер:</label><input type="text" class="form-control" value="{{driver.licenseNumber}}" placeholder="Номер" id="licenseNumber" disabled>
+            </div>
+            <div>
+                <label for="datefrom" class="control-label">Дата выдачи:</label><input type="text" class="form-control" value="{{driver.licenseDateFrom}}" placeholder="Дата выдачи" id="licenseDateFrom" disabled>
+                <label for="dateto" class="control-label">Действует до:</label><input type="text" class="form-control" value="{{driver.licenseDateTo}}" placeholder="Действует до" id="licenseDateTo" disabled>
+            </div>
+        </div>
+        <div class="row bottomBorder"></div>
+        <div>
+            <a href="@Request.UrlReferrer"><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-chevron-left"></span>Назад</button></a>
+            <input type="submit" class="right-orient btn btn-success" value="Сохранить" />
+        </div>
+    </div>
+</div>

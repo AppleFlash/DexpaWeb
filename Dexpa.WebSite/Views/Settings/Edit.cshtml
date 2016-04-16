@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Настройи";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using Dexpa.WebSite.Helpers
+
+<div class="row">
+    <div class="container">
+        <div class="row pageheader"><h2>Редактирование настроек</h2></div>
+        <div class="row " ng-controller="SettingsCtrl" ng-init="init()">
+            <div class="containerWithoutPageHeader">
+                <form id="editSettingsForm" ng-repeat="setting in settings" ng-submit="initSetting(setting)">
+                    @Html.Partial("_Edit")
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @Scripts.Render("~/Scripts/AngularControllers/SettingsController.js")
+}

@@ -1,0 +1,25 @@
+﻿@model Dexpa.WebSite.Models.Driver.DriverViewModel
+
+@{
+    ViewBag.Title = "Отчет по Яндекс-заказам";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="loader" id="loader">
+    <img src="/Content/Images/loader.gif" alt="">
+</div>
+
+<div id="main_part">
+    <div class="row">
+        <div class="container">
+            <div class="col-sm-12" ng-controller="ReportsCtrl" ng-init="init('yandex-orders')">
+                @Html.Partial("ReportsPartials/_YandexOrdersReportTable")
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/AngularControllers/ReportsController.js")
+}

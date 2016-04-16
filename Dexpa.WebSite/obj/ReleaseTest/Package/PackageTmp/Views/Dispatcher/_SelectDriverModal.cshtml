@@ -1,0 +1,32 @@
+﻿<div class="modal fade" id="selectDriverModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Выбор водителя</h4>
+            </div>
+            <div class="modal-body">
+                <input class="form-control bottomBorder" ng-model="driverQuery" placeholder="Поиск">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Позывной</th>
+                            <th class="text-center">ФИО</th>
+                            <th class="text-center">Телефон</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="driverRow" ng-repeat="driver in drivers | filter:driverQuery" ng-click='setSelectedDriver(driver)'>
+                            <td>{{driver.callsign}}</td>
+                            <td>{{driver.lastName}} {{driver.firstName}} {{driver.middleName}}</td>
+                            <td><p class="driversPhones" ng-repeat="phone in driver.phones">{{phone}}</p></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

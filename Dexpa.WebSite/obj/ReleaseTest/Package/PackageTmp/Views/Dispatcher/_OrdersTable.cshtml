@@ -1,0 +1,28 @@
+﻿<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th class="text-center" ng-click="sortBy('customer.phone')">Имя, тел. клиента <i ng-show="predicate == 'customer.phone'" ng-class="iconStyle"></i></th>
+            <th class="text-center" ng-click="sortBy('state.name')">Статус <i ng-show="predicate == 'state.name'" ng-class="iconStyle"></i></th>
+            <th class="text-center" ng-click="sortBy('driver.callsign')">Позывной, тел. водителя <i ng-show="predicate == 'driver.callsign'" ng-class="iconStyle"></i></th>
+            <th class="text-center" ng-click="sortBy('departureDate')">Контрольное время <i ng-show="predicate == 'departureDate'" ng-class="iconStyle"></i></th>
+            <th class="text-center" ng-click="sortBy('startWaitTime')">Время на месте <i ng-show="predicate == 'startWaitTime'" ng-class="iconStyle"></i></th>
+            <th class="text-center" ng-click="sortBy('fromAddress')">Адрес подачи <i ng-show="predicate == 'fromAddress'" ng-class="iconStyle"></i></th>
+            <th class="text-center" ng-click="sortBy('tariff')">Тариф <i ng-show="predicate == 'tariff'" ng-class="iconStyle"></i></th>
+            <th class="text-center" ng-click="sortBy('cost')">Сумма по таксометру <i ng-show="predicate == 'cost'" ng-class="iconStyle"></i></th>
+            <th class="text-center" ng-click="sortBy('id')">Номер заказа <i ng-show="predicate == 'id'" ng-class="iconStyle"></i></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="order in orders | filter:query | orderBy:predicate:reverse" ng-click='selectOrder(order.id);selectOrderForCall(order)' id="{{order.id}}" class="orderRow" ng-dblclick="goTo('/Dispatcher/UpdateOrder/', order.id)" ng-class="{bgRed: order.priority==1}">
+            <td>{{order.customer.name}} {{order.customer.phone}}</td>
+            <td>{{order.state.name}}</td>
+            <td><span ng-if="order.driver">{{order.driver.car.callsign}} ({{order.driver.phones[0]}})</span></td>
+            <td>{{convertDateTime(order.departureDate)}}</td>
+            <td>{{convertTime(order.startWaitTime)}}</td>
+            <td>{{order.fromAddress}}</td>
+            <td>{{order.tariffShortName}}</td>
+            <td class="text-right">{{order.cost.toFixed(2)}}</td>
+            <td>{{order.id}}</td>
+        </tr>
+    </tbody>
+</table>

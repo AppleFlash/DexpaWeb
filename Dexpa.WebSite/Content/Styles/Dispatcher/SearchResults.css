@@ -1,0 +1,36 @@
+﻿.searchButton-displace {
+    margin-top: 4px;
+}
+
+.searchLoader {
+    position: absolute;
+    z-index: 9999;
+    left: 48%;
+    top: 29%;
+}
+
+.searchPanel {
+    background: #ffffff;
+}
+
+.searchForm {
+    padding: 10px;
+}
+
+.searchResults {
+    color: #808080;
+    padding: 3px 0px 0px 10px;
+}
+
+.searchResult {
+    padding: 10px;
+    border-bottom: 2px solid grey;
+}
+
+.searchResultType {
+    font-size: 11px;
+}
+
+#results {
+    padding-right: 10px;
+}

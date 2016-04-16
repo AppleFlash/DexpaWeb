@@ -1,0 +1,26 @@
+﻿@model string
+
+<!--use ViewData["id"]-->
+@{
+    ViewBag.Title = "Обзор ТС";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="container">
+        <div class="row pageheader"><h2>ТС</h2></div>
+        <div class="row " ng-controller="CarsCtrl" ng-init="getCar(@ViewData["id"])">
+            <div class="containerWithoutPageHeader">
+                @Html.Partial("_ShowCarPage")
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/AngularControllers/CarsDictionaryController.js")
+    <script src="~/Scripts/AdditionalScripts/NewOrderAddScripts.js"></script>
+}
+
+

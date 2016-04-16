@@ -1,0 +1,19 @@
+﻿<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th class="text-center" ng-click="wcTableSortBy('name')">Название <span id="name"></span></th>
+            <th class="text-center" ng-repeat="fee in WorkConditions[0].orderFees" ng-click="wcTableSortBy('orderType.name')">{{fee.orderType.name}} <span id="orderTypename"></span></th>
+            <th class="text-center"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="wc in WorkConditions | filter:query">
+            <td ng-click="editWC(wc)">{{wc.name}}</td>
+            <td ng-repeat="fee in wc.orderFees" class="text-right" title="Редактировать" ng-click="editWC(wc)">{{fee.value}} <span ng-if="fee.feeType == 0"> %</span><span ng-if="fee.feeType == 1"> р.</span></td>
+            @*<td  class="text-center btn btn-success col-sm-1" ><i class="fa fa-edit"></i></td>*@
+            <td title="Удалить" class="col-sm-1"><div class="text-center btn btn-danger form-control" ng-click="deleteModalWC(wc)"><i class="fa fa-times"></i></div></td>
+        </tr>
+    </tbody>
+</table>
+
+

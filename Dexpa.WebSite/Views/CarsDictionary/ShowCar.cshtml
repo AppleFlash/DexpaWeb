@@ -1,0 +1,33 @@
+﻿@using Dexpa.WebSite.Helpers
+@model string
+
+<!--use ViewData["id"]-->
+@{
+    ViewBag.Title = "Обзор ТС";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="container" ng-controller="CarsCtrl" ng-init="getCar(@ViewData["id"])">
+        <div class="row pageheader">
+            <h2 class="pull-left">ТС</h2>
+            @if (GlobalConfiguration.roleAccessModel.CanSeeAndEditCarEvents)
+            {
+                <div class="btn btn-success btn-sm pull-right"  ng-click="goTo('/CarEvents/Repairs/', carsList[0].id)">Ремонты</div>
+                <div class="btn btn-success btn-sm pull-right" ng-show="carsList[0]" ng-click="goTo('/CarEvents/Index/', carsList[0].id)">История</div>
+            }
+        </div>
+        <div class="row ">
+            <div class="containerWithoutPageHeader">
+                @Html.Partial("_ShowCarPage")
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/AngularControllers/CarsDictionaryController.js")
+}
+
+

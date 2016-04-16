@@ -1,0 +1,32 @@
+﻿<div class="btn-group" ng-show="order || selectedOrder">
+    <div class="btn btn-success btn-sm order-state-button-small" id="state1" ng-click='setOrderState("2_Выехал",1)' ng-disabled="!OrderStateButtons.Driving">Выехал</div>
+    <div class="btn btn-success btn-sm order-state-button-small" id="state2" ng-click='setOrderState("3_На месте",2)' ng-disabled="!OrderStateButtons.Waiting">На месте</div>
+    <div class="btn btn-success btn-sm order-state-button-small" id="state3" ng-click='setOrderState("4_В пути",3)' ng-disabled="!OrderStateButtons.Transporting">В пути</div>
+    <div class="btn btn-success btn-sm order-state-button-small" id="state4" ng-click='setOrderState("5_Завершен",4)' ng-disabled="!OrderStateButtons.Completed">Завершить</div>
+    <div class="btn btn-success btn-sm order-state-button-small" id="state5" ng-click='setOrderState("8_Отменен",5)'>Отменить</div>
+</div>
+<div class="modal fade" id="CancelModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Отмена заказа</h4>
+            </div>
+            <div class="modal-body">
+                <label for="CancelReasonType">Причина</label>
+                <select id="CancelReasonType" class="form-control input-sm" ng-model="cancelReasonType">
+                    <option value="0">Клиент отменил заказ</option>
+                    <option value="1">Водитель отменил заказ</option>
+                </select>
+                <label for="CancelReasonComment">Комментарий</label>
+                <input type="text" id="CancelReasonComment" class="form-control input-sm" placeholder="Комментарий" ng-model="cancelReasonComment" />
+                <label class="checkbox-inline" ng-show="cancelReasonType == 0">
+                    <input ng-model="cancelReasonToBlackList" type="checkbox"> В черный список
+                </label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-sm" data-dismiss="modal" ng-click="cancelOrder()">Отменить заказ</button>
+            </div>
+        </div>
+    </div>
+</div>

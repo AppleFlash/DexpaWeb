@@ -1,0 +1,54 @@
+﻿<div class="row pageheader" ng-repeat="driver in drivers">
+    <div class="col-sm-12">
+        <h2>{{driver.lastName}} {{driver.firstName}} {{driver.middleName}}</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="containerWithoutPageHeader">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="form-inline">
+                    <div class="btn-group filter-margin">
+                        <a href="/Transactions/AddTransaction/?id=replenishment&driver=@ViewData["id"]" class="form-control btn btn-success btn-sm"><span class="fa fa-plus"></span> Пополнить</a>
+                        <a href="/Transactions/AddTransaction/?id=withdrawal&driver=@ViewData["id"]" class="form-control btn btn-success btn-sm"><span class="fa fa-minus"></span> Списать</a>
+                    </div>
+                    <div class="btn-group filter-margin">
+                        <button class="form-control btn btn-success btn-sm" ng-click="getDriverTransactionsByPeriod(0, @ViewData["id"])">За сегодня</button>
+                        <button class="form-control btn btn-success btn-sm" ng-click="getDriverTransactionsByPeriod(1, @ViewData["id"])">За 2 дня</button>
+                        <button class="form-control btn btn-success btn-sm" ng-click="getDriverTransactionsByPeriod(2, @ViewData["id"])">За 3 дня</button>
+                    </div>
+                    <div class="btn-group filter-margin">
+                        @*<label for="filterDate">По дате:</label>
+                        <input ng-model="filterDate" type="text" class="form-control input-sm" id="filterDate" />*@
+                        <label for="filterFromDate" class="filter-margin">Период:</label>
+                        <input ng-model="fromDate" type="text" class="form-control input-sm" id="filterFromDate" />
+                        <label for="filterToDate">-</label>
+                        <input ng-model="toDate" type="text" class="form-control input-sm" id="filterToDate" />
+                    </div>
+                </div>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-center"></th>
+                            <th class="text-center">Дата</th>
+                            <th class="text-center">Транзацкия</th>
+                            <th class="text-center">Способ оплаты</th>
+                            <th class="text-center">Сумма</th>
+                            <th class="text-center">Примечание</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="transaction-{{(transaction.type.type == '0' ? 'plus' : 'minus')}}" ng-repeat="transaction in transactions">
+                            <td class="centered"><span class="fa fa-{{(transaction.type.type == '0' ? 'plus' : 'minus')}}"></span></td>
+                            <td class="centered">{{transaction.timestamp}}</td>
+                            <td class="text-right">{{transaction.id}}</td>
+                            <td>{{transaction.paymentMethod.name}}</td>
+                            <td class="text-right">{{transaction.amount}}</td>
+                            <td class="longStringNewLine">{{transaction.comment}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

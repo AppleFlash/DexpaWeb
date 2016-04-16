@@ -1,0 +1,227 @@
+﻿@using Microsoft.AspNet.Identity
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <table class="printHeader">
+                <tr>
+                    <td class="wayBillsStampPlace">
+                        Место для штампа<br/>
+                        организации
+                    </td>
+                    <td class="wayBillsEmpty"></td>
+                    <td class="wayBillsDesc">
+                        Типовая межотраслевая форма № 3<br />
+                        Утверждена постановлением<br />
+                        Госкомстата России от 28.11.97 №78
+                    </td>
+                </tr>
+            </table>
+            <table class="printTable">
+                <tr>
+                    <td><strong>ПУТЕВОЙ ЛИСТ ЛЕГКОВОГО АВТОМОБИЛЯ</strong></td>
+                    <td></td>
+                    <td><strong>№</strong> {{wayBills.id}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="text-center">Серия</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-center">
+                        c {{cutTime(wayBills.fromDate)}} по {{cutTime(wayBills.toDate)}} на {{wayBills.period.toFixed(0)}} дней
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td class="text-center"><strong>Коды</strong></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="text-right">Форма по ОКУД</td>
+                    <td class="text-center">0345001</td>
+                </tr>
+                <tr>
+                    <td><strong>Организация:</strong> ООО "Кортеж-Авто"</td>
+                    <td class="text-right">Форма по по ОКПО</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="text-center">наименование, адрес, номер телефона</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+            <br/>
+            <table class="printTable">
+                <tr>
+                    <td colspan="2"><strong>Марка автомобиля:</strong> {{wayBills.car.brand}} {{wayBills.car.model}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Гос. номерной знак:</strong> {{wayBills.car.regNumber}}</td>
+                    <td><strong>Гаражный номер:</strong> {{wayBills.car.id}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Водитель:</strong> {{wayBills.driver.lastName}} {{wayBills.driver.firstName}} {{wayBills.driver.middleName}}</td>
+                    <td><strong>Табельный номер:</strong> {{wayBills.driver.callsign}}</td>
+                </tr>
+                <tr>
+                    <td class="text-center">фамилия, имя, отчество</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><strong>Лицензионная карточка:</strong> стандартная, ограниченная</td>
+                </tr>
+                <tr>
+                    <td class="text-center">ненужное зачеркнуть</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Регистрационный №</strong> {{wayBills.car.permission.number}}</td>
+                    <td><strong>Серия:</strong>{{wayBills.car.permission.series}} <strong>№</strong> {{wayBills.car.permission.number2}}</td>
+                </tr>
+            </table>
+            <br/>
+            <table class="printTable">
+                <tr>
+                    <td colspan="2" class="text-center"><strong>Задание водителю</strong></td>
+                    <td colspan="2" class="text-center">Автомобиль технически исправен</td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td>Показание спидометра, км</td>
+                    <td>{{wayBills.startMileage}}</td>
+                </tr>
+                <tr>
+                    <td><strong>В распоряжение</strong></td>
+                    <td>На нужды организации</td>
+                    <td colspan="2">Въезд разрешен</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-center">наименование</td>
+                    <td><strong>Механик:</strong></td>
+                    <td class="text-center">{{getMechanic(wayBills.responsible)}}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td class="text-center">подпись</td>
+                    <td class="text-center">расшифр. подп.</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-center">Организация</td>
+                    <td colspan="2" class="text-center">Автообиль в технически исправном состоянии принял</td>
+                </tr>
+                <tr>
+                    <td><strong>Адрес подачи:</strong></td>
+                    <td></td>
+                    <td><strong>Водитель:</strong></td>
+                    <td class="text-center">{{wayBills.driver.lastName}} {{wayBills.driver.firstName[0]}}. {{wayBills.driver.middleName[0]}}.</td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td class="text-center">подпись</td>
+                    <td class="text-center">расшифр. подп.</td>
+                </tr>
+            </table>
+            <br/>
+            <table class="printTable">
+                <tr>
+                    <td width="600"></td>
+                    <td></td>
+                    <td>Марка</td>
+                    <td>Код</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><strong>Горючее</strong></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="4">Время выезда из гаража, ч. мин {{convertDateTimeToNormalFormat(wayBills.timestamp)}}</td>
+                </tr>
+            </table>
+            <br/>
+            <table class="printTable">
+                <tr>
+                    <td colspan="2"></td>
+                    <td colspan="2" class="text-center"><strong>Движение горючего</strong></td>
+                </tr>
+                <tr>
+                    <td>Диспетчер-нарядчик</td>
+                    <td></td>
+                    <td></td>
+                    <td>Количество, л</td>
+                </tr>
+                <tr>
+                    <td class="text-center">Подпись</td>
+                    <td class="text-center">расшифр. подп.</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Время возвращения в гараж, ч. мин</td>
+                    <td colspan="2">Выдано по заправочному листу №</td>
+                </tr>
+                <tr>
+                    <td>Диспетчер-нарядчик</td>
+                    <td></td>
+                    <td><strong>Остаток:</strong></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="text-center">Подпись</td>
+                    <td class="text-center">расшифр. подп.</td>
+                    <td>при выезде</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td>при позвращении</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">Опоздания, ожидания, простои в пути, заезды в  гараж и прочие отметки</td>
+                    <td>Расход: по норме</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td>фактический</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td>Экономия</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td>Перерасход</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td>Автомобиль принял. <br/>Показание спидометра <br/> при возвращении в гараж,км</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="4"><strong>Автомобиль сдал</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Водитель:</strong></td>
+                    <td class="text-center">{{wayBills.driver.lastName}} {{wayBills.driver.firstName[0]}}. {{wayBills.driver.middleName[0]}}.</td>
+                    <td><strong>Механик:</strong></td>
+                    <td class="text-center">{{getMechanic(wayBills.responsible)}}</td>
+                </tr>
+                <tr>
+                    <td class="text-center">подпись</td>
+                    <td class="text-center">расшифр. подп.</td>
+                    <td class="text-center">подпись</td>
+                    <td class="text-center">расшифр. подп.</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+﻿<div class="row pageheader">
+    <div class="col-sm-12">
+        <div class="form-inline">
+            <div class="btn-group filter-margin">
+                <label for="driver" class="filter-margin">Водитель:</label>
+                <div class="form-group">
+                    <input type="text" class="input-sm form-control driverOnTransaction" ng-model="driverQuery" placeholder="Водитель" id="driver" />
+                    <div class="form-control dropdownPanel dropdownPanel_driver">
+                        <li ng-click="selectDriver(undefined, true);getRatingReport()">-</li>
+                        <li id="dropdownPanelLoader"><img src="/Content/Images/waiting.gif" alt=""></li>
+                        <li ng-repeat="driver in drivers | filter:driverQuery" ng-click="selectDriver(driver,true);getRatingReport()">{{driver.name}}</li>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-group filter-margin">
+                <div class="form-control btn btn-success btn-sm" ng-click="Export('PDF','rating')">Экспорт в PDF</div>
+                <div class="form-control btn btn-success btn-sm" ng-click="Export('Excel','rating')">Экспорт в Excel</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="loader" id="loader">
+        <img src="/Content/Images/loader.gif" alt="">
+    </div>*@
+
+<div class="row">
+    <div class="containerWithoutPageHeader">
+        <table class="table table-bordered table-hover" id="report">
+            <thead>
+                <tr>
+                    <th>Водитель</th>
+                    <th>Рейтинг</th>
+                    <th>Средняя оценка</th>
+                    <th>Опоздания</th>
+                    <th>Отмененные заказы</th>
+                    <th>Ложные</th>
+                    <th>Качество трека</th>
+                    <th>Разрешенные категории</th>
+                    <th>Результат экзамена</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="ratingReport in reports">
+                    <th>{{ratingReport.driverName}}</th>
+                    <th>{{ratingReport.rating}}</th>
+                    <th>{{ratingReport.averageRating}}</th>
+                    <th>{{ratingReport.delay}}</th>
+                    <th>{{ratingReport.canceledOrders}}</th>
+                    <th>{{ratingReport.falseOrders}}</th>
+                    <th>{{ratingReport.trackQuality}}</th>
+                    <th>{{ratingReport.categories}}</th>
+                    <th>{{ratingReport.examResult}}</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

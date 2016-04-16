@@ -1,0 +1,23 @@
+﻿@model Dexpa.WebSite.Models.Driver.DriverViewModel
+
+@{
+    ViewBag.Title = "Водители";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="loader" id="loader">
+    <img src="/Content/Images/loader.gif" alt="">
+</div>
+
+<div id="main_part">
+    <div class="row">
+        <div class="col-sm-12" ng-app="DriverApp">
+            @Html.Partial("_DriversTable")
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/AngularControllers/DriversController.js")
+}

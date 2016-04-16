@@ -1,0 +1,214 @@
+﻿<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="row bottomBorder">
+                    <div class="col-sm-6">
+                        <label for="state" class="control-label">Статус:</label>
+                        <select class="form-control" ng-model="driver.state" validate="true" validationinfo="Статус" ng-options="state.name for state in driverStates track by state.state" id="state"></select>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="car" class="control-label">ТС:</label>
+                        <select class="form-control" ng-model="driver.car" validate="false" validationinfo="Транспортное средство" ng-options="formatCar(car) for car in cars track by car.id" id="car" validate="false"></select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="lastname" class="control-label">Фамилия:</label>
+                        <input type="text" class="form-control" ng-model="driver.lastName" validate="true" validationinfo="Фамилия" placeholder="Фамилия" id="lastname" maxlength="48" />
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="firstname" class="control-label">Имя:</label>
+                        <input type="text" class="form-control" ng-model="driver.firstName" validate="true" validationinfo="Имя" placeholder="Имя" id="firstname" maxlength="48" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="middlename" class="control-label">Отчество:</label>
+                        <input type="text" class="form-control" ng-model="driver.middleName" validate="false" validationinfo="Отчество" placeholder="Отчество" id="middlename" maxlength="48" />
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="fileUploader" class="control-label">Загрузка фотографии:</label>
+                        <div id="fileUploader" class="form-control">
+                            <form enctype="multipart/form-data">
+                                <input id="file-select" accept="image/*" type="file" name="file">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <img class="driver-photo center-block" ng-src="{{driver.content.driverPhoto.webUrl}}" />
+            </div>
+        </div>
+        <div class="row bottomBorder">
+            <div class="newLine indent">
+                <label for="address" class="control-label">Адрес:</label>
+                <input type="text" class="form-control" ng-model="driver.address" validate="false" validationinfo="Адрес" placeholder="Адрес" id="address" />
+            </div>
+            <div class="newLine">
+                <div class="col-xs-12 col-md-8">
+                    <label for="phones" class="control-label">Телефоны:</label>
+                    <input type="text" maxlength="64" class="form-control" ng-model="driver.phones" numbersanddash validate="true" validationinfo="Телефоны" placeholder="Телефоны" id="phones" ng-blur="formatPhone(driver, driver.phones)">
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <label for="email" class="control-label">E-mail:</label>
+                    <input type="text" class="form-control" ng-model="driver.email" ng-blur="validateEmail(driver.email)" validate="false" validationinfo="E-mail" placeholder="E-mail" id="email" />
+                </div>
+            </div>
+        </div>
+        <div class="row bottomBorder">
+            <div class="leftIndent rightIndent"><h4>Условия работы</h4></div>
+            <div class="col-xs-6 col-sm-3">
+                <label for="state" class="control-label">Алгоритм:</label>
+                <select class="form-control"
+                        ng-model="driver.workConditions" id="workConditions"
+                        ng-options="wc.name for wc in workConditionsList track by wc.id" validate="true" validationinfo="Алгоритм"></select>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <label for="workSchedule" class="control-label">График работы:</label>
+                <div id="workSchedule" class="form-inline">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="driver.workSchedule.monday"> <strong>Пн</strong>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="driver.workSchedule.tuesday"> <strong>Вт</strong>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="driver.workSchedule.wednesday"> <strong>Ср</strong>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="driver.workSchedule.thursday"> <strong>Чт</strong>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="driver.workSchedule.friday"> <strong>Пт</strong>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="driver.workSchedule.saturday"> <strong>Сб</strong>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="driver.workSchedule.sunday"> <strong>Вск</strong>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both"></div>
+            <div class="col-xs-6 col-sm-3">
+                <label for="series" class="control-label">Аренда:</label>
+                <input type="text" class="form-control" ng-model="driver.dayTimeFee" validate="true" validationinfo="Аренда" placeholder="Аренда" id="rent">
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <label for="number" class="control-label">Лимит:</label>
+                <input type="text" class="form-control" ng-model="driver.balanceLimit" validate="true" validationinfo="Лимит" placeholder="Лимит" id="limit">
+            </div>
+            <div style="clear: both"></div>
+            <div class="col-xs-6 col-sm-3">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" validate="false" ng-model="driver.technicalSupport"> Техподдержка
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="leftIndent rightIndent"><h4>Робот</h4></div>
+            <div class="leftIndent rightIndent">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" validate="false" ng-model="driver.robotSettings.enabled"> <strong>Yandex робот</strong>
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" validate="false" ng-model="driver.robotSettings.ordersSequence"> Цепочка заказов
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" validate="false" ng-model="driver.robotSettings.airports"> Портовые заказы
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" validate="false" ng-model="driver.robotSettings.wantToHome"> Хочу домой
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row bottomBorder">
+            <div class="col-xs-6 col-sm-3 newLine leftIndent rightIndent">
+                <label for="maxSearchRaduis" class="control-label">Максимальный радиус поиска, км:</label>
+                <select class="form-control" ng-model="driver.robotSettings.orderRadius" id="maxSearchRaduis" validate="false" validationinfo="Максимальный радиус поиска">
+                    <option>2</option>
+                    <option>5</option>
+                    <option>10</option>
+                    <option>15</option>
+                </select>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <label for="addressSearch" class="control-label">Поиск по адресу:</label>
+                <input type="text" class="form-control" ng-model="driver.robotSettings.addressSearch" validate="false" validationinfo="Поиск по адресу" placeholder="Поиск по адресу" id="addressSearch">
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <label for="minutesDepartureTime" class="control-label">Время подачи:</label>
+                <input type="text" class="form-control" ng-model="driver.robotSettings.minutesDepartureTime" validate="false" validationinfo="Время подачи" placeholder="Время подачи" id="minutesDepartureTime">
+            </div>
+        </div>
+        <div class="row bottomBorder">
+            <div class="leftIndent rightIndent"><h4>Таксометр</h4></div>
+            <div class="col-xs-3 col-sm-3">
+                <label for="DriverUserName" class="control-label">Логин:</label>
+                <input type="text" class="form-control" ng-model="DriverTaximetr.UserName" ng-change="userNameChanged()" validate="true" validationinfo="Логин" placeholder="Логин" id="DriverUserName" name="DriverUserName">
+            </div>
+            <div class="col-xs-3 col-sm-3">
+                <label for="DriverPassword" class="control-label">Пароль:</label>
+                <input type="text" class="form-control" ng-model="DriverTaximetr.Password" ng-change="passwordChanged()" ng-focus="focusOnPassword()" ng-blur="blurOnPassword()" validate="false" validationinfo="Пароль" placeholder="Пароль" id="DriverPassword" name="DriverPassword">
+            </div>
+        </div>
+        <div class="row bottomBorder">
+            <div class="leftIndent rightIndent"><h4>Водительское удостоверение</h4></div>
+            <div class="col-xs-6 col-sm-3">
+                <label for="series" class="control-label">Серия:</label>
+                <input type="text" class="form-control" ng-model="driver.driverLicense.series" validate="true" validationinfo="Серия" placeholder="Серия" id="series">
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <label for="number" class="control-label">Номер:</label>
+                <input type="text" class="form-control" ng-model="driver.driverLicense.number" validate="true" validationinfo="Номер" placeholder="Номер" id="number">
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <label for="datefrom" class="control-label">Дата выдачи:</label>
+                <input type="text" class="form-control" ng-model="driver.driverLicense.dateFrom" ng-blur="checkDate(driver.driverLicense.dateFrom,true)" validate="true" validationinfo="Дата выдачи" placeholder="Дата выдачи" id="datefrom">
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <label for="dateto" class="control-label">Действует до:</label>
+                <input type="text" class="form-control" ng-model="driver.driverLicense.dateTo" ng-blur="checkDate(driver.driverLicense.dateTo)" validate="true" validationinfo="Действует до" placeholder="Действует до" id="dateto">
+            </div>
+        </div>
+        <div>
+            <a href="@Url.Action("ShowDriver", "Driver", new { id = ViewData["id"] })" class="btn btn-success btn-sm pull-left"><i class="fa fa-chevron-left"></i> Назад</a>
+            <div class="pull-right">
+                <span class="waiting-indicator" ng-show="isVisible"><img src="~/Content/Images/waiting.gif" /></span>
+                <input type="submit" class="btn btn-success btn-sm" ng-disabled="isDisabled" value="Сохранить" />
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+﻿<div class="row pageheader">
+    <div class="form-inline">
+        <div class="btn-group filter-margin">
+            <label for="filterFromDate" class="filter-margin">Период:</label>
+            <input ng-model="fromDate" type="text" class="form-control input-sm" id="filterFromDate" />
+            <label for="filterToDate">-</label>
+            <input ng-model="toDate" type="text" class="form-control input-sm" id="filterToDate" />
+        </div>
+        <div class="btn-group filter-margin">
+            <label for="driver" class="filter-margin">Водитель:</label>
+            <div class="form-group">
+                <input type="text" class="input-sm form-control driverOnTransaction" ng-model="driverQuery" placeholder="Водитель" id="driver" />
+                <div class="form-control dropdownPanel dropdownPanel_driver">
+                    <li ng-click="selectDriver(undefined, true);getDriverTimeReport()">-</li>
+                    <li id="dropdownPanelLoader"><img src="/Content/Images/waiting.gif" alt=""></li>
+                    <li ng-repeat="driver in drivers | filter:driverQuery" ng-click="selectDriver(driver, true);getDriverTimeReport()">{{driver.name}}</li>
+                </div>
+            </div>
+        </div>
+        <div class="btn-group filter-margin">
+            <div class="form-control btn btn-success btn-sm" ng-click="Export('PDF','driver-time')">Экспорт в PDF</div>
+            <div class="form-control btn btn-success btn-sm" ng-click="Export('Excel','driver-time')">Экспорт в Excel</div>
+        </div>
+    </div>
+</div>
+
+@*<div class="loader" id="loader">
+        <img src="/Content/Images/loader.gif" alt="">
+    </div>*@
+
+<div class="row">
+    <div class="containerWithoutPageHeader">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="centered td-vertical-middle" rowspan="2">{{firstColumnName}}</th>
+                    <th class="centered td-vertical-middle" colspan="4">{{secondColumnName}}</th>
+                    <th class="centered td-vertical-middle" rowspan="2">Эффективность, %</th>
+                </tr>
+                <tr>
+                    <th class="centered">Онлайн</th>
+                    <th class="centered">На заказе</th>
+                    <th class="centered">Свободен</th>
+                    <th class="centered">Занят</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="driverReport in reports">
+                    <td>{{driverReport.firstColumn}}</td>
+                    <td class="text-right">{{driverReport.onlineTime.toFixed(1)}}</td>
+                    <td class="text-right">{{driverReport.onOrderTime.toFixed(1)}}</td>
+                    <td class="text-right">{{driverReport.freeTime.toFixed(1)}}</td>
+                    <td class="text-right">{{driverReport.busyTime.toFixed(1)}}</td>
+                    <td class="text-right">{{driverReport.efficiency}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

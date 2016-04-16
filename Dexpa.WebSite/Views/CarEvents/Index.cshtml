@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "История ТС";
+}
+
+<div class="row">
+    <div class="container" ng-controller="CarEventsCtrl" ng-init="initAllCarEvents(@ViewData["id"])">
+        <div class="row pageheader">
+            <h2 class="pull-left">История ТС</h2>
+            <div class="btn btn-danger btn-sm pull-right" ng-show="selectedEvent.carEventId || selectedEvent.repairId" ng-click="removeEventModal()"><i class="fa fa-times"></i> Удалить</div>
+            <div class="btn btn-success btn-sm pull-right" ng-show="selectedEvent.carEventId" ng-click="goTo('/CarEvents/ShowCarEvent/', selectedEvent.carEventId)"><i class="fa fa-edit"></i> Просмотр</div>
+            <div class="btn btn-success btn-sm pull-right" ng-show="selectedEvent.repairId" ng-click="goTo('/CarEvents/ShowRepair/', selectedEvent.repairId)"><i class="fa fa-edit"></i> Просмотр</div>
+            <div class="btn btn-success btn-sm pull-right" ng-show="car.id" ng-click="goTo('/CarEvents/AddCarEvent/', @ViewData["id"])"><i class="fa fa-plus"></i> Добавить событие</div>
+        </div>
+        <div class="row ">
+            <div class="containerWithoutPageHeader">
+                @Html.Partial("Partials/_AllEventsTable")
+                @Html.Partial("_DeleteModal")
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/AngularControllers/CarsEventsController.js")
+}

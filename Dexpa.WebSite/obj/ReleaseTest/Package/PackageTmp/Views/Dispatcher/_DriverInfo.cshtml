@@ -1,0 +1,19 @@
+﻿<div class="row">
+    <div class="col-xs-2"><img src="{{driver.content.driverPhoto.webUrlSmall}}" /></div>
+    <div class="col-xs-10">
+        <div class="row">
+            <div class="col-xs-3">
+                <div class="text-left" title="Позывной"><b>{{driver.callsign}}</b></div>
+                @*<div class="row" title="Время работы">{{driver.WorkingTime}}</div>*@
+                @*<div class="row" title="Время изменения статуса">{{driver.StateChangeTime}}</div>*@
+            </div>
+            <div class="col-xs-9">
+                <div class="row text-left" title="{{driver.lastName +' '+ driver.firstName +' '+ driver.middleName }}">
+                    {{driver.lastName +' '+ driver.firstName +' '+ driver.middleName }}
+                </div>
+                <div class="row" title="{{driver.car.brand + driver.car.model}}">{{driver.car.brand +" "+ driver.car.model}}</div>
+                @*<div class="row" title="{{driver.DriverGroup}}">{{driver.DriverGroup}}</div>*@
+            </div>
+        </div>
+    </div>
+</div>

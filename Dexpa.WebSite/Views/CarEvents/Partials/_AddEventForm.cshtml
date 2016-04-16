@@ -1,0 +1,53 @@
+﻿<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row bottomBorder">
+            <div class="col-sm-4">
+                <label for="callSign" class="control-label">Позывной</label>
+                <input type="text" class="form-control" required ng-model="car.callsign" placeholder="Позывной" id="callSign" maxlength="4" readonly="readonly">
+
+                <label for="brand" class="control-label">Марка</label>
+                <input type="text" class="form-control" required ng-model="car.brand" readonly="readonly" id="brand" placeholder="Марка" capitalize>
+
+                <label for="regNumber" class="control-label">Гос. номер</label>
+                <input type="text" class="form-control" required ng-model="car.regNumber" readonly="readonly" id="regNumber" maxlength="9" placeholder="Гос. номер">
+
+                <label for="color" class="control-label">Цвет</label>
+                <input type="text" class="form-control" ng-model="car.color" readonly="readonly" id="color" maxlength="48" placeholder="Цвет">
+            </div>
+            <div class="col-sm-4">
+                <label for="Status" class="control-label">Статус</label>
+                <input type="text" class="form-control" ng-model="car.status.name" readonly="readonly" id="Status" placeholder="Статус">
+
+                <label for="model" class="control-label">Модель</label>
+                <input type="text" class="form-control" ng-model="car.model" readonly="readonly" id="model" placeholder="Модель" capitalize>
+
+                <label for="productionYear" class="control-label">Год выпуска</label>
+                <input type="text" class="form-control" ng-model="car.productionYear" id="productionYear" placeholder="Год выпуска" readonly="readonly">
+
+                <label for="carClass" class="control-label">Класс</label>
+                <input type="text" class="form-control" ng-model="car.carClass" id="carClass" placeholder="Класс" readonly="readonly">
+            </div>
+            <div class="col-sm-4">
+                <img class="driver-photo center-block" ng-src="{{car.brandLogo}}" width="200" height="200" />
+            </div>
+        </div>
+        <label class="control-label">Название события</label>
+        <div class="row bottomBorder">
+            <div class="col-sm-6">
+                <input type="text" ng-model="event.name" maxlength="25" class="form-control input-sm" />
+            </div>
+        </div>
+        <div class="row bottomBorder">
+            <div class="col-sm-12">
+                <label class="control-label">Комментарий</label>
+                <textarea class="form-control" rows="3" maxlength="255" ng-model="event.comment" validate="true" validationinfo="Комментарий"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <a ng-show="car.id" href="@Url.Action("Index", "CarEvents"){{'/Index/' + car.id}}" class="btn btn-success btn-sm pull-left"><i class="fa fa-chevron-left"></i> К списку</a>
+                <input type="submit" class="right-orient btn btn-success btn-sm" ng-disabled="isDisabled" value="Сохранить" />
+            </div>
+        </div>
+    </div>
+</div>

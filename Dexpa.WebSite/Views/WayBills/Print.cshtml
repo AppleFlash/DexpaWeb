@@ -1,0 +1,24 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Печать путевого листа";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="container">
+        <div class="row pageheader" id="pageHeader"><div class="btn btn-success btn-sm right" onclick="printWayBills()">Печать</div></div>
+        <div class="row " ng-controller="WayBillsCtrl" ng-init="initPrintPage(@ViewData["id"])">
+            <div class="containerWithoutPageHeader">
+                @Html.AntiForgeryToken()
+                @Html.Partial("_PrintPreview")
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/AngularControllers/WayBillsController.js")
+}
+
+

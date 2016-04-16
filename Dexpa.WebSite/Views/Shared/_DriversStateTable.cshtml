@@ -1,0 +1,21 @@
+﻿<div class="row driversStatusBar">Свободно: {{readyDrivers.length}} [ {{readyDrivers.length / driversCount *100 | number:0}}%]</div>
+<div ng-repeat="driver in readyDrivers" class="row driverRow driver-free-status" id="{{driver.id}}" ng-click="showOnMap(driver);selectDriverForCall(driver)">
+    @Html.Partial("_DriverInfo")
+</div>
+
+<div class="row driversStatusBar">На заказе: {{busyDrivers.length}} [ {{busyDrivers.length / driversCount *100 | number:0}}% ]</div>
+<div ng-repeat="driver in busyDrivers" class="row driverRow driver-busy-status" id="{{driver.id}}" ng-click="showOnMap(driver);selectDriverForCall(driver)">
+    @Html.Partial("_DriverInfo")
+</div>
+
+<div class="row driversStatusBar">Заняты: {{notAvailableDrivers.length}} [ {{notAvailableDrivers.length / driversCount *100 | number:0}}% ]</div>
+<div ng-repeat="driver in notAvailableDrivers" class="row driverRow driver-notAv-status" id="{{driver.id}}" ng-click="showOnMap(driver);selectDriverForCall(driver)">
+    @Html.Partial("_DriverInfo")
+</div>
+
+<div ng-show="blockedDrivers.length != 0">
+    <div class="row driversStatusBar">Заблокированы</div>
+    <div ng-repeat="driver in blockedDrivers" class="row driverRow driver-notAv-status" id="{{driver.id}}" ng-click="showOnMap(driver);selectDriverForCall(driver)">
+        @Html.Partial("_DriverInfo")
+    </div>
+</div>

@@ -1,0 +1,24 @@
+﻿<div class="row">
+    <div class="col-xs-2 driverSidePhoto" ng-click="openBlockDialog(driver)" style="background:url({{driver.photoUrlThumb}}) no-repeat center center;">
+        <div class="blockedIcon" ng-show="driver.state.state==4">
+            <i class="fa fa-minus-circle" data-toggle="tooltip" data-placement="right" title="Данный водитель был заблокирован диспетчером"></i>
+        </div>
+        @*<img ng-class="{driverThumbBlocked:driver.state.state==4,driverThumb:driver.state.state!=4}" ng-src="{{driver.photoUrlThumb}}" />*@
+    </div>
+    <div class="col-xs-10">
+        <div class="row">
+            <div class="col-xs-3">
+                <div class="text-left" title="Позывной"><b>{{driver.callsign}}</b></div>
+                @*<div class="row" title="Время работы">{{driver.WorkingTime}}</div>*@
+                @*<div class="row" title="Время изменения статуса">{{driver.StateChangeTime}}</div>*@
+            </div>
+            <div class="col-xs-9">
+                <div class="row text-left" title="{{driver.lastName +' '+ driver.firstName +' '+ (driver.middleName!=null?driver.middleName:'') }}">
+                    {{driver.lastName +' '+ driver.firstName +' '+ (driver.middleName!=null?driver.middleName:"") }}
+                </div>
+                <div class="row" title="{{driver.carModel}}">{{driver.carModel}}</div>
+                @*<div class="row" title="{{driver.DriverGroup}}">{{driver.DriverGroup}}</div>*@
+            </div>
+        </div>
+    </div>
+</div>

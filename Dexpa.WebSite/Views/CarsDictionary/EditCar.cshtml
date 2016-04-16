@@ -1,0 +1,24 @@
+﻿@model Dexpa.WebSite.Models.Driver.DriverViewModel
+
+@{
+    ViewBag.Title = "Изменить автомобиль";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="container">
+        <div class="row pageheader"><h2>ТС</h2></div>
+        <div class="row " ng-controller="CarsCtrl" >
+            <div class="containerWithoutPageHeader" ng-init="GetDataForCarEdit(@ViewData["id"]);">
+                <form id="editCarForm" ng-repeat="car in carsList" ng-submit="editCar(car)">
+                    @Html.Partial("_EditCarForm")
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/AngularControllers/CarsDictionaryController.js")
+}

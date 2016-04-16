@@ -1,0 +1,53 @@
+﻿<div class="panel panel-default">
+    <div class="panel-body" ng-repeat="driver in drivers">
+        <div class="row bottomBorder">
+            <div class="col-sm-3">
+                <div class="col-xs-2"><img class="driver-photo" src="{{driver.photo.normalSize}}" /></div>
+            </div>
+            <div class="col-sm-9">
+                <h2 class="driverName">{{driver.lastName}} {{driver.firstName}} {{driver.middleName}}</h2>
+                <a class="right-orient btn btn-success btn-sm" href="@Url.Action("EditDriver/"+ViewData["id"])"><i class="fa fa-pencil"></i> Редактировать водителя</a>
+            </div>
+        </div>
+        <div class="row bottomBorder">
+            <div><strong>Таксомтер: </strong>{{driver.taxometr}}</div>
+            <div><strong>Смена: </strong>{{driver.state}}</div>
+        </div>
+        <div class="row bottomBorder">
+            <div><strong>Устройство: </strong>{{driver.device}}</div>
+            <div><strong>Версия: </strong>{{driver.deviceVersion}}</div>
+            <div><strong>Координаты: </strong>-</div>
+        </div>
+        <div class="row bottomBorder">
+            <div><strong>Допуск: </strong>{{driver.admittance}}</div>
+            <div><strong>Причина: </strong>{{driver.reason}}</div>
+        </div>
+        <div class="row bottomBorder">
+            <div><strong>Статус: </strong>{{driver.status}}</div>
+            <div><strong>ТС: </strong>{{driver.car}}</div>
+        </div>
+        <div class="row bottomBorder">
+            <div><strong>Адрес: </strong>{{driver.address}}</div>
+            <div><strong>Телефоны: </strong>{{driver.phones.join(', ')}}</div>
+            <div><strong>Email: </strong>{{driver.email}}</div>
+        </div>
+        <div class="row bottomBorder">
+            <h4>Условия работы</h4>
+            <div><strong>Алгоритм: </strong>{{driver.algorithm}}</div>
+            <div><strong>Дата приема: </strong>{{driver.hireDate}}</div>
+            <div><strong>График: </strong>{{driver.schedule}}</div>
+            <div><strong>Выходные: </strong>{{driver.weekends}}</div>
+            <div><strong>Дата увольнения: </strong>{{driver.leaveDate}}</div>
+            <div><strong>Аренда: </strong>{{driver.rent}}</div>
+            <div><strong>На счете: </strong>{{driver.account}}</div>
+            <div><strong>Лимит: </strong>{{driver.limit}}</div>
+        </div>
+        <div class="row bottomBorder">
+            <h4>Водительское удостоверение</h4>
+            <div><strong>Серия: </strong>{{driver.licenseSeries}}</div>
+            <div><strong>Номер: </strong>{{driver.licenseNumber}}</div>
+            <div><strong>Дата выдачи: </strong>{{driver.licenseDateFrom}}</div>
+            <div><strong>Действителен до: </strong>{{driver.licenseDateTo}}</div>
+        </div>
+    </div>
+</div>

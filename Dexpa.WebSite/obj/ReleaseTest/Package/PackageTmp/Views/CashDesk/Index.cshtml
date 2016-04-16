@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Остатки на счетах";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="loader" id="loader">
+    <img src="/Content/Images/loader.gif" alt="">
+</div>
+<div id="main_part">
+    <div ng-controller="BalanceCtrl" ng-init="getBalanceList()">
+        <div class="row">
+        <div class="col-sm-12">
+            <div class="row pageheader">
+                <div class="col-sm-12">
+                    <div class="form-inline">
+                        <div class="btn-group">
+                            <a href="/Transactions/AddTransaction/replenishment" class="form-control btn btn-success btn-sm"><span class="fa fa-plus"></span> Пополнить</a>
+                            <a href="/Transactions/AddTransaction/withdrawal" class="form-control btn btn-success btn-sm"><span class="fa fa-minus"></span> Списать</a>
+                            <a href="@Url.Action("Index","Transactions")" class="form-control btn btn-success btn-sm"><span class="fa fa-credit-card"></span> Транзакции</a>
+                        </div>
+                        <input class="form-control input-sm pull-right" ng-model="query" placeholder="Поиск">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="containerWithoutPageHeader">
+                    @Html.Partial("_BalanceTable")
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/AngularControllers/CashDeskController.js")
+
+}
+
+
+
+

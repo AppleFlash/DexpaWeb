@@ -1,0 +1,122 @@
+﻿@using Dexpa.WebSite.Helpers
+<div class="panel panel-default">
+    <div class="panel-body" ng-repeat="car in carsList">
+        <div class="row bottomBorder">
+            <div class="col-sm-4">
+                <label for="callSign" class="control-label">Позывной</label>
+                <input type="text" class="form-control" required ng-model="car.callsign" placeholder="Позывной" id="callSign" maxlength="4" readonly="readonly">
+
+                <label for="brand" class="control-label">Марка</label>
+                <input type="text" class="form-control" required ng-model="car.brand" readonly="readonly" id="brand" placeholder="Марка" capitalize>
+
+                <label for="regNumber" class="control-label">Гос. номер</label>
+                <input type="text" class="form-control" required ng-model="car.regNumber" readonly="readonly" id="regNumber" maxlength="9" placeholder="Гос. номер">
+
+                <label for="color" class="control-label">Цвет</label>
+                <input type="text" class="form-control" ng-model="car.color" readonly="readonly" id="color" maxlength="48" placeholder="Цвет">
+            </div>
+            <div class="col-sm-4">
+                <label for="Status" class="control-label">Статус</label>
+                <input type="text" class="form-control" ng-model="car.status.name" readonly="readonly" id="Status" placeholder="Статус">
+
+                <label for="model" class="control-label">Модель</label>
+                <input type="text" class="form-control" ng-model="car.model" readonly="readonly" id="model" placeholder="Модель" capitalize>
+
+                <label for="productionYear" class="control-label">Год выпуска</label>
+                <input type="text" class="form-control" ng-model="car.productionYear" id="productionYear" placeholder="Год выпуска" readonly="readonly">
+                
+                <label for="carClass" class="control-label">Класс</label>
+                <input type="text" class="form-control" ng-model="car.carClass" id="carClass" placeholder="Класс" readonly="readonly">
+            </div>
+            <div class="col-sm-4">
+                <img class="driver-photo center-block" ng-src="{{car.brandLogo}}" width="200" height="200" />
+            </div>
+        </div>
+        <label for="permission" class="control-label">№ разрешения</label>
+        <div id="permission" class="row">
+            <div class="col-sm-4">
+                <input type="text" class="form-control" ng-model="car.permission.number" id="number" maxlength="48" placeholder="№ разрешения" readonly="readonly">
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" ng-model="car.permission.series" id="series" maxlength="48" placeholder="№ разрешения" readonly="readonly">
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" ng-model="car.permission.number2" id="number2" maxlength="48" placeholder="№ разрешения" readonly="readonly">
+            </div>
+        </div>
+        <div class="row bottomBorder">
+            <div class="col-sm-12">
+                <label for="description" class="control-label">Описание</label>
+                <input type="text" class="form-control" ng-model="car.description" id="description" maxlength="48" placeholder="Описание" readonly="readonly">
+            </div>
+        </div>
+        <label for="categories" class="control-label">Категории</label>
+        <div id="categories" class="row bottomBorder">
+            <div class="col-sm-3">
+                <div><input type="checkbox" disabled="disabled" ng-model="car.features.bussiness" name="bussiness" /> Бизнес</div>
+                <div><input type="checkbox" disabled="disabled" ng-model="car.features.comfort" name="comfort" /> Комфорт</div>
+            </div>
+            <div class="col-sm-3">
+                <div>
+                    <input type="checkbox" ng-model="car.features.minivan" disabled="disabled" name="minivan" /> Минивэн
+                </div>
+                <div><input type="checkbox" ng-model="car.features.economy" disabled="disabled" name="economy" /> Эконом</div>
+
+            </div>
+        </div>
+        <label for="categories" class="control-label">Пожелания</label>
+        <div id="services" class="row">
+            <div class="col-sm-3">
+                <div><input type="checkbox" ng-model="car.features.conditioner" disabled="disabled" name="conditioner" /> Кондиционер</div>
+                <div>
+                    <input type="checkbox" ng-model="car.features.wifi" name="wifi" disabled="disabled" /> Wifi
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div>
+                    <input type="checkbox" ng-model="car.features.stationWagon" name="stationWagon" disabled="disabled" /> Универсал
+                </div>
+                <div>
+                    <input type="checkbox" ng-model="car.features.withAnimals" name="withAnimals" disabled="disabled" /> Животные
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div>
+                    <input type="checkbox" ng-model="car.features.smoke" name="smoke" disabled="disabled" /> Курить
+                </div>
+            </div>
+        </div>
+        <div id="services" class="row">
+            <div class="col-sm-3">
+                <div>
+                    <input type="checkbox" ng-model="car.features.coupon" name="coupon" disabled="disabled" /> Использование купона
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div>
+                    <input type="checkbox" ng-model="car.features.receipt" name="receipt" disabled="disabled" /> Квитанция об оплате
+                </div>
+            </div>
+        </div>
+        <div class="row bottomBorder">
+            <div class="col-sm-4">
+                <label for="childrenSeat" class="control-label">Детское кресло</label>
+                <input type="text" class="form-control" ng-model="car.childrenSeat.name" id="childrenSeat" placeholder="Детское кресло" readonly="readonly">
+            </div>
+        </div>
+        <div class="row bottomBorder">
+            <div class="col-sm-3">
+                <input type="checkbox" ng-model="car.belongsCompany" name="belongsCompany" disabled="disabled" /> ТС принадлежит таксопарку
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <a href="@Url.Action("Index", "CarsDictionary")" class="btn btn-success btn-sm pull-left"><i class="fa fa-chevron-left"></i> К списку</a>
+                @if (GlobalConfiguration.roleAccessModel.CanEditCars)
+                {
+                    <a class="btn btn-success pull-right btn-sm" href="@Url.Action("EditCar/" + ViewData["id"])"><i class="fa fa-pencil-square-o"></i> Редактировать</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>

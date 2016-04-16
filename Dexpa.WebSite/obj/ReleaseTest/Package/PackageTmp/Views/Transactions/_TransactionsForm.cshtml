@@ -1,0 +1,58 @@
+﻿<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="cashDesk">
+            <div class="transaction-display">
+                <div class="balance">На счете: <span id="balance"></span></div>
+                <div class="sum {{transaction.typeClass}}">{{transaction.symbol}}{{transaction.amount.toFixed(2)}}</div>
+                <div id="transactionAction" class="action">{{transaction.paymentMethod}} <span class="{{transaction.typeClass}}">{{transaction.type}}</span></div>
+            </div>
+            <form ng-submit="addTransaction(transaction)" id="transactionForm">
+                <div>
+                    <label for="driver" class="control-label">Контрагент:</label>
+                    <input type="text" class="form-control" ng-model="transaction.driver" placeholder="Контрагент" id="driver" validate="true" validationInfo="Контрагент" />
+                    <div class="form-control dropdownPanel dropdownPanel_driver">
+                        <li id="dropdownPanelLoader"><img src="/Content/Images/waiting.gif" alt=""></li>
+                        <li ng-repeat="driver in drivers | filter:transaction.driver" ng-click="selectDriver(driver)">[{{driver.callsign}}] - {{driver.lastName}} {{driver.firstName}} {{driver.middleName}}</li>
+                    </div>
+                </div>
+                <div>
+                    <label for="operation" class="control-label">Операция:</label>
+                    <select class="form-control" ng-model="transaction.type" ng-change="changeClass(transaction)" id="operation" validate="true" validationInfo="Операция">
+                        <option ng-selected="operationWithdrawalReplenishmentSelected">Списание</option>
+                        <option ng-selected="operationReplenishmentSelected">Пополнение</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="sum" class="control-label">Сумма:</label>
+                    <input type="text" class="form-control" ng-model="transaction.amount" placeholder="Сумма" id="sum" ng-blur="formattingAmount(transaction)" validate="true" validationinfo="Сумма" />
+                </div>
+                <div>
+                    <label for="payMethod" class="control-label">Способ оплаты:</label>
+                    <select class="form-control" ng-model="transaction.paymentMethod" id="payMethod" validate="true" validationinfo="Способ оплаты">
+                        <option ng-repeat="paymentMethod in paymentMethods">{{paymentMethod.name}}</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="group" class="control-label">Группа:</label>
+                    <select class="form-control" ng-model="transaction.group" id="group" validate="true" validationinfo="Группа">
+                        <option ng-repeat="transactionGroup in transactionGroups">{{transactionGroup.name}}</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="description" class="control-label">Описание:</label>
+                    <input type="text" class="form-control" ng-model="transaction.comment" id="description" placeholder="Описание" maxlength="100" />
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="transaction.check"> Данные указаны верно и мною проверены
+                    </label>
+                </div>
+                <div>
+                    <a href="@Request.UrlReferrer"><button type="button" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-chevron-left"></span>Назад</button></a>
+                    <input type="submit" class="btn btn-success right-orient btn-sm" value="Выполнить операцию"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

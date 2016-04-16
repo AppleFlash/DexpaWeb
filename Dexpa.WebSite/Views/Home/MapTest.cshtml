@@ -1,0 +1,15 @@
+﻿<div id="map" class="containerWithPageHeader"></div>
+
+@section scripts{
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    @Scripts.Render("~/Scripts/AdditionalScripts/YandexMapScript.js")
+    <script src="~/Scripts/MapScripts/MapCore.js"></script>
+    
+<script>
+    ymaps.ready(function () {
+
+
+    });
+</script>
+
+}

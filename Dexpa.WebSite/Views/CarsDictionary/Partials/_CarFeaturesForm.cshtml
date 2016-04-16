@@ -1,0 +1,54 @@
+﻿<label for="categories" class="control-label"><strong>Категории</strong></label>
+<div id="categories" class="row bottomBorder">
+    <div class="col-sm-3">
+        <div><input type="checkbox" ng-model="car.features.bussiness" name="bussiness" /> Бизнес</div>
+        <div><input type="checkbox" ng-model="car.features.comfort" name="comfort" /> Комфорт</div>
+    </div>
+    <div class="col-sm-3">
+        <div>
+            <input type="checkbox" ng-model="car.features.minivan" name="minivan" /> Минивэн
+        </div>
+        <div><input type="checkbox" ng-model="car.features.economy" name="economy" /> Эконом</div>
+
+    </div>
+</div>
+<label for="categories" class="control-label"><strong>Пожелания</strong></label>
+<div id="services" class="row">
+    <div class="col-sm-3">
+        <div><input type="checkbox" ng-model="car.features.conditioner" name="conditioner" /> Кондиционер</div>
+        <div>
+            <input type="checkbox" ng-model="car.features.wifi" name="wifi" /> Wifi
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div>
+            <input type="checkbox" ng-model="car.features.stationWagon" name="stationWagon" /> Универсал
+        </div>
+        <div>
+            <input type="checkbox" ng-model="car.features.withAnimals" name="withAnimals" /> Животные
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div>
+            <input type="checkbox" ng-model="car.features.smoke" name="smoke" /> Курить
+        </div>
+    </div>
+</div>
+<div id="services" class="row">
+    <div class="col-sm-3">
+        <div>
+            <input type="checkbox" ng-model="car.features.coupon" name="coupon" /> Использование купона
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div>
+            <input type="checkbox" ng-model="car.features.receipt" name="receipt" /> Квитанция об оплате
+        </div>
+    </div>
+</div>
+<div class="row bottomBorder">
+    <div class="col-sm-4">
+        <label for="childrenSeat" class="control-label">Детское кресло</label>
+        <select class="form-control" ng-model="car.childrenSeat" ng-options="seat.name for seat in childrenSeats" id="childrenSeat" validate="true" validationinfo="Детское кресло"></select>
+    </div>
+</div>

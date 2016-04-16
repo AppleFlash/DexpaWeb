@@ -1,0 +1,83 @@
+﻿.right-orient {
+    float: right;
+}
+
+.centered {
+    text-align: center;
+}
+
+.table tr {
+    cursor: pointer;
+}
+
+.newLine {
+    clear: both;
+}
+
+.indent {
+    padding: 10px;
+}
+
+.leftIndent {
+    padding-left: 10px;
+}
+
+.rightIndent {
+    padding-right: 10px;
+}
+
+.topIndent {
+    padding-top: 10px;
+}
+
+.bottomIndent {
+    padding-bottom: 10px;
+}
+
+.fontSize {
+    font-size: 13px;
+}
+
+.loader {
+    position: absolute;
+    left: 48%;
+    top: 49%;
+    z-index: 9999;
+}
+
+.driver-photo {
+    padding: 4px;
+    background-color: #E2E2E2;
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.driver-photoContainer {
+    width: 200px;
+    height: 200px;
+    float: left;
+}
+
+.mainInfoDataTable td{
+    font-size: 14px;
+    padding-bottom: 10px;
+}
+
+.mainInfoDataTable tr td:first-child{
+    text-align: right;
+    font-weight: bold;
+}
+
+.mainInfoDataTable tr td:last-child{
+    text-align: left;
+    padding-left: 10px;
+}
+
+.carFeatures{
+    font-size: 15px;
+}
+
+.carFeatures div div{
+    margin-top: 15px;
+}
+

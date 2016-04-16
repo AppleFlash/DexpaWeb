@@ -1,0 +1,223 @@
+﻿.containerWithoutPageHeader, .containerWithPageHeader, .containerForTableOnMainPage, .tableContainerPaginator {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: auto;
+    white-space: nowrap;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.containerLeftBorder {
+    border-left: 1px solid #1D2939;
+}
+
+.driverRow {
+    height: 45px;
+    cursor: pointer;
+    border-bottom: 1px solid #404040;
+    overflow: hidden;
+    font-size: 10px;
+    line-height: 15px;
+    text-align: center;
+    padding: 5px 5px 5px 5px;
+    z-index: 8;
+}
+
+.driverSidePhoto {
+    margin-top: -5px;
+    height: 45px;
+}
+
+.driverSidePhoto:hover {
+    -webkit-box-shadow:
+        0 0 40px rgba(255,255,255,.6),
+        inset 0 0 20px rgba(255,255,255,1);
+    -moz-box-shadow:
+        0 0 40px rgba(255,255,255,.6),
+        inset 0 0 40px rgba(255,255,255,1);
+    box-shadow:
+        0 0 40px rgba(255,255,255,.6),
+        inset 0 0 40px rgba(255,255,255,1);
+}
+
+.driverRow:hover {
+    color: white;
+    background-color: #1CAF9A;
+}
+
+.driversStatusBar {
+    background-color: #1D2939;
+    color: white;
+    overflow: hidden;
+    font-size: 15px;
+    line-height: 19px;
+    text-align: center;
+}
+
+.tableGlobalHead th{
+    text-align: center;
+}
+
+.driver-notAv-status {
+    background-color: #FFEDED;
+}
+
+.driver-free-status {
+    background-color: #EDFFE5;
+}
+
+.driver-busy-status {
+    background-color: #FFFEE5;
+}
+
+.map-wrapper {
+    width: 100%;
+    height: 370px;
+}
+
+.trackMap {
+    width: 100%;
+    height: 100%;
+}
+
+.selectedTableRow {
+    background: #1CAF9A !important;
+    color: white;
+}
+
+.order-state-button {
+    width: 100px;
+}
+
+.order-state-button-small {
+    width: 80px;
+}
+
+.order-accepted {
+    background-color: #FFFF8F
+}
+
+.order-driving {
+    background-color: #D8FF77
+}
+
+.order-waiting {
+    background-color: #FFFF8F
+}
+
+.smallFontSize{
+    font-size: 11px;
+}
+
+.boldFont {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.baloonTable tr td {
+    padding-left: 4px;
+}
+
+.imageBalloon {
+    width: 60px;
+    height: 60px;
+    padding-right: 5px;
+}
+
+.centerTable {
+    margin: auto;
+}
+
+.balloonContent {
+    margin-left: 70px;
+}
+
+.colorText {
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    color: green;
+}
+
+.colorTxtPnt {
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    color: red;
+}
+
+.delay {
+    text-align: center;
+    font-size: 12px;
+    color: red;
+}
+
+.ontime {
+    text-align: center;
+    font-size: 12px;
+    color: green;
+}
+
+.addrPos {
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+}
+.addrPosClassic {
+    text-align: center;
+    font-size: 12px;
+}
+td a {
+    text-decoration: underline;
+}
+
+.textRight {
+    text-align: right;
+}
+
+.verdictRed {
+    color: red;
+    font-weight: bold;
+}
+
+.verdictGreen {
+    color: #1CAF9A;
+    font-weight: bold;
+}
+
+.robotLogGreen td{
+    background-color: #B8EFCA;
+}
+
+.robotLogRed td{
+    background-color: #FFEDED;
+}
+
+.bgRed {
+    background: lightcoral;
+}
+
+.blockedIcon {
+    color: red;
+    z-index: 10;
+    position: relative;
+    top: 2px;
+    right: -18px;
+    font-size: 20px;
+}
+
+/*Orders state colors*/
+
+.organizationOrder {
+    background: lightgoldenrodyellow;
+}
+
+.dispOrder {
+    background: #d8ffd8
+}
+
+.yandexOrder {
+    background: #ffd476;
+}
+
+/*-------------------*/

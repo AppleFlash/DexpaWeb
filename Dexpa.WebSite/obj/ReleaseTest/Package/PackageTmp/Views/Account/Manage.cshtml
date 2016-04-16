@@ -1,0 +1,162 @@
+﻿@using Dexpa.WebSite.Helpers
+@model Dexpa.WebSite.Models.ManageUserViewModel
+@{
+    ViewBag.Title = "Изменение учетной записи";
+}
+@*<script src="~/Scripts/AdditionalScripts/Authorization.js"></script>
+<script>
+    $(document).ready(function () {
+        getProfileInfo();
+    });
+</script>*@
+<div class="row">
+    <div class="container">
+        <div class="row pageheader">
+            <div class="col-sm-12"><h2>Изменение учетной записи</h2></div>
+        </div>
+        <div class="row">
+            <div class="containerWithoutPageHeader">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form id="updateForm">
+                            @Html.AntiForgeryToken()
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label for="LastName" class="control-label">Фамилия, Имя, Отчество</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control input-sm" id="lastName" value="@Model.LastName" validate="true" validationinfo="Фамилия" placeholder="Фамилия" />
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control input-sm" id="firstName" value="@Model.Name" validate="true" validationinfo="Имя" placeholder="Имя" />
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control input-sm" id="middleName" value="@Model.MiddleName" validate="true" validationinfo="Отчество" placeholder="Отчество" />
+                                </div>
+                            </div>
+                            <div class="row bottomBorder">
+                                <div class="col-sm-4">
+                                    <label for="PhoneNumber" class="control-label">Телефон</label>
+                                    <input type="text" class="form-control input-sm" id="phoneNumber" value="@Model.PhoneNumber" validate="true" validationinfo="Телефон" placeholder="Телефон" />
+                                </div>
+                                <div class="col-sm-4">
+                                    <label for="Email" class="control-label">Email</label>
+                                    <input type="text" class="form-control input-sm" id="Email" value="@Model.Email" validate="false" validationinfo="Email" placeholder="Email" />
+                                </div>
+                            </div>
+                            <div class="row bottomBorder">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            <label for="UserName" class="control-label">Имя пользователя</label>
+                                            <input type="text" class="form-control input-sm" id="UserName" value="@Model.UserName" validate="true" validationinfo="Имя пользователя" placeholder="Имя пользователя" readonly />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="Role" class="control-label">Роль</label>
+                                            @*<input type="hidden" id="hiddenRole" value="@Model.Role"/>
+                        <select class="form-control input-sm" id="Role" validate="true" validationinfo="Роль">
+                            <option>Администратор</option>
+                            <option>Диспетчер</option>
+                            <option>Водитель</option>
+                            <option>Кассир</option>
+                            <option>Работник с кадрами</option>
+                        </select>*@
+                                            @if (GlobalConfiguration.roleAccessModel.CanSeeAndEditAccounts && (User.Identity.Name != Model.UserName))
+                                            {
+                                                @Html.DropDownListFor(m => m.Role, GlobalConfiguration.GetRolesList(), new { @class = "form-control input-sm" })
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control input-sm" id="Role" value="@Model.Role" validate="true" validationinfo="Роль" placeholder="Роль" readonly />
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row padding10">
+                                <div class="col-sm-4">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="hidden" id="hiddenHasAccess" value="@Model.HasAccess.ToString()" />
+                                            @if (GlobalConfiguration.roleAccessModel.CanSeeAndEditAccounts && (User.Identity.Name != Model.UserName))
+                                            {
+                                                @*<input type="checkbox" id="HasAccess" validate="false" /> <strong>Доступ разрешен</strong>*@
+                                                @Html.CheckBoxFor(m => m.HasAccess, new { @validate="false"}) <strong>Доступ разрешен</strong>
+                                            }
+                                            else
+                                            {
+                                                @*<input type="checkbox" id="HasAccess" validate="false" disabled="disabled" /> <strong>Доступ разрешен</strong>*@
+                                                @Html.CheckBoxFor(m => m.HasAccess, new { @validate="false", @disabled="disabled"}) <strong>Доступ разрешен</strong>
+                                            }
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label for="OldPassword" class="control-label">Текущий Пароль</label>
+                                    <input type="password" class="form-control input-sm" id="OldPassword" validate="false" validationinfo="Пароль" placeholder="Текущий Пароль" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label for="NewPassword" class="control-label">Новый Пароль</label>
+                                    <input type="password" class="form-control input-sm" id="NewPassword" validate="false" validationinfo="Пароль" placeholder="Новый Пароль" />
+                                </div>
+                            </div>
+                            <div class="row bottomBorder">
+                                <div class="col-sm-4">
+                                    <label for="ConfirmPassword" class="control-label">Подтверждение</label>
+                                    <input type="password" class="form-control input-sm" id="ConfirmPassword" validate="false" validationinfo="Подтверждение" placeholder="Подтверждение" />
+                                </div>
+                            </div>
+                            <div class="row bottomBorder">
+                                <h5>IP Телефон</h5>
+                                <div class="col-sm-4">
+                                    <label for="IpPhoneLogin" class="control-label">Логин</label>
+                                    <input type="text" class="form-control input-sm" id="IpPhoneLogin" validate="false" validationinfo="Логин" placeholder="Логин" />
+                                </div>
+                                <div class="col-sm-4">
+                                    <label for="IpPhonePassword" class="control-label">Пароль</label>
+                                    <input type="text" class="form-control input-sm" id="IpPhonePassword" validate="false" validationinfo="Пароль" placeholder="Пароль" />
+                                </div>
+                                <div class="col-sm-4">
+                                    <label for="IpPhoneRealm" class="control-label">Провайдер</label>
+                                    <input type="text" class="form-control input-sm" id="IpPhoneRealm" validate="false" validationinfo="Провайдер" placeholder="myphone.ru" />
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-sm-4 topIndent">
+                                    <div class="btn btn-success btn-sm" onclick="SavePhoneInfo()">Сохранить</div>
+                                </div>
+                                <div class="col-sm-4 topIndent">
+                                    <div id="IpPhoneUpdateStatus"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <a href="@Request.UrlReferrer" class="pull-left"><div class="btn btn-success btn-sm"><span class="glyphicon glyphicon-chevron-left"></span> Назад</div></a>
+                                    <div id="update" class="btn btn-success pull-right btn-sm">Сохранить</div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+
+<script src="~/Scripts/ToolsScripts/ipphoneScript.js"></script>
+<script>
+    $(document).ready(function () {
+        var username = $("#UserName").val();
+        GetUserIdByUserName(username);
+    });
+</script>

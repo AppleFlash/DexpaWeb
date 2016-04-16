@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Пользователи";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="loader" id="loader">
+    <img src="/Content/Images/loader.gif" alt="">
+</div>
+
+<div id="main_part">
+    <div ng-controller="AdminCtrl" ng-init="getUsers()">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row pageheader">
+                    <div class="col-sm-12">
+                        <div class="form-inline">
+                            <a href="@Url.Action("Register", "Account")" class="btn btn-success pull-left btn-sm"><i class="fa fa-plus"></i> Регистрация нового пользователя</a>
+                            <input class="form-control input-sm pull-right" ng-model="query" placeholder="Поиск">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="containerWithoutPageHeader">
+                        @Html.Partial("_UsersTable")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/AngularControllers/AdminAppController.js")
+}
+

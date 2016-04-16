@@ -1,0 +1,24 @@
+﻿@model Dexpa.WebSite.Models.Driver.DriverViewModel
+
+@{
+    ViewBag.Title = "Изменить водителя";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="container">
+        <div class="row pageheader"><h2>Редактирование водителя</h2></div>
+        <div class="row " ng-controller="DriverCtrl" ng-init="initEditDriver(@ViewData["id"])">
+            <div class="containerWithoutPageHeader">
+                <form id="editDriverForm" ng-submit="editDriver(driver, @ViewData["id"])">
+                    @Html.Partial("_EditDriverForm")
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/AngularControllers/DriversController.js")
+}

@@ -1,0 +1,36 @@
+﻿<table class="table table-bordered table-hover smallFontSize">
+    <thead>
+        <tr>
+            <th class="text-center" ng-click="sortBy('callsign')">Позывной <span id="callsign"></span></th>
+            <th class="text-center" ng-click="sortBy('name')">ФИО <span id="name"></span></th>
+            <th class="text-center" ng-click="sortBy('carName')">ТС <span id="carName"></span></th>
+            <th class="text-center" ng-click="sortBy('workConditions')">Условия работы <span id="workConditions"></span></th>
+            <th class="text-center" ng-click="sortBy('driverState')">Статус водителя <span id="driverState"></span></th>
+            <th class="text-center" ng-click="sortBy('phone')">Телефон <span id="phone"></span></th>
+            <th class="text-center" ng-click="sortBy('rentCost')">Аренда <span id="rentCost"></span></th>
+            <th class="text-center" ng-click="sortBy('moneyLimit')">Лимит <span id="moneyLimit"></span></th>
+            <th class="text-center" ng-click="sortBy('balance')">На счете <span id="balance"></span></th>
+        </tr>
+        <tr class="boldFont">
+            <th colspan="6"></th>
+            <th class="text-right">{{totalRent}}</th>
+            <th class="text-right">{{totalLimit}}</th>
+            <th class="text-right">{{totalBalance}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="balanceRow in balanceList | filter: filterByStatus | filter:filterByWC| filter:query"
+            ng-click="goTo('/Transactions/Driver/', balanceRow.driverId)"
+            class="transaction-{{(balanceRow.balance < '-1' ? 'minus' : (balanceRow.balance > '1' ? 'plus' : ''))}}">
+            <td>{{::balanceRow.callsign}}</td>
+            <td>{{::balanceRow.name}}</td>
+            <td>{{::balanceRow.carName}}</td>
+            <td>{{::balanceRow.workConditions.name}}</td>
+            <td>{{::balanceRow.driverState.name}}</td>
+            <td>{{::balanceRow.phone}}</td>
+            <td class="text-right">{{::balanceRow.rentCost.toFixed(2)}}</td>
+            <td class="text-right">{{::balanceRow.moneyLimit.toFixed(2)}}</td>
+            <td class="text-right">{{::balanceRow.balance.toFixed(2)}}</td>
+        </tr>
+    </tbody>
+</table>

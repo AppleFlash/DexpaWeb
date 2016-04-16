@@ -1,0 +1,149 @@
+﻿<div class="ip_phone" id="ip_phone" ng-controller="IPPhoneCtrl" ng-init="ipPhoneInit()">
+    @section scripts
+    {
+        @Scripts.Render("~/bundles/sipphone")
+    }
+    
+    <script src="~/Scripts/SIPml-api.js?svn=224"></script>
+    <script src="~/Scripts/ToolsScripts/SIPmlCore.js"></script>
+
+    <div id="audio">
+
+    </div>
+
+    <audio id="audio_remote" autoplay="autoplay">
+        <audio id="ringtone" loop="" src="~/Content/Sounds/ringtone.wav">
+            <audio id="ringbacktone" loop="" src="~/Content/Sounds/ringbacktone.wav">
+                <audio id="dtmfTone" src="~/Content/Sounds/dtmf.wav"></audio>
+            </audio>
+        </audio>
+    </audio>
+
+    @*<input id="call-number" type="text" />
+        <input id="call-button" value="Call" type="button" />*@
+
+    <div class="ip_phone_widget_button" id="ip_phone_widget_button">
+        <span class="fa fa-phone"></span>
+    </div>
+
+    <div class="ip_phone_content">
+        <ul class="ip_phone_tabs" id="ip_phone_tabs">
+            <li class="ip_phone_tab ip_phone_tab_active" id="ip_phone_number_tab_header" onclick="showTab('number')">Номер</li>
+            <li class="ip_phone_tab ip_phone_tab_unactive" id="ip_phone_driver_tab_header" onclick="showTab('driver')">Водитель</li>
+            <li class="ip_phone_tab ip_phone_tab_unactive" id="ip_phone_order_tab_header" onclick="showTab('order')">Заказ</li>
+        </ul>
+        <div class="ip_phone_state" id="ip_phone_state"></div>
+
+        <div class="ip_phone_tab_content">
+            <div id="ip_phone_number_tab">
+                <input class="form-control input-sm ip_phone_call_number" id="call-number" type="text" placeholder="Номер телефона" />
+                <div class="ip_phone_numpad_panel">
+                    <div class="ip_phone_numpad_line">
+                        <div class="ip_phone_button ip_phone_numpad_button" onclick="numpadButtonAction(this.innerHTML)">7</div>
+                        <div class="ip_phone_button ip_phone_numpad_button" onclick="numpadButtonAction(this.innerHTML)">8</div>
+                        <div class="ip_phone_button ip_phone_numpad_button" onclick="numpadButtonAction(this.innerHTML)">9</div>
+                    </div>
+                    <div class="ip_phone_numpad_line">
+                        <div class="ip_phone_button ip_phone_numpad_button" onclick="numpadButtonAction(this.innerHTML)">4</div>
+                        <div class="ip_phone_button ip_phone_numpad_button" onclick="numpadButtonAction(this.innerHTML)">5</div>
+                        <div class="ip_phone_button ip_phone_numpad_button" onclick="numpadButtonAction(this.innerHTML)">6</div>
+                    </div>
+                    <div class="ip_phone_numpad_line">
+                        <div class="ip_phone_button ip_phone_numpad_button" onclick="numpadButtonAction(this.innerHTML)">1</div>
+                        <div class="ip_phone_button ip_phone_numpad_button" onclick="numpadButtonAction(this.innerHTML)">2</div>
+                        <div class="ip_phone_button ip_phone_numpad_button" onclick="numpadButtonAction(this.innerHTML)">3</div>
+                    </div>
+                    <div class="ip_phone_numpad_line">
+                        <div class="ip_phone_button ip_phone_numpad_button" onclick="numpadButtonAction(this.innerHTML)">+</div>
+                        <div class="ip_phone_button ip_phone_numpad_button" onclick="numpadButtonAction(this.innerHTML)">0</div>
+                        <div class="ip_phone_button ip_phone_numpad_button" onclick="numpadButtonAction(this.innerHTML)">*</div>
+                    </div>
+                    <div class="ip_phone_calls_buttons_block">
+                        <div class="ip_phone_numpad_line">
+                            <div class="ip_phone_button ip_phone_call_button" id="call-button">Вызов</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ip_phone_driver_tab">
+                <input class="form-control input-sm ip_phone_call_number" id="call-driver-number" type="text" placeholder="Номер телефона" />
+                <div class="form-group ip_phone_driver_panel">
+                    <input type="text" ng-model="driverQuery" class="form-control input-sm" id="ip_phone_driver" />
+                    <div class="form-control dropdownPanel dropdownPanel_ip_phone_driver">
+                        <li id="dropdownPanelLoader"><img src="/Content/Images/waiting.gif" alt=""></li>
+                        <li ng-repeat="driver in IPPhoneDrivers | filter:driverQuery" ng-click="selectDriver(driver)">[{{driver.callsign}}] - {{driver.lastName}} {{driver.firstName}} {{driver.middleName}}</li>
+                    </div>
+                    <div class="ip_phone_numpad_line">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="ip_phone_online_drivers" ng-model="OnlineDrivers"> Только водители на смене
+                        </label>
+                    </div>
+                    <div class="ip_phone_numpad_line">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="ip_phone_fired_drivers" ng-model="FiredDrivers"> Уволенные
+                        </label>
+                    </div>
+                    <div class="ip_phone_calls_buttons_block">
+                        <div class="ip_phone_numpad_line">
+                            <div class="ip_phone_button ip_phone_call_button" id="call-driver">Вызов</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ip_phone_order_tab">
+                <input class="form-control input-sm ip_phone_call_number" id="call-order-number" type="text" placeholder="Номер телефона" />
+                <div class="form-group ip_phone_order_panel">
+                    <div class="ip_phone_order_area" id="ip_phone_order_area">
+                        <span id="ip_phone_order_id"></span>
+                        <span id="ip_phone_order_address"></span>
+                        <span id="ip_phone_order_date"></span>
+                        <input type="hidden" id="ip_phone_order_client_number"/>
+                        <input type="hidden" id="ip_phone_order_driver_number" />
+                    </div>
+                    <div class="ip_phone_calls_buttons_block">
+                        <div class="ip_phone_numpad_line">
+                            <div class="ip_phone_button ip_phone_call_button" id="call-order-driver">Вызов водителя</div>
+                        </div>
+                        <div class="ip_phone_numpad_line">
+                            <div class="ip_phone_button ip_phone_call_button" id="call-order-client">Вызов Клиента</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ip_phone_outcoming_call_tab">
+                <div class="form-group ip_phone_outcoming_call_panel">
+                    <div class="ip_phone_outcoming_call_type">Исходящий вызов</div>
+                    <div class="ip_phone_outcoming_call_number" id="ip_phone_outcoming_call_number"></div>
+                    <div class="ip_phone_calls_buttons_block">
+                        <div class="ip_phone_numpad_line">
+                            <div class="ip_phone_button ip_phone_cancel_button" id="hang-up">Повесить трубку</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="ip_phone_incoming_call_tab">
+                <div class="form-group ip_phone_incoming_call_panel">
+                    <div class="ip_phone_incoming_call_type">Входящий вызов</div>
+                    <div class="ip_phone_incoming_call_number" id="ip_phone_incoming_call_number"></div>
+                    <div class="ip_phone_caller_type" id="ip_phone_caller_type"></div>
+                    <div class="ip_phone_caller_name" id="ip_phone_caller_name"></div>
+                    <div class="ip_phone_caller_current_order" id="ip_phone_caller_current_order"></div>
+                    <div class="ip_phone_calls_buttons_block">
+                        <div class="ip_phone_numpad_line">
+                            <div class="ip_phone_button ip_phone_call_button" id="acceptCall">Ответить</div>
+                        </div>
+                        <div class="ip_phone_numpad_line">
+                            <div class="ip_phone_button ip_phone_cancel_button" id="rejectCall">Отклонить</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/ToolsScripts/ipphoneScript.js"></script>
+</div>
+<script src="~/Scripts/AngularControllers/IPPhoneController.js"></script>

@@ -1,0 +1,59 @@
+﻿@using Microsoft.AspNet.Identity
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row bottomBorder">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="driver" class="control-label">Водитель</label>
+                    <input type="text" class="input-sm form-control" ng-model="driver" validate="true" validationinfo="Водитель" placeholder="Водитель" id="driver" ng-focus="filterByDriver(null)" />
+                    <div class="form-control dropdownPanel dropdownPanel_driver">
+                        <li ng-repeat="driver in drivers | filter:driver" ng-click="filterByDriver(driver);getMaxPeriodForDriver()">{{driver.name}}</li>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="cars" class="control-label">ТС</label>
+                    <input type="text" class="input-sm form-control" ng-model="car" validate="true" validationinfo="ТС" placeholder="ТС" id="cars" ng-focus="filterByCar(null)" />
+                    <div class="form-control dropdownPanel dropdownPanel_cars">
+                        <li ng-repeat="car in cars | filter:car" ng-click="filterByCar(car);">[{{car.callsign}}] - {{car.brand}} {{car.model}}</li>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bottomBorder">
+            <div class="col-sm-4">
+                <label for="fromDate" class="control-label">Дата выдачи</label>
+                <input type="text" class="form-control" ng-model="wayBills.fromDate" validate="true" validationinfo="Дата выдачи" placeholder="Дата выдачи" id="fromDate">
+            </div>
+            <div class="col-sm-4">
+                <label for="toDate" class="control-label">Период</label>
+                <input type="hidden" class="form-control" ng-model="wayBills.toDate" placeholder="Дата окончания" id="toDate">
+                <input type="text" class="form-control" ng-model="driverMaxPeriod" validate="true" validationinfo="Период" placeholder="Период" ng-blur="checkPeriod(wayBills)" id="period">
+            </div>
+            <div class="col-sm-4">
+                <span id="maxPeriodMessage" class="note">Дата окончания: {{wayBills.toDate}}</span>
+            </div>
+        </div>
+        <div class="row bottomBorder">
+            <div class="col-sm-4">
+                <label for="startMileage" class="control-label">Начальный пробег</label>
+                <input type="text" class="form-control" ng-model="wayBills.startMileage" validate="true" validationinfo="Начальный пробег" placeholder="Начальный пробег" id="startMileage">
+            </div>
+            <div class="col-sm-4">
+                <label for="endMileage" class="control-label">Конечный пробег</label>
+                <input type="text" class="form-control" ng-model="wayBills.endMileage" validate="false" validationinfo="Конечный пробег" placeholder="Конечный пробег" id="endMileage">
+            </div>
+        </div>
+        <input type="hidden" id="wayBillsUsername" value="@User.Identity.GetUserName()" />
+        <div class="row">
+            <div>
+                <a href="@Url.Action("Index", "WayBills")" class="btn btn-success btn-sm pull-left"><i class="fa fa-chevron-left"></i> К списку</a>
+                <div class="pull-right">
+                    <span class="waiting-indicator" ng-show="isVisible"><img src="~/Content/Images/waiting.gif" /></span>
+                    <input type="submit" class="btn btn-success btn-sm" ng-disabled="isDisabled" value="Сохранить" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

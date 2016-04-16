@@ -1,0 +1,51 @@
+﻿@using Dexpa.WebSite.Helpers
+@{
+    ViewBag.Title = "ТС";
+}
+
+
+<div class="loader" id="loader">
+    <img src="/Content/Images/loader.gif" alt="">
+</div>
+
+<div id="main_part" ng-controller="CarsCtrl">
+    <div class="row" ng-init="getCarsList()">
+        <div class="col-sm-10">
+            <div class="row pageheader">
+                <div class="form-inline">
+                    <div class="col-sm-10">
+                        @if (GlobalConfiguration.roleAccessModel.CanEditCars)
+                        {
+                            <a href="@Url.Action("AddCar", "CarsDictionary")" class="btn btn-success pull-left btn-sm"><i class="fa fa-plus"></i> Добавить автомобиль</a>
+                        }
+                        <div class="pull-right checkbox">
+                            <label>
+                                <input id="showOnlyBelongs" class="form-control" type="checkbox" ng-model="showOnlyBelongs"> Только принадлежащие таксопарку
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <input class="form-control input-sm pull-right" ng-model="query" placeholder="Поиск">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="containerWithoutPageHeader">
+                    @Html.Partial("_CarsTable")
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2 containerLeftBorder">
+            <div class="row">
+                <div class="col-sm-12 containerWithPageHeader">
+                    @Html.Partial("_CarModelsTable")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    @Scripts.Render("~/Scripts/AngularControllers/CarsDictionaryController.js")
+}

@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Добавить организацию";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="container">
+        <div class="row pageheader"><h2>Добавление новой организации</h2></div>
+        <div class="row " ng-controller="OrganizationsCtrl" ng-init="initAdd();">
+            <div class="containerWithoutPageHeader">
+                <form id="addOrganizationForm" ng-submit="addOrganization(organization)">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            @Html.AntiForgeryToken()
+                            @Html.Partial("_OrganizationForm")
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/AngularControllers/OrganizationController.js")
+}

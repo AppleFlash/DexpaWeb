@@ -1,0 +1,63 @@
+﻿<div class="row pageheader">
+    <div class="col-sm-12">
+        <div class="form-inline">
+            <div class="btn-group filter-margin">
+                <div class="form-control btn btn-success btn-sm" ng-click="Export('PDF','organizationOrders')">Экспорт в PDF</div>
+                <div class="form-control btn btn-success btn-sm" ng-click="Export('Excel','organizationOrders')">Экспорт в Excel</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="loader" id="loader">
+        <img src="/Content/Images/loader.gif" alt="">
+    </div>*@
+
+<div class="row">
+    <div class="containerWithoutPageHeader">
+        <table class="table table-bordered table-hover" id="report">
+            <thead>
+                <tr>
+                    <td class="text-center" ng-click="sortBy('orderId')">№ Заказа <span id="orderId"></span></td>
+                    <td class="text-center" ng-click="sortBy('organizationName')">Юр. лицо <span id="organizationName"></span></td>
+                    <td class="text-center" ng-click="sortBy('orderDate')">Дата заказа <span id="orderDate"></span></td>
+                    <td class="text-center" ng-click="sortBy('orderTime')">Время заказа <span id="orderTime"></span></td>
+                    <td class="text-center" ng-click="sortBy('taxometrAmount')">Сумма по таксометру <span id="taxometrAmount"></span></td>
+                    <td class="text-center" ng-click="sortBy('tariffName')">Тариф <span id="tariffName"></span></td>
+                    <td class="text-center" ng-click="sortBy('orderStatename')">Статус заказа <span id="orderStatename"></span></td>
+                    <td class="text-center" ng-click="sortBy('slipNumber')">Номер СЛИПа <span id="slipNumber"></span></td>
+                    <td class="text-center" ng-click="sortBy('creator')">Кто создал <span id="creator"></span></td>
+                    <td class="text-center" ng-click="sortBy('customer')">Заказчик <span id="customer"></span></td>
+                    <td class="text-center" ng-click="sortBy('passenger')">Пассажир <span id="passenger"></span></td>
+                    <td class="text-center" ng-click="sortBy('fromAddress')">Адрес подачи <span id="fromAddress"></span></td>
+                    <td class="text-center" ng-click="sortBy('toAddress')">Адрес назначения <span id="toAddress"></span></td>
+                    <td class="text-center" ng-click="sortBy('driver')">Водитель <span id="driver"></span></td>
+                    <td class="text-center" ng-click="sortBy('car')">Автомобиль <span id="car"></span></td>
+                    <td class="text-center" ng-click="sortBy('carNumber')">Гос. номер <span id="carNumber"></span></td>
+                    <td class="text-center" ng-click="sortBy('comment')">Примечание <span id="comment"></span></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="orderReport in reports">
+                    <td>{{orderReport.orderId}}</td>
+                    <td>{{orderReport.organizationName}}</td>
+                    <td>{{orderReport.orderDate}}</td>
+                    <td>{{orderReport.orderTime}}</td>
+                    <td>{{orderReport.taxometrAmount}}</td>
+                    <td>{{orderReport.tariffName}}</td>
+                    <td>{{orderReport.orderState.name}}</td>
+                    <td>{{orderReport.slipNumber}}</td>
+                    <td>{{orderReport.creator}}</td>
+                    <td>{{orderReport.customer}}</td>
+                    <td>{{orderReport.passenger}}</td>
+                    <td>{{orderReport.fromAddress}}</td>
+                    <td>{{orderReport.toAddress}}</td>
+                    <td>{{orderReport.driver}}</td>
+                    <td>{{orderReport.car}}</td>
+                    <td>{{orderReport.carNumber}}</td>
+                    <td>{{orderReport.comment}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Треки водителей";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="loader" id="loader">
+    <img src="/Content/Images/loader.gif" alt="">
+</div>
+
+<div id="main_part">
+    <div class="row">
+        <div class="col-sm-12" ng-controller="TracksCtrl" ng-init="initTrack()">
+            <div class="row pageheader">
+                <div class="col-sm-12">
+                    <div class="form-inline">
+                        <div class="btn-group filter-margin">
+                            <label for="driver" class="filter-margin">Водитель:</label>
+                            <div class="form-group">
+                                <input type="text" ng-model="driverQuery" ng-click="driverQuery=''" class="form-control input-sm driverOnTransaction" id="driver" />
+                                <div class="form-control dropdownPanel dropdownPanel_driver">
+                                    <li id="dropdownPanelLoader"><img src="/Content/Images/waiting.gif" alt=""></li>
+                                    <li ng-repeat="driver in drivers | filter:driverQuery" ng-click="selectDriver(driver)">{{driver.name}}</li>
+                                </div>
+                            </div>
+                            <label for="filterFromDate" class="filter-margin">Период:</label>
+                            <input ng-model="filterFromDate" type="text" class="form-control input-sm" id="filterFromDate" ng-change="getDriverTrackPoints()" />
+                            <label for="filterToDate">-</label>
+                            <input ng-model="filterToDate" type="text" class="form-control input-sm" id="filterToDate" ng-change="getDriverTrackPoints()" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="containerWithoutPageHeader">
+                    <div id="map" class="trackMap"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    @Scripts.Render("~/bundles/mapTools")
+    @Scripts.Render("~/Scripts/AngularControllers/AdminAppController.js")
+}

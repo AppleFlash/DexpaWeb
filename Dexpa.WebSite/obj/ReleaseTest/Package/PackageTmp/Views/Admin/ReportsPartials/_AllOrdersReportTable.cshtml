@@ -1,0 +1,91 @@
+﻿<div class="row pageheader">
+    <div class="col-sm-12">
+        <div class="form-inline">
+            <div class="btn-group filter-margin">
+                <label for="driver" class="filter-margin">Водитель:</label>
+                <div class="form-group">
+                    <input type="text" class="input-sm form-control driverOnTransaction" ng-model="driverQuery" placeholder="Водитель" id="driver" />
+                    <div class="form-control dropdownPanel dropdownPanel_driver">
+                        <li ng-click="filterAllOrderReport(undefined, true)">-</li>
+                        <li id="dropdownPanelLoader"><img src="/Content/Images/waiting.gif" alt=""></li>
+                        <li ng-repeat="driver in drivers | filter:driverQuery" ng-click="filterAllOrderReport(driver, true)">[{{driver.callsign}}] - {{driver.lastName}} {{driver.firstName}} {{driver.middleName}}</li>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-group filter-margin">
+                <label for="filterFromDate" class="filter-margin">Период:</label>
+                <input ng-model="fromDate" type="text" class="form-control input-sm" id="filterFromDate" ng-change="filterAllOrderReport()" />
+                <label for="filterToDate">-</label>
+                <input ng-model="toDate" type="text" class="form-control input-sm" id="filterToDate" ng-change="filterAllOrderReport()" />
+            </div>
+            <div class="btn-group filter-margin">
+                <label for="filterOrderState" class="filter-margin">Статус:</label>
+                <select class="form-control input-sm" ng-model="filterOrderState" ng-options="state.name for state in orderStatesList track by state.type" id="filterOrderState" ng-change="filterAllOrderReport()"></select>
+            </div>
+            <div class="btn-group filter-margin">
+                <label for="filterOrderSource" class="filter-margin">Источник:</label>
+                <select class="form-control input-sm" ng-model="filterOrderSource" ng-options="source.name for source in orderSourcesList track by source.source" id="filterOrderSource" ng-change="filterAllOrderReport()"></select>
+            </div>
+            <div class="btn-group filter-margin">
+                <div class="form-control btn btn-success btn-sm" ng-click="Export('PDF','allOrders')">Экспорт в PDF</div>
+                <div class="form-control btn btn-success btn-sm" ng-click="Export('Excel','allOrders')">Экспорт в Excel</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" id="reportTable">
+    @* <div class="tableContainerPaginator">*@
+    <div class="containerWithoutPageHeader">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center" ng-click="sortBy('id')"># <span id="id"></span></th>
+                    <th class="text-center" ng-click="sortBy('customer.phone')">Имя, тел. клиента <span id="customerphone"></span></th>
+                    <th class="text-center" ng-click="sortBy('state.name')">Статус <span id="statename"></span></th>
+                    <th class="text-center" ng-click="sortBy('driver.callsign')">Позывной, тел. водителя <span id="drivercallsign"></span></th>
+                    <th class="text-center" ng-click="sortBy('departureDate')">Контрольное время <span id="departureDate"></span></th>
+                    <th class="text-center" ng-click="sortBy('acceptTime')">Принял <span id="acceptTime"></span></th>
+                    <th class="text-center" ng-click="sortBy('startWaitTime')">Время на месте <span id="startWaitTime"></span></th>
+                    <th class="text-center" ng-click="sortBy('fromAddress')">Адрес подачи <span id="fromAddress"></span></th>
+                    <th class="text-center" ng-click="sortBy('tariff')">Тариф <span id="tariff"></span></th>
+                    <th class="text-center" ng-click="sortBy('cost')">Сумма по таксометру <span id="cost"></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="order in reports" ng-click="goTo('/Dispatcher/ShowOrder/', order.id)">
+                    <td>{{order.id}}</td>
+                    <td>{{order.customer.name}} {{order.customer.phone}}</td>
+                    <td>{{order.state.name}}</td>
+                    <td><span ng-if="order.driver">{{order.driver.car.callsign}} ({{order.driver.phones[0]}})</span></td>
+                    <td>{{convertDateTime(order.departureDate)}}</td>
+                    <td>{{convertTime(order.acceptTime)}}</td>
+                    <td>{{convertTime(order.startWaitTime)}}</td>
+                    <td>{{order.fromAddress}}</td>
+                    <td>{{order.tariffShortName}}</td>
+                    <td class="text-right">{{order.cost.toFixed(2)}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@*<div class="row bottomPaginator">
+        <div class="col-sm-2 form-inline pull-right pagination">
+            <label for="elementsCount">Показать</label>
+            <select id="elementsCount" class="form-control input-sm" ng-model="elements" ng-change="selectElementsCount()">
+                <option>10</option>
+                <option>25</option>
+                <option>50</option>
+                <option>100</option>
+                <option>500</option>
+                <option>1000</option>
+            </select>
+        </div>
+        <div class="col-sm-6 pull-right">
+            <ul id="paginator" class="pagination pull-right">
+                <li id="backPage" ng-click="changePage('p')"><a href="#"><<</a></li>
+                <li ng-repeat="page in Pages" ng-click="changePage(page)" id="page{{page}}"><a href="#">{{page}}</a></li>
+                <li id="nextPage" ng-click="changePage('n')"><a href="#">>></a></li>
+            </ul>
+        </div>
+    </div>*@

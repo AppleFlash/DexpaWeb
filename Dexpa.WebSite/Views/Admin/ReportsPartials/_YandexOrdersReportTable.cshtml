@@ -1,0 +1,83 @@
+﻿<div class="row pageheader">
+    <div class="col-sm-12">
+        <div class="form-inline">
+            <div class="btn-group filter-margin">
+                <label for="filterFromDate" class="filter-margin">Период:</label>
+                <input ng-model="fromDate" type="text" class="form-control input-sm" id="filterFromDate" />
+                <label for="filterToDate">-</label>
+                <input ng-model="toDate" type="text" class="form-control input-sm" id="filterToDate" />
+            </div>
+            <div class="btn-group filter-margin">
+                <div class="form-group">
+                    <input type="text" class="input-sm form-control driverOnTransaction" ng-model="driver" placeholder="Водитель" id="driver" />
+                    <div class="form-control dropdownPanel dropdownPanel_driver">
+                        <li ng-click="selectDriver(undefined,true);getYandexReport()">Все</li>
+                        <li id="dropdownPanelLoader"><img src="/Content/Images/waiting.gif" alt=""></li>
+                        <li ng-repeat="driver in drivers | filter:driver" ng-click="selectDriver(driver,true);getYandexReport()">{{driver.name}}</li>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-group filter-margin" id="reportLoader">
+                <div class="form-group">
+                    <img src="/Content/Images/waiting.gif" alt="">
+                </div>
+            </div>
+                    @*<div class="btn-group filter-margin">
+                        <div class="form-control btn btn-success btn-sm" ng-click="Export('PDF','orders')">Экспорт в PDF</div>
+                        <div class="form-control btn btn-success btn-sm" ng-click="Export('Excel','orders')">Экспорт в Excel</div>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+
+@*<div class="loader" id="loader">
+        <img src="/Content/Images/loader.gif" alt="">
+    </div>*@
+
+<div class="row">
+    <div class="containerWithoutPageHeader">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="yandex-report" ng-repeat="orderReport in reports">
+                        <div><strong>Всего:</strong> {{orderReport.allOrders}}</div>
+                        <div><strong>Срочные заказы (время подачи: менее 25 минут):</strong> {{orderReport.termOrdersLowTime}}</div>
+                        <div><strong>Не срочные заказы (время подачи: от 25 до 60 минут):</strong> {{orderReport.termOrdersMiddleTime}}</div>
+                        <div><strong>Не срочные заказы (время подачи: более 60 минут):</strong> {{orderReport.termOrdersHighTime}}</div>
+                        <div><strong>Срочные заказы (принято роботом):</strong> {{orderReport.termOrdersAssigned}}</div>
+                        <div><strong>Не срочные заказы (принято роботом):</strong> {{orderReport.dontTermOrdersAssigned}}</div>
+                        <div><strong>Срочные заказы (назначено на таксопарк):</strong> {{orderReport.termOrdersApproved}}</div>
+                        <div><strong>Не срочные заказы (назначено на таксопарк):</strong> {{orderReport.dontTermOrdersApproved}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                    @*<table class="table table-bordered table-hover" id="report">
+                        <thead>
+                            <tr>
+                                <td class="text-center">Всего заказов</td>
+                                <td class="text-center" style="white-space: normal">Срочные заказы (время подачи: менее 25 минут)</td>
+                                <td class="text-center" style="white-space: normal">Не срочные заказы (время подачи: от 25 до 60 минут)</td>
+                                <td class="text-center" style="white-space: normal">Не срочные заказы (время подачи: более 60 минут)</td>
+                                <td class="text-center" style="white-space: normal">Срочные заказы (принято роботом)</td>
+                                <td class="text-center" style="white-space: normal">Не срочные заказы (принято роботом)</td>
+                                <td class="text-center" style="white-space: normal">Срочные заказы (назначено на таксопарк)</td>
+                                <td class="text-center" style="white-space: normal">Не срочные заказы (назначено на таксопарк)</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="orderReport in reports">
+                                <td class="text-right">{{orderReport.allOrders}}</td>
+                                <td class="text-right">{{orderReport.termOrdersLowTime}}</td>
+                                <td class="text-right">{{orderReport.termOrdersMiddleTime}}</td>
+                                <td class="text-right">{{orderReport.termOrdersHighTime}}</td>
+                                <td class="text-right">{{orderReport.termOrdersAssigned}}</td>
+                                <td class="text-right">{{orderReport.dontTermOrdersAssigned}}</td>
+                                <td class="text-right">{{orderReport.termOrdersApproved}}</td>
+                                <td class="text-right">{{orderReport.dontTermOrdersApproved}}</td>
+                            </tr>
+                        </tbody>
+                    </table>*@
+                </div>
+            </div>

@@ -1,0 +1,11 @@
+﻿.leftMenu li .btn-group {
+    width: 100%;
+}
+
+.leftMenu li .btn {
+    width: 100%;
+}
+
+#main_part {
+    display: none;
+}

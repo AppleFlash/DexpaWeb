@@ -1,0 +1,25 @@
+﻿<table class="table table-bordered table-hover smallFontSize">
+    <thead>
+        <tr>
+            <th class="text-center" ng-click="sortBy('callsign')">Позывной <span id="callsign"></span></th>
+            <th class="text-center" ng-click="sortBy('brand')">Марка <span id="brand"></span></th>
+            <th class="text-center" ng-click="sortBy('model')">Модель <span id="model"></span></th>
+            <th class="text-center" ng-click="sortBy('regNumber')">Гос.номер <span id="regNumber"></span></th>
+            <th class="text-center" ng-click="sortBy('permission.number')">№ разрешение <span id="permissionnumber"></span></th>
+            <th class="text-center" ng-click="sortBy('timestamp')">Создан <span id="timestamp"></span></th>
+        </tr>
+        <tr>
+            <th class="text-left" colspan="6">Всего ТС: {{carsList.length}}. Своих ТС: {{belongsCompanyCarsCount}} </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="carRow in carsList | filter:query | filter: filterCarsByBelong" ng-click="goTo('/CarsDictionary/ShowCar/', carRow.id)">
+            <td>{{::carRow.callsign}}</td>
+            <td>{{::carRow.brand}}</td>
+            <td>{{::carRow.model}}</td>
+            <td>{{::carRow.regNumber}}</td>
+            <td>{{::carRow.permission.number}} {{::carRow.permission.series}} {{::carRow.permission.number2}}</td>
+            <td>{{::carRow.timestamp.replace('T',' ')}}</td>
+        </tr>
+    </tbody>
+</table>

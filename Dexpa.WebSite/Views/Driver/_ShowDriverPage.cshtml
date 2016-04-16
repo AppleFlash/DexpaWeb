@@ -1,0 +1,246 @@
+﻿@using Dexpa.WebSite.Helpers
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="row bottomBorder">
+                    <div class="col-sm-6">
+                        <label for="state" class="control-label">Статус:</label>
+                        <input class="form-control" type="text" readonly="readonly" ng-model="driver.state.name" id="state" />
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="car" class="control-label">ТС:</label>
+                        <input class="form-control" type="text" readonly="readonly" ng-model="carForShow" id="car" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="lastname" class="control-label">Фамилия:</label>
+                        <input type="text" class="form-control" ng-model="driver.lastName" readonly="readonly" placeholder="Фамилия" id="lastname" maxlength="48" />
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="firstname" class="control-label">Имя:</label>
+                        <input type="text" class="form-control" ng-model="driver.firstName" readonly="readonly" placeholder="Имя" id="firstname" maxlength="48" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="middlename" class="control-label">Отчество:</label>
+                        <input type="text" class="form-control" ng-model="driver.middleName" readonly="readonly" placeholder="Отчество" id="middlename" maxlength="48" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <img class="driver-photo center-block" ng-src="{{driver.content.driverPhoto.webUrl}}" />
+            </div>
+        </div>
+        <div class="row bottomBorder">
+            <div class="newLine indent">
+                <label for="address" class="control-label">Адрес:</label>
+                <input type="text" class="form-control" ng-model="driver.address" readonly="readonly" placeholder="Адрес" id="address" />
+            </div>
+            <div class="newLine">
+                <div class="col-xs-12 col-md-8">
+                    <label for="phones" class="control-label">Телефоны:</label>
+                    <input type="text" maxlength="64" class="form-control" ng-model="driver.phones" readonly="readonly" placeholder="Телефоны" id="phones" ng-blur="formatPhone(driver, driver.phones)">
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <label for="email" class="control-label">E-mail:</label>
+                    <input type="text" class="form-control" ng-model="driver.email" readonly="readonly" placeholder="E-mail" id="email">
+                </div>
+            </div>
+        </div>
+        <div class="row bottomBorder">
+            <div class="leftIndent rightIndent"><h4>Условия работы</h4></div>
+            <div class="col-xs-6 col-sm-3">
+                <label for="state" class="control-label">Алгоритм:</label>
+                <input type="text" class="form-control" ng-model="driver.workConditions.name" readonly="readonly" placeholder="Алгоритм" id="state">
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <label for="workSchedule" class="control-label">График работы:</label>
+                <input type="text" class="form-control" ng-model="driver.workScheduleString" placeholder="График работы" id="workSchedule" readonly>
+            </div>
+            <div style="clear: both"></div>
+            <div class="col-xs-6 col-sm-3">
+                <label for="series" class="control-label">Аренда:</label>
+                <input type="text" class="form-control" ng-model="driver.dayTimeFee" readonly="readonly" placeholder="Аренда" id="rent">
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <label for="number" class="control-label">Лимит:</label>
+                <input type="text" class="form-control" ng-model="driver.balanceLimit" readonly="readonly" placeholder="Лимит" id="limit">
+            </div>
+        </div>
+        <div class="row bottomBorder">
+            <div class="leftIndent rightIndent"><h4>Робот</h4></div>
+            <div class="leftIndent rightIndent">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" validate="false" ng-model="driver.robotSettings.enabled" disabled> <strong>Yandex робот</strong>
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" validate="false" ng-model="driver.robotSettings.ordersSequence" disabled> Цепочка заказов
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" validate="false" ng-model="driver.robotSettings.airports" disabled> Портовые заказы
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" validate="false" ng-model="driver.robotSettings.wantToHome" disabled> Хочу домой
+                    </label>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-xs-6 col-sm-3">
+                <label for="addressSearch" class="control-label">Поиск по адресу:</label>
+                <input type="text" readonly="readonly" class="form-control" ng-model="driver.robotSettings.addressSearch" validate="false" validationinfo="Поиск по адресу" placeholder="Поиск по адресу" id="addressSearch">
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <label for="minutesDepartureTime" class="control-label">Время подачи:</label>
+                <input type="text" readonly="readonly" class="form-control" ng-model="driver.robotSettings.minutesDepartureTime" validate="false" validationinfo="Время подачи" placeholder="Время подачи" id="minutesDepartureTime">
+            </div>
+        </div>
+        <div class="row bottomBorder">
+            <div class="leftIndent rightIndent"><h4>Таксометр</h4></div>
+            <div class="col-xs-6 col-sm-3">
+                <label for="UserName" class="control-label">Логин:</label>
+                <input type="text" class="form-control" ng-model="DriverTaximetr.UserName" validate="false" validationinfo="Логин" placeholder="Логин" id="UserName" disabled="disabled">
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <label for="Password" class="control-label">Пароль:</label>
+                <input type="text" class="form-control" ng-model="DriverTaximetr.Password" ng-focus="focusOnPassword()" ng-blur="blurOnPassword()" validate="false" validationinfo="Пароль" placeholder="Пароль" id="Password" disabled="disabled">
+            </div>
+            @*<div class="col-xs-6 col-sm-3">
+                <label for="ConfirmPassword" class="control-label">Подтверждение пароля:</label>
+                <input type="password" class="form-control" ng-model="DriverTaximetr.ConfirmPassword" validate="false" validationinfo="Подтверждение пароля" placeholder="Подтверждение пароля" id="ConfirmPassword">
+            </div>*@
+        </div>
+        <div class="row bottomBorder">
+            <div class="leftIndent rightIndent"><h4>Водительское удостоверение</h4></div>
+            <div class="col-sm-3">
+                <label for="series" class="control-label">Серия:</label>
+                <input type="text" class="form-control" ng-model="driver.driverLicense.series" readonly="readonly" placeholder="Серия" id="series">
+            </div>
+            <div class="col-sm-3">
+                <label for="number" class="control-label">Номер:</label>
+                <input type="text" class="form-control" ng-model="driver.driverLicense.number" readonly="readonly" placeholder="Номер" id="number">
+            </div>
+            <div class="col-sm-3">
+                <label for="datefrom" class="control-label">Дата выдачи:</label>
+                <input type="text" class="form-control" ng-model="driver.driverLicense.dateFrom" readonly="readonly" placeholder="Дата выдачи" id="datefrom">
+            </div>
+            <div class="col-sm-3">
+                <label for="dateto" class="control-label">Действует до:</label>
+                <input type="text" class="form-control" ng-model="driver.driverLicense.dateTo" readonly="readonly" placeholder="Действует до" id="dateto">
+            </div>
+        </div>
+        <div class="row">
+            <div class="leftIndent rightIndent"><h4>Рейтинги</h4></div>
+            <div class="col-sm-3">
+                <a class="btn btn-success btn-sm" ng-click="OpenTable('rating')">Яндекс-рейтинг</a>
+                <a class="btn btn-success btn-sm" ng-click="OpenTable('marks')">Оценки</a>
+            </div>
+        </div>
+        <div class="row bottomBorder">
+            <div class="col-sm-12" ng-class="{ratingTableClose:ratingTableIsClose}">
+                <div class="leftIndent rightIndent"><h4>Яндекс-Рейтинг</h4></div>
+                <table class="table table-bordered table-hover">
+                    <tr>
+                        <th>Рейтинг</th>
+                        <th>Средняя оценка</th>
+                        <th>Опоздания</th>
+                        <th>Отмененные заказы</th>
+                        <th>Ложные</th>
+                        <th>Качество трека</th>
+                        <th>Разрешенные категории</th>
+                        <th>Результат экзамена</th>
+                    </tr>
+                    <tr>
+                        <td>3.3</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>{{carFeatures}}</td>
+                        <td>-</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-12" ng-class="{marksTableClose:marksTableIsClose}">
+                <div class="leftIndent rightIndent"><h4>Оценки</h4></div>
+                <div class="leftIndent rightIndent">
+                    <div class="form-inline">
+                        <div class="btn-group filter-margin">
+                            <label for="filterFromDate" class="filter-margin">Период:</label>
+                            <input ng-model="fromDate" type="text" class="form-control input-sm" id="filterFromDate" />
+                            <label for="filterToDate">-</label>
+                            <input ng-model="toDate" type="text" class="form-control input-sm" id="filterToDate" />
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-bordered table-hover">
+                    <tr>
+                        <th>Дата</th>
+                        <th>Заказ</th>
+                        <th>Оценка</th>
+                        <th>Комментарий</th>
+                        <th>Кто поставил</th>
+                    </tr>
+                    <tr>
+                        <td>21.12.2014</td>
+                        <td>0001</td>
+                        <td>5</td>
+                        <td>Хороший водитель</td>
+                        <td>Алеша</td>
+                    </tr>
+                    <tr>
+                        <td>22.12.2014</td>
+                        <td>0002</td>
+                        <td>2</td>
+                        <td>Водитель опоздал</td>
+                        <td>Алеша</td>
+                    </tr>
+                    <tr>
+                        <td>23.12.2014</td>
+                        <td>0003</td>
+                        <td>4</td>
+                        <td>Машина не очень</td>
+                        <td>Алеша</td>
+                    </tr>
+                    <tr>
+                        <td>24.12.2014</td>
+                        <td>0004</td>
+                        <td>3</td>
+                        <td>Водитель курил</td>
+                        <td>Алеша</td>
+                    </tr>
+                    <tr>
+                        <td>25.12.2014</td>
+                        <td>0005</td>
+                        <td>5</td>
+                        <td>Быстрая поездка</td>
+                        <td>Алеша</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <a href="@Url.Action("Index","Driver")" class="btn btn-success btn-sm pull-left"><i class="fa fa-chevron-left"></i> К списку</a>
+            @if (GlobalConfiguration.roleAccessModel.CanEditDrivers)
+            {
+                <a class="right-orient btn btn-success btn-sm" href="/Driver/EditDriver/@ViewData["id"]"><i class="fa fa-pencil"></i> Редактировать</a>
+            }
+        </div>
+    </div>
+</div>

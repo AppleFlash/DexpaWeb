@@ -1,0 +1,81 @@
+﻿<div class="row pageheader">
+    <div class="col-sm-12">
+        <div class="form-inline">
+            <div class="btn-group filter-margin">
+                <label for="filterYear" class="filter-margin">Год:</label>
+                <select class="form-control input-sm" ng-model="filterYear" ng-change="filterOrderReport('year')">
+                    <option ng-repeat="year in yearList">{{year}}</option>
+                </select>
+                <label for="filterMonthFrom" class="filter-margin">Период:</label>
+                <select class="form-control input-sm" ng-model="filterMonthFrom" ng-change="filterOrderReport('month')">
+                    <option value="1">Январь</option>
+                    <option value="2">Февраль</option>
+                    <option value="3">Март</option>
+                    <option value="4">Апрель</option>
+                    <option value="5">Май</option>
+                    <option value="6">Июнь</option>
+                    <option value="7">Июль</option>
+                    <option value="8">Август</option>
+                    <option value="9">Сентябрь</option>
+                    <option value="10">Октябрь</option>
+                    <option value="11">Ноябрь</option>
+                    <option value="12">Декабрь</option>
+                </select>
+                <label for="filterMonthTo">-</label>
+                <select class="form-control input-sm" ng-model="filterMonthTo" ng-change="filterOrderReport('month')">
+                    <option value="1">Январь</option>
+                    <option value="2">Февраль</option>
+                    <option value="3">Март</option>
+                    <option value="4">Апрель</option>
+                    <option value="5">Май</option>
+                    <option value="6">Июнь</option>
+                    <option value="7">Июль</option>
+                    <option value="8">Август</option>
+                    <option value="9">Сентябрь</option>
+                    <option value="10">Октябрь</option>
+                    <option value="11">Ноябрь</option>
+                    <option value="12">Декабрь</option>
+                </select>
+            </div>
+            <div class="btn-group filter-margin">
+                <div class="form-control btn btn-success btn-sm" ng-click="Export('PDF','orders')">Экспорт в PDF</div>
+                <div class="form-control btn btn-success btn-sm" ng-click="Export('Excel','orders')">Экспорт в Excel</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="loader" id="loader">
+        <img src="/Content/Images/loader.gif" alt="">
+    </div>*@
+
+<div class="row">
+    <div class="containerWithoutPageHeader">
+        <table class="table table-bordered table-hover" id="report">
+            <thead>
+                <tr>
+                    <td class="text-center" ng-click="sortBy('date')">Месяц <span id="date"></span></td>
+                    <td class="text-center" ng-click="sortBy('profit')">Прибыль <span id="profit"></span></td>
+                    <td class="text-center" ng-click="sortBy('rent')">Аренда <span id="rent"></span></td>
+                    <td class="text-center" ng-click="sortBy('techSupport')">Тех. поддержка <span id="techSupport"></span></td>
+                    <td class="text-center" ng-click="sortBy('precent')">Проценты <span id="precent"></span></td>
+                    <td class="text-center" ng-click="sortBy('taxometrAmount')">Сумма по таксометру <span id="taxometrAmount"></span></td>
+                    <td class="text-center" ng-click="sortBy('allOrders')">Число заказов <span id="allOrders"></span></td>
+                    <td class="text-center" ng-click="sortBy('yandex')">Яндекс <span id="yandex"></span></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="orderReport in reports">
+                    <td>{{orderReport.date}}</td>
+                    <td class="text-right">{{orderReport.profit.toFixed(2)}}</td>
+                    <td class="text-right">{{orderReport.rent.toFixed(2)}}</td>
+                    <td class="text-right">{{orderReport.techSupport.toFixed(2)}}</td>
+                    <td class="text-right">{{orderReport.percent}}</td>
+                    <td class="text-right">{{orderReport.taxometrAmount.toFixed(2)}}</td>
+                    <td class="text-right">{{orderReport.allOrders}}</td>
+                    <td class="text-right">{{orderReport.yandex}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

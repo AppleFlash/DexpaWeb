@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "Клиенты";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="loader" id="loader">
+    <img src="/Content/Images/loader.gif" alt="">
+</div>
+
+<div id="main_part">
+    <div ng-controller="ClientsCtrl">
+        <div class="row" ng-init="initializeCustomers()">
+            <div class="col-sm-12">
+                <div class="row pageheader">
+                    <div class="col-sm-12">
+                        <div class="form-inline pull-right">
+                            <div id="searchPanel" class="pull-right">
+                                <label ng-show="isSearchMode" for="searchPanel">Результатов: {{customersCount}} </label>
+                                <input class="form-control input-sm" ng-model="searchQuery" ng-keydown="SearchEvent()" placeholder="Поиск">
+                                <input type="button" class="form-control btn btn-success btn-sm" ng-click="search()" value="Поиск" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="tableContainerPaginator">
+                        <div class="newLine" ng-show="isSearchMode">
+                            <div class="col-sm-1">
+                                <button class="form-control btn btn-success btn-sm marginTop6" ng-click="backToClients()"><span class="glyphicon glyphicon-chevron-left"></span> Назад</button>
+                            </div>
+                            <div class="col-sm-11">
+                                <div class="form-inline">
+                                    <h4>Результаты поиска: </h4>
+                                </div>
+                            </div>
+                        </div>
+                        @Html.Partial("_ClientsTable")
+                    </div>
+                </div>
+                <div class="row bottomPaginator">
+                    <div class="col-sm-2 form-inline pull-right pagination">
+                        <label for="elementsCount">Показать</label>
+                        <select id="elementsCount" class="form-control input-sm" ng-model="elements" ng-change="selectElementsCount()">
+                            <option>10</option>
+                            <option>25</option>
+                            <option>50</option>
+                            <option>100</option>
+                            <option>500</option>
+                            <option>1000</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6 pull-right">
+                        <ul id="paginator" class="pagination pull-right">
+                            <li id="backPage" ng-click="changePage('p')"><a href="#"><<</a></li>
+                            <li ng-repeat="page in Pages" ng-click="changePage(page)" id="page{{page}}"><a href="#">{{page}}</a></li>
+                            <li id="nextPage" ng-click="changePage('n')"><a href="#">>></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+@Scripts.Render("~/Scripts/AngularControllers/ClientsTableAppController.js")
+}
+

@@ -1,0 +1,21 @@
+﻿<div class="row driversStatusBar">По маркам:</div>
+<div class="row">
+    <table class="table">
+        <tr ng-repeat="car in carsByBrands | orderBy:'val[0]':true | filter:query">
+            <td><img ng-src="{{car.val[1]}}" width="30" height="30" /></td>
+            <td>{{car.brand}}</td>
+            <td>{{car.val[0]}}</td>
+        </tr>
+    </table>
+</div>
+
+<div class="row driversStatusBar">По моделям:</div>
+<div class="row">
+    <table class="table">
+        <tr ng-repeat="car in carsByModels | orderBy:'val[0]':true | filter:query">
+            <td><img ng-src="{{car.val[1]}}" width="30" height="30" /></td>
+            <td>{{car.model}}</td>
+            <td>{{car.val[0]}}</td>
+        </tr>
+    </table>
+</div>

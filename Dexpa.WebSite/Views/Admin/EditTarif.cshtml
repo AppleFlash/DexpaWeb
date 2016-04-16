@@ -1,0 +1,38 @@
+﻿@using Dexpa.WebSite.Helpers
+@using Dexpa.WebSite.Models.RolesAndAccess
+@{
+    ViewBag.Title = "Редактрование тарифа";
+}
+
+<div class="loader" id="loader">
+    <img src="/Content/Images/loader.gif" alt="">
+</div>
+
+<div id="main_part">
+    <div class="row">
+        <div class="container">
+            <div class="row pageheader"><h2>Редактрование тарифа</h2></div>
+            <div class="row" ng-controller="TariffCtrl" ng-init="getTariff(@ViewData["id"])">
+                <div class="containerWithoutPageHeader">
+                    @if (GlobalConfiguration.roleAccessModel.CanEditAdminFunctions.HasFlag(AdminEditAccessEnums.Tariffs))
+                    {
+                        <form id="addTariffForm" ng-repeat="tariff in tariffs" ng-submit="editTariff(tariff, @ViewData["id"])">
+                            @Html.Partial("TariffsPartials/_AddEditTariffPartial")
+                        </form>
+
+                    }
+                    else
+                    {
+                        <form id="addTariffForm" ng-repeat="tariff in tariffs">
+                            @Html.Partial("TariffsPartials/_AddEditTariffPartial")
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/AngularControllers/TariffsController.js")
+}

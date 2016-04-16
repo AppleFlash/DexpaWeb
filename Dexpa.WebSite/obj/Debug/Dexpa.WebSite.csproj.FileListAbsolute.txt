@@ -1,0 +1,135 @@
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Dexpa.WebSite.dll.config
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Dexpa.WebSite.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Dexpa.WebSite.pdb
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Antlr3.Runtime.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\EntityFramework.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\EntityFramework.SqlServer.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\EPPlus.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\itextsharp.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\itextsharp.pdfa.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\itextsharp.xmlworker.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\itextsharp.xtra.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Newtonsoft.Json.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Owin.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\System.Web.Helpers.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\System.Web.Mvc.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\System.Web.Optimization.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\System.Web.Razor.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\System.Web.WebPages.Deployment.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\System.Web.WebPages.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\System.Web.WebPages.Razor.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\WebGrease.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\itextsharp.xml
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Newtonsoft.Json.xml
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\System.Web.Helpers.xml
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\System.Web.Mvc.xml
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\System.Web.Optimization.xml
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\System.Web.Razor.xml
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\System.Web.WebPages.xml
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\System.Web.WebPages.Deployment.xml
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\System.Web.WebPages.Razor.xml
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Antlr3.Runtime.pdb
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\EntityFramework.xml
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\EntityFramework.SqlServer.xml
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.xml
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.xml
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\obj\Debug\Dexpa.WebSite.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\obj\Debug\Dexpa.WebSite.Migrations.InitialCreate.resources
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\obj\Debug\Dexpa.WebSite.Migrations.Update001.resources
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\obj\Debug\Dexpa.WebSite.csproj.GenerateResource.Cache
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\obj\Debug\Dexpa.WebSite.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\obj\Debug\Dexpa.WebSite.pdb
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\obj\Debug\Dexpa.WebSite.Migrations.Update002.resources
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\obj\Debug\Dexpa.WebSite.Migrations.Update003.resources
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\NLog.dll
+C:\Users\User\Desktop\dexpa.website\Dexpa.WebSite\bin\NLog.xml
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Dexpa.WebSite.dll.config
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Dexpa.WebSite.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Dexpa.WebSite.pdb
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Antlr3.Runtime.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\EntityFramework.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\EntityFramework.SqlServer.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\EPPlus.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\itextsharp.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\itextsharp.pdfa.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\itextsharp.xmlworker.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\itextsharp.xtra.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Microsoft.AspNet.Identity.Core.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Microsoft.AspNet.Identity.Owin.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Host.SystemWeb.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.Cookies.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.Facebook.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.Google.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.OAuth.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.Twitter.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Microsoft.Web.Infrastructure.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Newtonsoft.Json.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\NLog.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Owin.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\System.Web.Helpers.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\System.Web.Mvc.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\System.Web.Optimization.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\System.Web.Razor.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\System.Web.WebPages.Deployment.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\System.Web.WebPages.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\System.Web.WebPages.Razor.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\WebGrease.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\itextsharp.xml
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Newtonsoft.Json.xml
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\NLog.xml
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\System.Web.Helpers.xml
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\System.Web.Mvc.xml
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\System.Web.Optimization.xml
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\System.Web.Razor.xml
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\System.Web.WebPages.xml
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\System.Web.WebPages.Deployment.xml
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\System.Web.WebPages.Razor.xml
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Antlr3.Runtime.pdb
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\EntityFramework.xml
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\EntityFramework.SqlServer.xml
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Microsoft.AspNet.Identity.Core.xml
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Microsoft.AspNet.Identity.Owin.xml
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.xml
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Host.SystemWeb.xml
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.xml
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.Facebook.xml
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.Cookies.xml
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.OAuth.xml
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.Google.xml
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.Twitter.xml
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\obj\Debug\Dexpa.WebSite.Migrations.Update003.resources
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\obj\Debug\Dexpa.WebSite.Migrations.Update002.resources
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\obj\Debug\Dexpa.WebSite.Migrations.InitialCreate.resources
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\obj\Debug\Dexpa.WebSite.Migrations.Update001.resources
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\obj\Debug\Dexpa.WebSite.csproj.GenerateResource.Cache
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\obj\Debug\Dexpa.WebSite.dll
+F:\Основные файлы\с рабочки\dexpa.website\Dexpa.WebSite\obj\Debug\Dexpa.WebSite.pdb

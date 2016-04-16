@@ -1,0 +1,53 @@
+﻿.transaction-display {
+    background: #212121;
+    text-align: right;
+    padding: 10px;
+}
+
+.transaction-display>div {
+    padding: 7px;
+}
+
+.balance {
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.sum {
+    color: #ffffff;
+    font-size: 40px;
+}
+
+.plus {
+    color: #5cb85c;
+}
+
+.minus {
+   /* color: #d9534f;*/
+    color: #ff0000;
+}
+
+.action {
+    font-size: 25px;
+    color: #ffffff;
+}
+
+tr.transaction-plus {
+    background: #cdfecd;
+}
+
+tr.transaction-minus {
+    background: #fecccd;
+}
+
+@media only screen and (min-width: 300px) {
+    .driverOnTransaction {
+        min-width: 200px
+    }
+}
+
+@media only screen and (min-width: 1650px) {
+    .driverOnTransaction {
+        min-width: 400px
+    }   
+}

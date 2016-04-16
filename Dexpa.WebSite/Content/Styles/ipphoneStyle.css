@@ -1,0 +1,261 @@
+﻿.ip_phone {
+    right: -250px;
+    bottom: 0;
+    position: fixed;
+    width: 250px;
+    display: block;
+}
+
+.ip_phone_content {
+    width: 250px;
+    float: left;
+}
+
+.ip_phone_tab_content {
+    background: #ffffff;
+    padding: 15px 10px;
+    border: 1px solid #ddd;
+    z-index: 1;
+    clear: both;
+    height: 500px;
+}
+
+.ip_phone_call_number {
+    max-width: 170px;
+    margin: 0 auto;
+    height: 35px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border: 0;
+    border-bottom: 3px solid #ddd;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}
+
+.ip_phone_call_number:focus {
+    border-bottom: 3px solid #428bca;
+    -moz-box-shadow: none;
+    -ms-box-shadow: none;
+    -o-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.ip_phone_call_number::-webkit-input-placeholder {
+    font-weight: 100;
+}
+
+.ip_phone_numpad_panel {
+    padding-left: 14%;
+}
+
+.ip_phone_numpad_line {
+    clear: both;
+    margin-top: 10px;
+    overflow: auto;
+}
+
+.ip_phone_button {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    cursor: pointer;
+    background: #ffffff;
+    border: 1px solid #ddd;
+}
+
+.ip_phone_button:hover {
+    background: #428bca;
+    color: #ffffff;
+}
+
+.ip_phone_numpad_button {
+    float: left;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    margin-right: 10px;
+}
+
+.ip_phone_numpad_button:last-child {
+    margin: 0;
+}
+
+.ip_phone_numpad_button:hover {
+    background: #1CAF9A;
+    text-shadow: 1px 1px 1px #00806D;
+}
+
+.ip_phone_call_button, .ip_phone_cancel_button {
+    text-align: center;
+    height: 35px;
+    line-height: 35px;
+    font-size: 16px;
+    max-width: 170px;
+}
+
+.ip_phone_call_button:hover {
+    background: #1CAF9A;
+    border: 1px solid #17a08c;
+    text-shadow: 1px 1px 1px #00806D;
+    color: #ffffff;
+}
+
+.ip_phone_cancel_button:hover {
+    background: #D9534F;
+    border: 1px solid #d43f3a;
+    text-shadow: 1px 1px 1px #8C0500;
+}
+
+#ip_phone_driver_tab, #ip_phone_order_tab, #ip_phone_outcoming_call_tab, #ip_phone_incoming_call_tab {
+    display: none;
+}
+
+.ip_phone_driver_panel, .ip_phone_order_panel, .ip_phone_outcoming_call_panel, .ip_phone_incoming_call_panel {
+    max-width: 170px;
+    margin-top: 10px;
+    margin-left: 14%;
+}
+
+.ip_phone_tabs {
+    margin: 0;
+    padding: 0;
+    clear: both;
+    overflow: auto;
+    top: 1px;
+    z-index: 2;
+    position: relative;
+    list-style: none;
+}
+
+.ip_phone_tab {
+    float: left;
+    width: 83px;
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+}
+
+.ip_phone_tab_active {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-bottom: 1px solid #ffffff;
+}
+
+.ip_phone_tab_unactive {
+    background: #ddd;
+    border: 1px solid #999;
+    border-bottom: 1px solid #ddd;
+}
+
+.ip_phone_tab_unactive:hover {
+    background: #ccc;
+}
+
+.ip_phone_calls_buttons_block {
+    bottom: 15px;
+    width: 170px;
+}
+
+.ip_phone_widget_button {
+    background: #ffffff;
+    border-right: 1px solid #ddd;
+    float: left;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    position: relative;
+    cursor: pointer;
+    font-size: 18px;
+    z-index: 3;
+    display: none;
+}
+
+.ip_phone_widget_button_active {
+    background: #1CAF9A;
+    text-shadow: 1px 1px 1px #00806D;
+    color: #ffffff;
+}
+
+.ip_phone_widget_button:hover {
+    background: #1CAF9A;
+    /*border: 1px solid #357ebd;*/
+    text-shadow: 1px 1px 1px #00806D;
+    color: #ffffff;
+}
+
+.ip_phone_order_area #ip_phone_order_id {
+    text-align: center;
+    font-weight: bold;
+    display: block;
+}
+
+.ip_phone_order_area #ip_phone_order_address {
+    display: block;
+}
+
+.ip_phone_order_area #ip_phone_order_date {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+}
+
+/*.ip_phone_outcoming_call_panel {
+    margin-top: 55%;
+}*/
+
+.ip_phone_incoming_call_panel {
+    margin-top: 10%;
+}
+
+.ip_phone_outcoming_call_type, .ip_phone_incoming_call_type {
+    text-align: center;
+    padding: 5px 0px 5px 0px;
+    font-weight: 700;
+}
+
+.ip_phone_outcoming_call_number, .ip_phone_incoming_call_number {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.ip_phone_caller_type {
+    font-weight: bold;
+}
+
+.ip_phone_state {
+    background: #428bca;
+    color: #ffffff;
+    border: 1px solid #357ebd;
+    border-bottom: none;
+    margin: 0;
+    padding: 0;
+    width: 250px;
+    height: 30px;
+    z-index: 3;
+    position: relative;
+    display: none;
+    margin-top: -29px;
+    text-align: center;
+    line-height: 30px;
+}
+
+.phone-line {
+    background: #17a08c;
+    height: 3px;
+    padding: 0;
+    margin: 5px 0px 5px 0px;
+}

@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Просмотр события";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string s = "\"" + ViewData["userName"] + "\"";
+}
+
+<div class="row">
+    <div class="container" ng-controller="CarEventsCtrl">
+        <div class="row pageheader">
+            <h2 class="pull-left">Просмотр события</h2>
+            <div class="btn btn-success btn-sm pull-right" ng-show="car.id" ng-click="goTo('/CarEvents/EditCarEvent/', @ViewData["id"])"> Изменить событие</div>
+        </div>
+        <div class="row ">
+            <div class="containerWithoutPageHeader" ng-init="InitEditCarEvent(@ViewData["id"], @s)">
+                <div id="editCarEventForm">
+                    @Html.Partial("Partials/_ShowEventForm")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/AngularControllers/CarsEventsController.js")
+}

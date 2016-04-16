@@ -1,0 +1,32 @@
+﻿<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th class="text-center" ng-click="sortBy('customer.phone')">Имя, тел. клиента <span id="customerphone"></span></th>
+            <th class="text-center" ng-click="sortBy('state.name')">Статус <span id="statename"></span></th>
+            <th class="text-center" ng-click="sortBy('driver.callsign')">Позывной, тел. водителя <span id="drivercallsign"></span></th>
+            <th class="text-center" ng-click="sortBy('departureDate')">Контрольное время <span id="toAddress"></span></th>
+            <th class="text-center" ng-click="sortBy('startWaitTime')">Время на месте <span id="startWaitTime"></span></th>
+            <th class="text-center" ng-click="sortBy('fromAddress')">Адрес подачи <span id="fromAddress"></span></th>
+            <th class="text-center" ng-click="sortBy('tariff')">Тариф <span id="tariff"></span></th>
+            <th class="text-center" ng-click="sortBy('cost')">Сумма по таксометру<span id="cost"></span></th>
+            <th class="text-center" ng-click="sortBy('id')">Номер заказа <span id="id"></span></th>
+        </tr>
+    </thead>
+    <tbody>
+<<<<<<< local
+        <tr ng-repeat="order in orders | filter:query" ng-click='selectOrder(order.id)' id="{{order.id}}" class="orderRow" ng-dblclick="goTo('/Dispatcher/UpdateOrder/', order.id)" ng-class="{bgRed: order.priority==1}">
+=======
+        <tr ng-repeat="order in orders | filter:query" ng-click='selectOrder(order.id);selectOrderForCall(order)' id="{{order.id}}" class="orderRow" ng-dblclick="goTo('/Dispatcher/UpdateOrder/', order.id)">
+>>>>>>> other
+            <td>{{order.customer.name}} {{order.customer.phone}}</td>
+            <td>{{order.state.name}}</td>
+            <td><span ng-if="order.driver">{{order.driver.car.callsign}} ({{order.driver.phones[0]}})</span></td>
+            <td>{{convertDateTime(order.departureDate)}}</td>
+            <td>{{convertTime(order.startWaitTime)}}</td>
+            <td>{{order.fromAddress}}</td>
+            <td>{{order.tariffShortName}}</td>
+            <td class="text-right">{{order.cost.toFixed(2)}}</td>
+            <td>{{order.id}}</td>
+        </tr>
+    </tbody>
+</table>

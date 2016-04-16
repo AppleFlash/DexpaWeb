@@ -1,0 +1,77 @@
+﻿@using Dexpa.WebSite.Helpers
+@using Dexpa.WebSite.Models
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Кортеж-Авто</title>
+    <script type="text/javascript">var ApiServerUrl = "@GlobalConfiguration.GetApiServerUrl()"</script>
+    <link href="~/Content/Styles/lightbox.css" rel="stylesheet" />
+
+    @Styles.Render("~/Content/Styles/css")
+</head>
+<body ng-app="DexpaApp">
+
+    <div id="alert">
+
+    </div>
+
+    <div class="container-fluid">
+        @Html.Partial("_MainMenu")
+        @RenderBody()
+    </div>
+
+    @Html.Partial("_PhoneWidget")
+
+    <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel"></h4>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @Scripts.Render("~/bundles/scripts")
+
+    @{
+        DateTime tokenDate = new DateTime();
+        string tokenString = "";
+        if (User != null)
+        {
+            var userName = @User.Identity.Name;
+            var token = UserTokenHelper.GetToken(userName);
+            if (token != null)
+                tokenDate = token.ExpirationDate;
+            if (token != null)
+                tokenString = token.Token;
+        }
+
+    }
+
+    <script>
+        userToken = "@tokenString";
+        tokenExpirationTime = new Date(@tokenDate.Year, @tokenDate.Month, @tokenDate.Day, @tokenDate.Hour, @tokenDate.Minute, @tokenDate.Second, @tokenDate.Millisecond);
+        var curDate = new Date();
+        curDate = curDate.getUTCDate();
+        var refreshTime = new Date(0, 0, 0, 0, @UserTokenHelper.TokenRefreshTimeMinutes);
+        if (userToken == "" || tokenExpirationTime.valueOf() - curDate.valueOf() < refreshTime.valueOf()) {
+            document.getElementById('logoutForm').submit();
+        }
+
+    </script>
+    <script src="~/Scripts/AngularControllers/IPPhoneController.js"></script>
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

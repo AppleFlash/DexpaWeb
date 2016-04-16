@@ -1,0 +1,59 @@
+﻿@using Dexpa.WebSite.Helpers
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="headermenu">
+            <li>
+                <div class="ip_phone_widget_button" id="ip_phone_widget_button">
+                    <span class="fa fa-phone"></span>
+                </div>  
+            </li>
+            <li>
+                <div class="btn-group">
+                    @if (GlobalConfiguration.roleAccessModel.HasAccess)
+                    {
+                        <a class="btn btn-default tp-icon" title="Управление аккаунтом" href="@Url.Action("Manage","Account")">
+                            <i class="fa fa-user"></i>
+                            Привет @User.Identity.GetUserName()!
+                        </a>
+                    }
+                    else
+                    {
+                        <div class="btn btn-default tp-icon">
+                            <i class="fa fa-user"></i>
+                            Привет @User.Identity.GetUserName()!
+                        </div>
+                    }
+                </div>
+            </li>
+            <li>
+                <div class="btn-group">
+                    <a class="btn btn-default tp-icon" href="javascript:document.getElementById('logoutForm').submit()">Выход</a>
+                </div>
+            </li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="headermenu">
+        <li>
+            <div class="btn-group">
+                <a class="btn btn-default tp-icon" href="@Url.Action("Login","Account")">
+                    <i class="fa fa-road"></i>
+                    Вход
+                </a>
+            </div>
+        </li>
+    </ul>
+
+
+    <ul class="nav navbar-nav navbar-right">
+        @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
+        @*<li>@Html.ActionLink("Выход", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>*@
+    </ul>
+}

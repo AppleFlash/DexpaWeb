@@ -1,0 +1,78 @@
+﻿@using Dexpa.WebSite.Helpers
+@{
+    ViewBag.Title = "Диспетчерская";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/Styles/MapStyles.css" rel="stylesheet" />
+
+
+
+<div class="loader" id="loader">
+    <img src="/Content/Images/loader.gif" alt="">
+</div>
+
+<div id="main_part" ng-controller="DispatcherCtrl">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="row pageheader">
+                <div class="form-inline" id="searchButton">
+                    <div class="col-sm-2 col-sm-push-2">
+                        <button class="btn btn-success btn-sm" onclick="backToOrders()"><span class="glyphicon glyphicon-chevron-left"></span> К заказам</button>
+                    </div>
+                </div>
+                <div class="form-inline" id="dispatcherButtons">
+                    @if (GlobalConfiguration.roleAccessModel.CanEditOrders)
+                    {
+                        <div class="col-sm-2">
+                            <a href="@Url.Action("NewOrder")" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Новый заказ</a>
+                        </div>
+                        <div class="col-sm-6">
+                            @Html.Partial("_OrderStateChanger")
+                        </div>
+                    }
+                    @if (GlobalConfiguration.roleAccessModel.CanSeeAndEditAccounts)
+                    {
+                        <div class="col-sm-2">
+                            <a href="@Url.Action("AllOrdersReport","Admin")" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Отчет по всем заказам</a>
+                        </div>
+                    }
+                    <div class="form-inline pull-right">
+                        <input class="form-control input-sm" ng-model="searchQuery" ng-keydown="SearchEvent()" placeholder="Поиск">
+                        <input type="button" class="form-control btn btn-success btn-sm" ng-click="search()" value="Поиск" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="row">
+                        <div class="col-sm-12 containerWithoutPageHeader">
+                            @Html.Partial("_DriversStateTable")
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-10 containerLeftBorder">
+                    <div class="row">
+                        <div class="containerForTableOnMainPage" id="dispatcherPanel">
+                            @Html.Partial("_OrdersTable")
+                        </div>
+                        <div class="containerForTableOnMainPage" id="searchResults">
+                            @Html.Partial("_SearchResults")
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="map" class="map-wrapper"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    @Scripts.Render("~/Scripts/AdditionalScripts/YandexMapScript.js")
+    <script src="~/Scripts/MapScripts/MapCore.js"></script>
+    @Scripts.Render("~/Scripts/AngularControllers/OrdersTableAppController.js")
+}

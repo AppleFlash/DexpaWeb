@@ -1,0 +1,20 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">История заказа</h4>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table">
+                    <tr ng-repeat="historyRow in orderHistory track by $index">
+                        <td>
+                            <strong>{{historyRow.timeStamp}}</strong>
+                            <div ng-repeat="message in historyRow.oldValues track by $index" style="white-space: pre-wrap" ng-class="historyRow.style">&bull; {{message}}</div>
+                            <div ng-show="historyRow.comment!=undefined && historyRow.comment!=null && historyRow.comment!=''" style="white-space: pre-wrap">Причина: {{historyRow.comment}}</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

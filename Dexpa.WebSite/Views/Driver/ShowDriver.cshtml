@@ -1,0 +1,25 @@
+﻿@using System.Web.UI.WebControls
+@model string
+
+<!--use ViewData["id"]-->
+           
+@{
+    ViewBag.Title = "Водитель";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="container" ng-controller="DriverCtrl" ng-init="getDriver(@ViewData["id"], true)">
+        <div class="row pageheader"><h2>{{driver.lastName}} {{driver.firstName}} {{driver.middleName}}</h2></div>
+        <div class="row">
+            <div class="containerWithoutPageHeader">
+                @Html.Partial("_ShowDriverPage")
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/AngularControllers/DriversController.js")
+}

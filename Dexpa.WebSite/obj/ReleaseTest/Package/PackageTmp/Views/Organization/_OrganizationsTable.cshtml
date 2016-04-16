@@ -1,0 +1,37 @@
+﻿@using Dexpa.WebSite.Helpers
+<div class="row pageheader">
+    <div class="col-sm-12">
+        <div class="form-inline">
+            <a class="btn btn-success btn-sm" href="@Url.Action("Add")"><i class="fa fa-plus"></i> Добавить Организацию</a>
+            <input class="form-control input-sm right-orient" ng-model="query" placeholder="Поиск">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="containerWithoutPageHeader">
+        <table class="table table-bordered table-hover" ng-controller="OrganizationsCtrl" ng-init="init()">
+            <thead>
+                <tr>
+                    <th class="text-center" ng-click="sortBy('name')">Название <span id="name"></span></th>
+                    <th class="text-center" ng-click="sortBy('balance')">Баланс <span id="balance"></span></th>
+                    <th class="text-center" ng-click="sortBy('tariff')">Тариф <span id="tariff"></span></th>
+                    <th class="text-center" ng-click="sortBy('dateFrom')">Дата заключение договора <span id="lastName"></span></th>
+                    <th class="text-center" ng-click="sortBy('dateTo')">Дата окончания договора <span id="carbrand"></span></th>
+                    <th class="text-center" ng-click="sortBy('isActive')">Активен <span id="isActive"></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="organization in organizations | filter:query" ng-click="goTo('/Organization/Edit/', organization.id)">
+                    <td>{{organization.name}}</td>
+                    <td class="text-right">{{organization.balance}}</td>
+                    <td>{{organization.tariff.name}}</td>
+                    <td>{{organization.dateFrom}}</td>
+                    <td>{{organization.dateTo}}</td>
+                    <td ng-if="organization.isActive"><i class="fa fa-check-square-o"></i></td>
+                    <td ng-if="!organization.isActive"><i class="fa fa-square-o"></i></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

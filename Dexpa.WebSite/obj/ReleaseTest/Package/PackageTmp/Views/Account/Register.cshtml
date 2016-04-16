@@ -1,0 +1,104 @@
+﻿@using Dexpa.WebSite.Helpers
+@model Dexpa.WebSite.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Регистрация";
+}
+<script src="~/Scripts/AdditionalScripts/Authorization.js"></script>
+<div class="row">
+    <div class="container">
+        <div class=" row pageheader">
+            <div class="col-sm-12"><h2>Регистрация нового пользователя</h2></div>
+        </div>
+        <div class="row">
+            <div class="containerWithoutPageHeader ">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form id="signUpForm">
+                            @Html.AntiForgeryToken()
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <label for="LastName" class="control-label">Фамилия, Имя, Отчество</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control input-sm" id="lastName" validate="true" validationInfo="Фамилия" placeholder="Фамилия"/>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control input-sm" id="firstName" validate="true" validationinfo="Имя" placeholder="Имя" />
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control input-sm" id="middleName" validate="true" validationinfo="Отчество" placeholder="Отчество" />
+                                </div>
+                            </div>
+                            <div class="row bottomBorder">
+                                <div class="col-sm-4">
+                                    <label for="PhoneNumber" class="control-label">Телефон</label>
+                                    <input type="text" class="form-control input-sm" id="phoneNumber" validate="true" validationinfo="Телефон" placeholder="Телефон" numbers-only="numbers-only" />
+                                </div>
+                                <div class="col-sm-4">
+                                    <label for="Email" class="control-label">Email</label>
+                                    <input type="text" class="form-control input-sm" id="Email" validate="false" validationinfo="Email" placeholder="Email" />
+                                </div>
+                            </div>
+                            <div class="row bottomBorder">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            <label for="UserName" class="control-label">Имя пользователя</label>
+                                            <input type="text" class="form-control input-sm" id="UserName" validate="true" validationinfo="Имя пользователя" placeholder="Имя пользователя" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="Role" class="control-label">Роль</label>
+                                            @Html.DropDownListFor(m => m.Role, GlobalConfiguration.GetRolesList(), new { @class = "form-control input-sm", @validate="true", @validationinfo="Роль" })
+                                            @*<select class="form-control input-sm" id="Role" validate="true" validationinfo="Роль">
+                                                <option>Администратор</option>
+                                                <option>Диспетчер</option>
+                                                <option>Водитель</option>
+                                                <option>Кассир</option>
+                                                <option>Работник с кадрами</option>
+                                            </select>*@
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row padding10">
+                                    <div class="col-sm-4">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" id="HasAccess" validate="false"> <strong>Доступ разрешен</strong>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label for="Password" class="control-label">Пароль</label>
+                                    <input type="password" class="form-control input-sm" id="Password" validate="true" validationinfo="Пароль" placeholder="Пароль" />
+                                </div>
+                            </div>
+                            <div class="row bottomBorder">
+                                <div class="col-sm-4">
+                                    <label for="ConfirmPassword" class="control-label">Подтверждение</label>
+                                    <input type="password" class="form-control input-sm" id="ConfirmPassword" validate="true" validationinfo="Подтверждение" placeholder="Подтверждение" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <a href="@Request.UrlReferrer" class="pull-left"><div class="btn btn-success btn-sm"><span class="glyphicon glyphicon-chevron-left"></span> Назад</div></a>
+                                    <div id="signUp" class="btn btn-success pull-right btn-sm">Сохранить</div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/AdditionalScripts/AccountAddScript.js"></script>
+}

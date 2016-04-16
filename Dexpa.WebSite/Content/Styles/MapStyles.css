@@ -1,0 +1,12 @@
+﻿.arrowMark {
+    width: 35px;
+    height: 35px;
+    background-image: url(/Content/Images/MapIcons/arrow3.png);
+    background-repeat: no-repeat;
+    display: none;
+    background-color: red;
+}
+
+.test {
+    background-color: red;
+}

@@ -1,0 +1,137 @@
+﻿@using Dexpa.WebSite.Helpers
+@using iTextSharp.text.pdf.qrcode
+@model Dexpa.WebSite.Models.ManageUserViewModel
+@{
+    ViewBag.Title = "Изменение учетной записи";
+}
+
+<div class="row">
+    <div class="container">
+        <div class="row pageheader">
+            <div class="col-sm-12"><h2>Изменение учетной записи</h2></div>
+        </div>
+        <div class="row">
+            <div class="containerWithoutPageHeader">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        @Html.HiddenFor(m => Model.Error)
+                        @using (Html.BeginForm("Manage", "Account", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(m => Model.UserId)
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    @Html.Label("ФИО", new { @class = "control-label" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control input-sm", placeholder = "Фамилия" })
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control input-sm", placeholder = "Имя" })
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control input-sm", placeholder = "Отчество" })
+                                </div>
+                            </div>
+                            <div class="row bottomBorder">
+                                <div class="col-sm-4">
+                                    @Html.LabelFor(m => m.PhoneNumber)
+                                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control input-sm", placeholder = "Телефон" })
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.LabelFor(m => m.Email)
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-sm", placeholder = "Email" })
+                                </div>
+                            </div>
+                            <div class="row bottomBorder">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            @Html.LabelFor(m => m.UserName)
+                                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control input-sm", placeholder = "Имя пользователя" })
+                                        </div>
+                                        <div class="col-sm-4">
+                                            @Html.LabelFor(m => m.Role)
+                                            @if (GlobalConfiguration.roleAccessModel.CanEditAccounts)
+                                            {
+                                                @Html.DropDownListFor(m => m.Role, GlobalConfiguration.GetRolesList(), new { @class = "form-control input-sm" })
+                                            }
+                                            else
+                                            {
+                                                @Html.TextBoxFor(m => m.Role, new { @class = "form-control input-sm", @placeholder = "Роль", @readonly = "readonly" })
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row padding10">
+                                <div class="col-sm-4">
+                                    @if (GlobalConfiguration.roleAccessModel.CanEditAccounts && (User.Identity.Name != Model.UserName))
+                                    {
+                                        @Html.CheckBoxFor(m => m.HasAccess, new { @validate = "false" })
+                                    }
+                                    else
+                                    {
+                                        @Html.HiddenFor(m => m.HasAccess)
+                                        if (Model.HasAccess)
+                                        {
+                                            <i class="fa fa-check-square-o"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="fa fa-square-o"></i>
+                                        }
+                                    }
+                                    @Html.LabelFor(m => m.HasAccess)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    @Html.LabelFor(m => m.NewPassword)
+                                    @Html.PasswordFor(m => m.NewPassword, new { @class = "form-control input-sm", placeholder = "Новый пароль" })
+                                </div>
+                            </div>
+                            <div class="row bottomBorder">
+                                <div class="col-sm-4">
+                                    @Html.LabelFor(m => m.ConfirmPassword)
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control input-sm", placeholder = "Подтверждение" })
+                                </div>
+                            </div>
+                            <div class="row bottomBorder">
+                                <h5>IP Телефон</h5>
+                                <div class="col-sm-4">
+                                    @Html.LabelFor(m => Model.IpPhoneLogin)
+                                    @Html.TextBoxFor(m => m.IpPhoneLogin, new { @class = "form-control input-sm", placeholder = "Логин" })
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.LabelFor(m => Model.IpPhonePassword)
+                                    @Html.TextBoxFor(m => m.IpPhonePassword, new { @class = "form-control input-sm", placeholder = "Пароль" })
+                                </div>
+                                <div class="col-sm-4">
+                                    @Html.LabelFor(m => Model.IpPhoneProvider)
+                                    @Html.TextBoxFor(m => m.IpPhoneProvider, new { @class = "form-control input-sm", placeholder = "myphone.ru" })
+                                </div>
+                            </div>
+                            if (GlobalConfiguration.roleAccessModel.HasAccess)
+                            {
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <a href="@Url.Action("Index","Admin")" class="btn btn-success btn-sm pull-left"><i class="fa fa-chevron-left"></i> К списку</a>
+                                        <input class="btn btn-success pull-right btn-sm" type="submit" value="Сохранить" />
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/AdditionalScripts/Authorization.js"></script>
+}

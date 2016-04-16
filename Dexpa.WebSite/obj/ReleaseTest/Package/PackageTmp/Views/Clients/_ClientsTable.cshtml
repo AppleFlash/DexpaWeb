@@ -1,0 +1,18 @@
+﻿<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th class="text-center" ng-click="sortBy('name')">Имя <span id="name"></span></th>
+            <th class="text-center" ng-click="sortBy('phone')">Телефон <span id="phone"></span></th>
+            <th class="text-center">Заказов</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="client in Clients">
+            <td>{{client.customer.name}}</td>
+            <td>{{client.customer.phone}}</td>
+            <td class="text-right">{{client.orders}}</td>
+        </tr>
+    </tbody>
+</table>
+
+

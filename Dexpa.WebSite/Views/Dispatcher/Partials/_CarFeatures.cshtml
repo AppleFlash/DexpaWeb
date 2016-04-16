@@ -1,0 +1,100 @@
+﻿
+<div class="row bottomBorder">
+    <label for="service">Категории:</label>
+    <div id="service">
+        <div class="col-sm-6">
+            <ul>
+                <li>
+                    <label class="checkbox-inline">
+                        <input ng-model="order.orderOptions.carFeatures.bussiness" type="checkbox" ng-change="selectDriver()"> Бизнес
+                    </label>
+                </li>
+                <li>
+                    <label class="checkbox-inline">
+                        <input ng-model="order.orderOptions.carFeatures.economy" type="checkbox" ng-change="selectDriver()"> Эконом
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-6">
+            <ul>
+                <li>
+                    <label class="checkbox-inline">
+                        <input ng-model="order.orderOptions.carFeatures.comfort" type="checkbox" ng-change="selectDriver()"> Комфорт
+                    </label>
+                </li>
+                <li>
+                    <label class="checkbox-inline">
+                        <input ng-model="order.orderOptions.carFeatures.minivan" type="checkbox" ng-change="selectDriver()"> Минивэн
+                    </label>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <label for="service">Пожелания:</label>
+    <div id="service">
+        <div class="col-sm-6">
+            <ul>
+                <li>
+                    <label class="checkbox-inline">
+                        <input ng-model="order.orderOptions.carFeatures.conditioner" type="checkbox" ng-change="selectDriver()"> Кондиционер
+                    </label>
+                </li>
+                <li>
+                    <label class="checkbox-inline">
+                        <input ng-model="order.orderOptions.carFeatures.smoke" type="checkbox" ng-change="selectDriver()"> Курить
+                    </label>
+                </li>
+                <li>
+                    <label class="checkbox-inline">
+                        <input ng-model="order.orderOptions.carFeatures.withAnimals" type="checkbox" ng-change="selectDriver()"> Перевозка животного
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-6">
+            <ul>
+                <li>
+                    <label class="checkbox-inline">
+                        <input ng-model="order.orderOptions.carFeatures.stationWagon" type="checkbox" ng-change="selectDriver()"> Кузов универсал
+                    </label>
+                </li>
+                <li>
+                    <label class="checkbox-inline">
+                        <input ng-model="order.orderOptions.carFeatures.wifi" type="checkbox" ng-change="selectDriver()"> WiFi
+                    </label>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <ul>
+            <li>
+                <label class="checkbox-inline">
+                    <input ng-model="order.orderOptions.carFeatures.coupon" type="checkbox" ng-change="selectDriver()"> Использовать купон
+                </label>
+            </li>
+        </ul>
+    </div>
+    <div class="col-sm-6">
+        <ul>
+            <li>
+                <label class="checkbox-inline">
+                    <input ng-model="order.orderOptions.carFeatures.receipt" type="checkbox" ng-change="selectDriver()"> Квитанция об оплате
+                </label>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="row bottomBorder">
+    <div class="form-group">
+        <div class="col-sm-6 col-sm-push-1">
+            <label for="childrenSeat">Детское кресло:</label>
+            <select class="form-control input-sm" ng-model="order.orderOptions.childrenSeat" ng-options="seat.name for seat in childrenSeats track by seat.type" id="childrenSeat" validate="true" validationinfo="Детское кресло" ng-change="selectDriver()"></select>
+        </div>
+    </div>
+</div>

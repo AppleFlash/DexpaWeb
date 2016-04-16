@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Просмотр ремонта";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string s = "\"" + ViewData["userName"] + "\"";
+}
+
+<div class="row">
+    <div class="container" ng-controller="CarEventsCtrl">
+        <div class="row pageheader">
+            <h2 class="pull-left">Просмотр ремонта</h2>
+            <div class="btn btn-success btn-sm pull-right" ng-show="repair.id" ng-click="goTo('/CarEvents/EditRepair/', @ViewData["id"])"> Изменить ремонт</div>
+        </div>
+        <div class="row ">
+            <div class="containerWithoutPageHeader" ng-init="InitEditRepair(@ViewData["id"], @s)">
+                <div id="showRepairForm">
+                    @Html.Partial("Partials/_ShowRepairForm")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/AngularControllers/CarsEventsController.js")
+
+    <script>
+        $(document).ready(function () {
+            $('#damagesGallery').magnificPopup({
+                delegate: 'a',
+                type: 'image',
+                gallery: {
+                    enabled: true
+                },
+                zoom: {
+                    enabled: true, 
+                    duration: 300,
+                    easing: 'ease-in-out',
+                    opener: function (openerElement) {
+                        return openerElement.is('img') ? openerElement : openerElement.find('img');
+                    }
+                }
+            });
+        });
+    </script>
+}

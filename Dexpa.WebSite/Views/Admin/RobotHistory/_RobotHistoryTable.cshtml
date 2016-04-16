@@ -1,0 +1,19 @@
+﻿<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">История робота</h4>
+        </div>
+        <div class="panel-body">
+            <table class="table">
+                <tr ng-repeat="historyRow in robotHistory" ng-class="{robotLogGreen: historyRow.isDriverSelected, robotLogRed: !historyRow.isDriverSelected}">
+                    <td>
+                        <strong>Водитель: [{{historyRow.driver.callsign}}] {{historyRow.driver.lastName +' '+ historyRow.driver.firstName[0] +' '+ historyRow.driver.middleName[0] }}</strong>
+                        <div style="white-space: pre-wrap">&bull; Настройки робота: {{(historyRow.robotEnabled?' вкл.':' выкл.') + ' / ' + roundDouble(historyRow.robotTime) + ' мин / ' + roundDouble(historyRow.robotDistance) + ' км'}}</div>
+                        <div style="white-space: pre-wrap">&bull; Заказ: {{roundDouble(historyRow.orderTime) + ' мин / ' + roundDouble(historyRow.orderDistance) + ' км'}}</div>
+                        <div style="white-space: pre-wrap" ng-class="{verdictRed: historyRow.verdict != 0, verdictGreen: historyRow.verdict == 0}">Вердикт: {{getDriverVerdict(historyRow.verdict)}}</div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

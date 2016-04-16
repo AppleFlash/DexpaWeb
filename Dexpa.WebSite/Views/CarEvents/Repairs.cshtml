@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Ремонты ТС";
+}
+
+<div class="row">
+    <div class="container" ng-controller="CarEventsCtrl" ng-init="initRepairs(@ViewData["id"])">
+        <div class="row pageheader">
+            <h2 class="pull-left">Ремонты ТС</h2>
+            <div class="btn btn-danger btn-sm pull-right" ng-show="selectedEvent.id" ng-click="removeRepairModal()"><i class="fa fa-times"></i> Удалить</div>
+            <div class="btn btn-success btn-sm pull-right" ng-show="selectedEvent.id" ng-click="goTo('/CarEvents/ShowRepair/', selectedEvent.id)"><i class="fa fa-edit"></i> Просмотр</div>
+            <div class="btn btn-success btn-sm pull-right" ng-show="car.id" ng-click="goTo('/CarEvents/AddRepair/', @ViewData["id"])"><i class="fa fa-plus"></i> Добавить</div>
+        </div>
+        <div class="row ">
+            <div class="containerWithoutPageHeader">
+                @Html.Partial("Partials/_RepairsTable")
+                @Html.Partial("_DeleteModal")
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/AngularControllers/CarsEventsController.js")
+}
+

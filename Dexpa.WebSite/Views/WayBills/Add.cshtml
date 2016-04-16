@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Добавить путевой лист";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="container">
+        <div class="row pageheader"><h2>Новый путевой лист</h2></div>
+        <div class="row " ng-controller="WayBillsCtrl" ng-init="initAddWayBills()">
+            <div class="containerWithoutPageHeader">
+                <form id="addWayBillsForm" ng-submit="addWayBills(wayBills)">
+                    @Html.AntiForgeryToken()
+                    @Html.Partial("_AddWayBillsForm")
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/AngularControllers/WayBillsController.js")
+}

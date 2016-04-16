@@ -1,0 +1,73 @@
+﻿<div class="panel panel-default" ng-init="GetAddData()">
+    <div class="panel-body">
+        <div class="row bottomBorder">
+            <div class="col-sm-4">
+                <label for="callSign" class="control-label">Позывной</label>
+                <input type="text" class="form-control" ng-model="car.callsign" validate="true" validationInfo="Позывной" placeholder="Позывной" id="callSign" maxlength="10" tabindex="1">
+
+                <label for="brand" class="control-label">Марка</label>
+                <input type="text" class="form-control" ng-model="car.brand" id="brand" validate="true" validationInfo="Марка" placeholder="Марка" ng-blur="fixedBrand(car);loadImage(car.brand)" capitalize tabindex="3">
+
+                <label for="regNumber" class="control-label">Гос. номер</label>
+                <input type="text" class="form-control" ng-model="car.regNumber" id="regNumber" maxlength="9" validate="true" validationinfo="Гос. номер" capitalize placeholder="Гос. номер" tabindex="5">
+
+                <label for="color" class="control-label">Цвет</label>
+                <input type="text" class="form-control" ng-model="car.color" id="color" maxlength="48" validate="true" validationinfo="Цвет" placeholder="Цвет" tabindex="7">
+            </div>
+            <div class="col-sm-4">
+                <label for="Status" class="control-label">Статус</label>
+                <select class="form-control" ng-model="car.Status" ng-options="status.name for status in carStatuses" id="Status" validate="true" validationInfo="Статус" tabindex="2"></select>
+                
+                <label for="model" class="control-label">Модель</label>
+                <input type="text" class="form-control" ng-model="car.model" id="model" validate="true" validationinfo="Модель" placeholder="Модель" ng-blur="fixedModel(car);" capitalize tabindex="4">
+                
+                <label for="productionYear" class="control-label">Год выпуска</label>
+                <select class="form-control" ng-model="car.productionYear" id="productionYear" validate="true" validationInfo="Год выпуска" tabindex="6">
+                    <option ng-repeat="year in productionYears">{{year}}</option>
+                </select>
+                
+                <label for="carClass" class="control-label">Класс</label>
+                <select class="form-control" ng-model="car.carClass" id="carClass" validate="true" validationInfo="Класс" tabindex="8">
+                    <option>A</option>
+                    <option>B</option>
+                    <option>C</option>
+                    <option>D</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <img class="driver-photo center-block" src="/Content/images/noCarPhoto.png" id="carBrandLogo" width="200" height="200" />
+            </div>
+        </div>
+
+        <label for="permission" class="control-label">№ разрешения</label>
+        <div id="permission" class="row">
+            <div class="col-sm-4">
+                <input type="text" class="form-control" ng-model="car.permission.number" id="number" maxlength="48" validate="true" validationInfo="№ разрешения" placeholder="№ разрешения">
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" ng-model="car.permission.series" id="series" maxlength="48" validate="true" validationInfo="Серия" placeholder="Серия">
+            </div>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" ng-model="car.permission.number2" id="number2" maxlength="48" validate="true" validationInfo="№ разрешения" placeholder="№ разрешения">
+            </div>
+        </div>
+        <div class="row bottomBorder">
+            <div class="col-sm-12">
+                <label for="description" class="control-label">Описание</label>
+                <input type="text" class="form-control" ng-model="car.description" id="description" maxlength="48" placeholder="Описание" validate="false" validationInfo="Описание">
+            </div>
+        </div>
+        @Html.Partial("Partials/_CarFeaturesForm")
+        <div class="row bottomBorder">
+            <div class="col-sm-3">
+                <input type="checkbox" ng-model="car.belongsCompany" name="belongsCompany" /> ТС принадлежит таксопарку
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <a href="@Url.Action("Index", "CarsDictionary")" class="btn btn-success btn-sm pull-left"><i class="fa fa-chevron-left"></i> К списку</a>
+                <input type="submit" class="right-orient btn btn-success btn-sm" ng-disabled="isDisabled" value="Сохранить" />
+            </div>
+        </div>
+    </div>
+</div>

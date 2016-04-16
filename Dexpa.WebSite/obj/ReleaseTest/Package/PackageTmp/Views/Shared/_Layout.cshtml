@@ -1,0 +1,68 @@
+﻿@using Dexpa.WebSite.Helpers
+@using Dexpa.WebSite.Models
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Кортеж-Авто</title>
+    <script type="text/javascript">var ApiServerUrl = "@GlobalConfiguration.GetApiServerUrl()"</script>
+    @* TODO: implement as boundle *@
+    <link href="/Content/Theme/jquery.datetimepicker.css" rel="stylesheet" />
+    <link href="/Content/Styles/LayoutStyles.css" rel="stylesheet" />
+    <link href="/Content/Theme/style.default.css" rel="stylesheet" />
+    <link href="/Content/Styles/Dispatcher/aditionalStyles.css" rel="stylesheet" />
+    <link href="/Content/Styles/Dispatcher/newOrderStyle.css" rel="stylesheet" />
+    <link href="/Content/Styles/Drivers/additionalStyles.css" rel="stylesheet" />
+    <link href="/Content/Styles/Transactions/additionalStyles.css" rel="stylesheet" />
+    <link href="/Content/Theme/jquery.gritter.css" rel="stylesheet" />
+    <link href="/Content/Styles/dropdownPanelStyle.css" rel="stylesheet"/>
+    <link href="/Content/Styles/adminDropDownMenu.css" rel="stylesheet" />
+    <link href="/Content/Styles/Dispatcher/SearchResults.css" rel="stylesheet" />
+    <link href="/Content/Styles/ipphoneStyle.css" rel="stylesheet" />
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/momentjs")
+    @Scripts.Render("~/bundles/clientValidation")
+    @Scripts.Render("~/bundles/sorting")
+
+</head>
+    <body ng-app="DexpaApp">
+        
+        <div id="alert">
+            
+        </div>
+
+        <div class="container-fluid">
+            @Html.Partial("_MainMenu")
+            @RenderBody()
+        </div>
+        
+        @Html.Partial("_PhoneWidget")
+
+        <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel"></h4>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        @Scripts.Render("~/bundles/bootstrap")
+
+        @RenderSection("scripts", required: false)
+
+    </body>
+    </html>

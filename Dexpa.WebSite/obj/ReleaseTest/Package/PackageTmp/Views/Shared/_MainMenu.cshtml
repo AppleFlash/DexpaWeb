@@ -1,0 +1,153 @@
+﻿@using System.Reflection
+@using Dexpa.WebSite.Helpers
+@{
+
+    var disp = "tp-icon";
+    var dr = "tp-icon";
+    var cli = "tp-icon";
+    var cash = "tp-icon";
+    var cars = "tp-icon";
+    var adm = "tp-icon";
+
+    switch (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString())
+    {
+        case "Dispatcher":
+            disp = "selectedTp-icon";
+            break;
+        case "Driver":
+            dr = "selectedTp-icon";
+            break;
+        case "Clients":
+            cli = "selectedTp-icon";
+            break;
+        case "CashDesk":
+            cash = "selectedTp-icon";
+            break;
+        case "CarsDictionary":
+            cars = "selectedTp-icon";
+            break;
+        case "Admin":
+            adm = "selectedTp-icon";
+            break;
+        case "Transactions":
+            cash = "selectedTp-icon";
+            break;
+    }
+}
+
+<div class="row">
+    <div class=" headerbar">
+        <div class="header-left">
+            <ul class="headermenu">
+                <li>
+                    <div class="logopanel">
+                        <a class="logoLink" href="@Url.Action("Index","Home")"><h1><span>[</span> Кортеж-Авто <span>]</span></h1></a>
+                    </div><!-- logopanel -->
+                    <span class="version">
+                        <a href="https://www.dropbox.com/s/ao43rpzmrm18py0/Versions.doc" target="_blank">v.@GlobalConfiguration.CurrentVersion()</a>
+                    </span>
+                </li>
+
+                @if (GlobalConfiguration.roleAccessModel.CanSeeOrders)
+                {
+                    <li>
+                        <div class="menu-group">
+                            <a class="btn @disp" href="@Url.Action("Index","Dispatcher")">
+                                <i class="fa fa-eye"></i>
+                                Диспетчерская
+                            </a>
+                        </div>
+                    </li>
+                }
+
+
+                @if (GlobalConfiguration.roleAccessModel.CanSeeDrivers)
+                {
+                    <li>
+                        <div class="menu-group">
+                            <a class="btn @dr" href="@Url.Action("Index", "Driver")">
+                                <i class="fa fa-group"></i>
+                                Водители
+                            </a>
+                        </div>
+                    </li>
+                }
+
+                @if (GlobalConfiguration.roleAccessModel.CanSeeCars)
+                {
+                    <li>
+                        <div class="menu-group">
+                            <a class="btn btn-default @cars" href="@Url.Action("Index", "CarsDictionary")">
+                                <i class="fa fa-taxi"></i>
+                                ТС
+                            </a>
+                        </div>
+                    </li>
+                }
+
+                @if (GlobalConfiguration.roleAccessModel.CanSeeCash)
+                {
+                    <li>
+                        <div class="menu-group">
+                            <a class="btn btn-default @cash" href="@Url.Action("Index", "CashDesk")">
+                                <i class="fa fa-money"></i>
+                                Касса
+                            </a>
+                        </div>
+                    </li>
+                }
+
+                @if (GlobalConfiguration.roleAccessModel.CanSeeClients)
+                {
+                    @*<li>
+                        <div class="menu-group">
+                            <a class="btn btn-default @cli" href="@Url.Action("Index", "Clients")">
+                                <i class="fa fa-group"></i>
+                                Клиенты
+                            </a>
+                        </div>
+                    </li>*@
+                    <li>
+                        <div class="menu-group">
+                            <button class="btn btn-default @cli" data-toggle="dropdown"><i class="fa fa-group"></i> Клиенты</button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="@Url.Action("Index", "Clients")">Частные лица</a></li>
+                                <li><a href="@Url.Action("Index", "Organization")">Юридические лица</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                }
+
+                @if (GlobalConfiguration.roleAccessModel.CanSeeAndEditAccounts)
+                {
+                    <li>
+                        <div class="menu-group">
+                            <button class="btn btn-default @adm" data-toggle="dropdown"><i class="fa fa-cogs"></i> Администрирование</button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="@Url.Action("Index","Admin")">Пользователи</a></li>
+                                <li><a href="@Url.Action("WorkingConditions","Admin")">Условия работы</a></li>
+                                <li><a href="@Url.Action("Tariffs","Admin")">Тарифы</a></li>
+                                <li>
+                                    <a href="#">Отчеты <span class="fa fa-chevron-right order-arrow right-orient"></span></a>
+                                    <ul>
+                                        <li><a href="@Url.Action("DriversReport","Admin")">Отчет по водителям</a></li>
+                                        <li><a href="@Url.Action("OrdersReport","Admin")">Отчет по заказам</a></li>
+                                        <li><a href="@Url.Action("YandexOrdersReport","Admin")">Отчет по Яндекс-заказам</a></li>
+                                        <li><a href="@Url.Action("OrganizationOrdersReport","Admin")">Отчет по заказам (Юр. лица)</a></li>
+                                        <li><a href="@Url.Action("DispatchersReport","Admin")">Отчет по диспетчерам</a></li>
+                                        <li><a href="@Url.Action("AllOrdersReport","Admin")">Отчет по всем заказам</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="@Url.Action("Tracks","Admin")">Треки водителей</a></li>
+                                <li><a href="@Url.Action("Index","Settings")">Настройки</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="header-right">
+            @Html.Partial("_LoginPartial")
+        </div>
+    </div>
+</div>

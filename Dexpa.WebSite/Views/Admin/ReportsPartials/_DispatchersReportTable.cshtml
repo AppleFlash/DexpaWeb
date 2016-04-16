@@ -1,0 +1,55 @@
+﻿<div class="row pageheader">
+    <div class="col-sm-12">
+        <div class="form-inline">
+            <h2>Отчет по диспетчерам</h2>
+        </div>
+    </div>
+</div>
+
+@*<div class="loader" id="loader">
+        <img src="/Content/Images/loader.gif" alt="">
+    </div>*@
+
+<div class="row">
+    <div class="containerWithoutPageHeader">
+        <table class="table table-bordered table-hover" ng-controller="ReportsCtrl" ng-init="init('dispatchers')">
+            <thead>
+                <tr>
+                    <td class="text-center td-vertical-middle" rowspan="2" ng-click="sortBy('name')">ФИО <span id="name"></span></td>
+                    <td class="text-center td-vertical-middle" colspan="3">Заказы</td>
+                    <td class="text-center td-vertical-middle" rowspan="2" ng-click="sortBy('percent')">Проценты <span id="percent"></span></td>
+                    <td class="text-center td-vertical-middle" colspan="3">Звонки</td>
+                    <td class="text-center td-vertical-middle" rowspan="2">Бездействие</td>
+                    <td class="text-center td-vertical-middle" rowspan="2" ng-click="sortBy('clickCount')">Кол-во кликов <span id="clickCount"></span></td>
+                    <td class="text-center td-vertical-middle" colspan="2">Сообщения</td>
+                </tr>
+                <tr>
+                    <td class="text-center td-vertical-middle">Тип</td>
+                    <td class="text-center td-vertical-middle" ng-click="sortBy('ordersCount')">Количество <span id="ordersCount"></span></td>
+                    <td class="text-center td-vertical-middle">Среднее время оформления</td>
+                    <td class="text-center td-vertical-middle" ng-click="sortBy('answeredCalls')">Принято <span id="answeredCalls"></span></td>
+                    <td class="text-center td-vertical-middle" ng-click="sortBy('unAnsweredCalls')">Непринято <span id="unAnsweredCalls"></span></td>
+                    <td class="text-center td-vertical-middle" ng-click="sortBy('doneCalls')">Сделано <span id="doneCalls"></span></td>
+                    <td class="text-center td-vertical-middle" ng-click="sortBy('sendMessages')">Отправлено <span id="sendMessages"></span></td>
+                    <td class="text-center td-vertical-middle" ng-click="sortBy('readMessages')">Прочитано <span id="readMessages"></span></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="dispatcherReport in reports">
+                    <td>{{dispatcherReport.name}}</td>
+                    <td></td>
+                    <td class="text-right">{{dispatcherReport.ordersCount}}</td>
+                    <td></td>
+                    <td class="text-right">{{dispatcherReport.percent}}</td>
+                    <td class="text-right">{{dispatcherReport.answeredCalls}}</td>
+                    <td class="text-right">{{dispatcherReport.unAnsweredCalls}}</td>
+                    <td class="text-right">{{dispatcherReport.doneCalls}}</td>
+                    <td></td>
+                    <td class="text-right">{{dispatcherReport.clickCount}}</td>
+                    <td class="text-right">{{dispatcherReport.sendMessages}}</td>
+                    <td class="text-right">{{dispatcherReport.readMessages}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

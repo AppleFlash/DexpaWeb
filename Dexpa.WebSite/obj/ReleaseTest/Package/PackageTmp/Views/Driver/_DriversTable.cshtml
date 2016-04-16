@@ -1,0 +1,55 @@
+﻿@using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder
+@using Dexpa.WebSite.Helpers
+@model List<Dexpa.WebSite.Models.Driver.DriversTableRow>
+
+
+
+<div class="row pageheader">
+    <div class="col-sm-12">
+        <div class="form-inline">
+            @if (GlobalConfiguration.roleAccessModel.CanEditDrivers)
+            {
+                <a class="btn btn-success btn-sm" href="@Url.Action("AddDriver")"><i class="fa fa-plus"></i> Добавить водителя</a>
+            }
+            <input class="form-control input-sm right-orient" ng-model="query" placeholder="Поиск">
+        </div>
+    </div>
+</div>
+
+@*<div class="loader" id="loader">
+        <img src="/Content/Images/loader.gif" alt="">
+    </div>*@
+
+<div class="row">
+    <div class="containerWithoutPageHeader">
+        <table class="table table-bordered table-hover" ng-controller="DriverCtrl" ng-init="getDrivers()">
+            <thead>
+                <tr>
+                    <th class="text-center" ng-click="sortBy('callsign')">Позывной <span id="callsign"></span></th>
+                    <th class="text-center" ng-click="sortBy('state.name')">Статус <span id="statename"></span></th>
+                    <th class="text-center" ng-click="sortBy('lastName')">ФИО <span id="lastName"></span></th>
+                    <th class="text-center" ng-click="sortBy('car.brand')">ТС <span id="carbrand"></span></th>
+                    <th class="text-center" ng-click="sortBy('car.regNumber')">Гос.номер <span id="carregNumber"></span></th>
+                    <th class="text-center">Версия</th>
+                    <th class="text-center" ng-click="sortBy('workConditions.name')">Условия работы <span id="workConditionsname"></span></th>
+                    <th class="text-center" ng-click="sortBy('timestamp')">Создан <span id="timestamp"></span></th>
+                    <th class="text-center" ng-click="sortBy('phones')">Телефон <span id="phones"></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="driver in drivers | filter:query" ng-click="goTo('/Driver/ShowDriver/', driver.id)">
+                    <input type="hidden" id="driverID" value="{{driver.id}}" />
+                    <td class="centered">{{driver.callsign}}</td>
+                    <td class="centered">{{driver.state.name}}</td>
+                    <td>{{driver.name}}</td>
+                    <td>{{driver.car.brand}} {{driver.car.model}}</td>
+                    <td class="centered">{{driver.car.regNumber}}</td>
+                    <td class="centered"></td>
+                    <td>{{driver.workConditions.name}}</td>
+                    <td class="centered">{{driver.timestamp.replace('T',' ')}}</td>
+                    <td>{{driver.phones.join(', ')}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

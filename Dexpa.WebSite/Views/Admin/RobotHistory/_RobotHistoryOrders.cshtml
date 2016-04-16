@@ -1,0 +1,26 @@
+﻿<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th class="text-center" ng-click="sortBy('id')">Номер заказа <i ng-show="predicate == 'id'" ng-class="iconStyle"></i></th>
+            <th class="text-center" ng-click="sortBy('timestamp')">Дата создания <i ng-show="predicate == 'timestamp'" ng-class="iconStyle"></i></th>
+            <th class="text-center" ng-click="sortBy('departureDate')">Время подачи <i ng-show="predicate == 'departureDate'" ng-class="iconStyle"></i></th>
+            <th class="text-center" ng-click="sortBy('controlTime')">Контрольное время <i ng-show="predicate == 'controlTime'" ng-class="iconStyle"></i></th>
+            <th class="text-center" ng-click="sortBy('fromAddress')">Адрес подачи <i ng-show="predicate == 'fromAddress'" ng-class="iconStyle"></i></th>
+            <th class="text-center" ng-click="sortBy('tariff')">Тариф <i ng-show="predicate == 'tariff'" ng-class="iconStyle"></i></th>
+            <th class="text-center" ng-click="sortBy('sourse')">Источник <i ng-show="predicate == 'sourse'" ng-class="iconStyle"></i></th>
+            <th class="text-center" ng-click="sortBy('state.name')">Статус <i ng-show="predicate == 'state.name'" ng-class="iconStyle"></i></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="order in orders | filter:query | orderBy:predicate:reverse" ng-click='selectOrder(order.id);' id="{{order.id}}" class="orderRow" ng-dblclick="goTo('/Dispatcher/UpdateOrder/', order.id)" ng-class="{bgRed: order.priority==1}">
+            <td>{{order.id}}</td>
+            <td>{{convertDateTime(order.timestamp)}}</td>
+            <td>{{convertDateTime(order.departureDate)}}</td>
+            <td>{{getControlTime(order.timestamp,order.departureDate)}}</td>
+            <td>{{order.fromAddress}}</td>
+            <td>{{order.tariffShortName}}</td>
+            <td>{{order.source.name}}</td>
+            <td>{{order.state.name}}</td>
+        </tr>
+    </tbody>
+</table>

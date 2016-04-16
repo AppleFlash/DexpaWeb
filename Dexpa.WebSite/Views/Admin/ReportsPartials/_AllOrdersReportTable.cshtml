@@ -1,0 +1,101 @@
+﻿<div class="row" id="reportTable">
+    @* <div class="tableContainerPaginator">*@
+    <div class="containerWithoutPageHeader">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center" ng-click="sortBy('departureDate')">Дата <span id="departureDate"></span></th>
+                    <th class="text-center" ng-click="sortBy('state.name')">Статус / время <span id="statename"></span></th>
+                    <th class="text-center" ng-click="sortBy('departureDate')">t контр. <span id="departureDate"></span></th>
+                    <th></th>
+                    <th class="text-center" ng-click="sortBy('startWaitTime')">На месте <span id="departureDate"></span></th>
+                    <th class="text-center" ng-click="sortBy('driver.callsign')">Позывной, тел. водителя <span id="drivercallsign"></span></th>
+                    <th class="text-center" ng-click="sortBy('fromAddress')">Адрес подачи <span id="fromAddress"></span></th>
+                    <th class="text-center" ng-click="sortBy('toAddress')">Куда ехать <span id="toAddress"></span></th>
+                    <th class="text-center" ng-click="sortBy('customer.phone')">Имя, тел. клиента <span id="customerphone"></span></th>
+                    <th class="text-center" ng-click="sortBy('tariff')">Тариф <span id="tariff"></span></th>
+                    <th class="text-center" ng-click="sortBy('isOrganization')">Оплата <span id="isOrganization"></span></th>
+                    <th class="text-center" ng-click="sortBy('cost')">Сумма <span id="cost"></span></th>
+                    <th class="text-center" ng-click="sortBy('id')">№ заказа <span id="id"></span></th>
+                    <th class="text-center">ОКЗ </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="order in reports" ng-click="goTo('/Dispatcher/ShowOrder/', order.id)">
+                    <td title="Дата">{{order.departureDate | onlyData}}</td>
+                    <td title="Статус / Время">{{order.state.name}} {{order.lastHistoryTime | onlyTime}}</td>
+                    <td title="Контрольное время">{{order.departureDate | onlyTime}}</td>
+                    <td class="text-success"><i class="fa fa-check-square-o" ng-show="order.driverApproved" title="Подтвержден водителем"></i></td>
+                    <td title="На месте">{{order.startWaitTime | onlyTime}}</td>
+                    <td title="Позывной, телефон водителя">{{order.driver | formatDriver}}</td>
+                    <td title="Адрес подачи">{{order.fromAddress}}</td>
+                    <td title="Куда ехать">{{order.toAddress}}</td>
+                    <td title="Имя, тел. клиента">{{order.customerName}} {{order.customerPhone}}</td>
+                    <td title="Тариф">{{order.tariffName}}</td>
+                    <td class="text-center">
+                        <i class="fa fa-rub" ng-show="!order.isOrganization" title="Наличный рачсчет"></i>
+                        <i class="fa fa-credit-card" ng-show="order.isOrganization" title="Безналичный рачсчет"></i>
+                    </td>
+                    <td title="Сумма" class="text-right">{{order.cost.toFixed(2)}}</td>
+                    <td title="№ заказа">{{order.id}}</td>
+                    <td title="Общее количество заказов клиента"></td>
+                </tr>
+            </tbody>
+        </table>
+        @*<table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center" ng-click="sortBy('departureDate')">Дата <span id="departureDate"></span></th>
+                    <th class="text-center" ng-click="sortBy('state.name')">Статус / время <span id="statename"></span></th>
+                    <th class="text-center" ng-click="sortBy('departureDate')">Дата <span id="departureDate"></span></th>
+
+                    <th class="text-center" ng-click="sortBy('id')"># <span id="id"></span></th>
+                    <th class="text-center" ng-click="sortBy('customer.phone')">Имя, тел. клиента <span id="customerphone"></span></th>
+                    <th class="text-center" ng-click="sortBy('driver.callsign')">Позывной, тел. водителя <span id="drivercallsign"></span></th>
+                    <th class="text-center" ng-click="sortBy('acceptTime')">Принял <span id="acceptTime"></span></th>
+                    <th class="text-center" ng-click="sortBy('startWaitTime')">Время на месте <span id="startWaitTime"></span></th>
+                    <th class="text-center" ng-click="sortBy('fromAddress')">Адрес подачи <span id="fromAddress"></span></th>
+                    <th class="text-center" ng-click="sortBy('tariff')">Тариф <span id="tariff"></span></th>
+                    <th class="text-center" ng-click="sortBy('cost')">Сумма по таксометру <span id="cost"></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="order in reports" ng-click="goTo('/Dispatcher/ShowOrder/', order.id)">
+                    
+
+                    <td>{{order.id}}</td>
+                    <td>{{order.customer.name}} {{order.customer.phone}}</td>
+                    <td>{{order.state.name}}</td>
+                    <td><span ng-if="order.driver">{{order.driver.car.callsign}} ({{order.driver.phones[0]}})</span></td>
+                    <td>{{convertDateTime(order.departureDate)}}</td>
+                    <td>{{convertTime(order.acceptTime)}}</td>
+                    <td>{{convertTime(order.startWaitTime)}}</td>
+                    <td>{{order.fromAddress}}</td>
+                    <td>{{order.tariffShortName}}</td>
+                    <td class="text-right">{{order.cost.toFixed(2)}}</td>
+                </tr>
+            </tbody>
+        </table>*@
+    </div>
+</div>
+
+@*<div class="row bottomPaginator">
+        <div class="col-sm-2 form-inline pull-right pagination">
+            <label for="elementsCount">Показать</label>
+            <select id="elementsCount" class="form-control input-sm" ng-model="elements" ng-change="selectElementsCount()">
+                <option>10</option>
+                <option>25</option>
+                <option>50</option>
+                <option>100</option>
+                <option>500</option>
+                <option>1000</option>
+            </select>
+        </div>
+        <div class="col-sm-6 pull-right">
+            <ul id="paginator" class="pagination pull-right">
+                <li id="backPage" ng-click="changePage('p')"><a href="#"><<</a></li>
+                <li ng-repeat="page in Pages" ng-click="changePage(page)" id="page{{page}}"><a href="#">{{page}}</a></li>
+                <li id="nextPage" ng-click="changePage('n')"><a href="#">>></a></li>
+            </ul>
+        </div>
+    </div>*@

@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Добавить тариф";
+}
+
+<div class="loader" id="loader">
+    <img src="/Content/Images/loader.gif" alt="">
+</div>
+
+<div id="main_part">
+    <div class="row">
+        <div class="container">
+            <div class="row pageheader"><h2>Добавить тариф</h2></div>
+            <div class="row" ng-controller="TariffCtrl" ng-init="init();initRegions();getTariffZones()">
+                <div class="containerWithoutPageHeader">
+                    <form id="addTariffForm" ng-submit="addTariff(tariff)">
+                        @Html.Partial("TariffsPartials/_AddEditTariffPartial")
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/AngularControllers/TariffsController.js")
+}

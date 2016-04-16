@@ -1,0 +1,92 @@
+﻿@using Dexpa.WebSite.Helpers
+@using Dexpa.WebSite.Models.RolesAndAccess
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Диспетчерская";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string dispLogin = "\"" + ViewData["userName"] + "\"";
+}
+<link href="~/Content/Styles/MapStyles.css" rel="stylesheet" />
+
+
+
+<div class="loader" id="loader">
+    <img src="/Content/Images/loader.gif" alt="">
+</div>
+
+<div id="main_part" ng-controller="DispatcherCtrl">
+    <div class="row" ng-init="initDispatcher(@dispLogin)">
+        <div class="col-sm-12">
+            <div class="row pageheader">
+                <div class="form-inline" id="searchButton">
+                    <div class="col-sm-2 col-sm-push-2">
+                        <button class="form-control btn btn-success btn-sm" onclick="backToOrders()"><span class="glyphicon glyphicon-chevron-left"></span> К заказам</button>
+                    </div>
+                </div>
+                <div class="form-inline" id="dispatcherButtons">
+                    @if (GlobalConfiguration.roleAccessModel.CanEditOrders)
+                    {
+                        <div class="col-sm-2">
+                            <a href="@Url.Action("NewOrder")" class="form-control btn btn-success btn-sm"><i class="fa fa-plus"></i> Новый заказ</a>
+                        </div>
+                    }
+                    <div class="col-sm-2">
+                        <select class="form-control input-sm" title="Фильтрация заказов по статусу" ng-model="selectedStatus" id="statusSelector"
+                                ng-options="state.name for state in orderStates track by state.type"></select>
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="driverFilter" type="text" ng-model="driverQuery" title="Фильтрация заказов по водителю" placeholder="Водитель" 
+                               class="form-control input-sm" id="driver" ng-click="openCloseDriverPanel($index, $event)" />
+                        <div class="form-control dropdownPanel dropdownPanel_driverFilter">
+                            <li id="dropdownPanelLoader"><img src="/Content/Images/waiting.gif" alt=""></li>
+                            <li ng-click="selectDriver()">Все</li>
+                            <li ng-repeat="driver in allDrivers | filter:driverQuery" ng-click="selectDriver(driver)">[{{driver.callsign}}] - {{driver.lastName}} {{driver.firstName}} {{driver.middleName}}</li>
+                        </div>
+                    </div>
+                    @if (GlobalConfiguration.roleAccessModel.CanSeeAdminFunctions.HasFlag(AdminSeeAccessEnums.Reports))
+                    {
+                        <div class="col-sm-2">
+                            <a href="@Url.Action("AllOrdersReport","Admin")" class="form-control btn btn-success btn-sm">Отчет по всем заказам</a>
+                        </div>
+                    }
+                    <div class="pull-right">
+                        <input class="form-control input-sm" ng-model="searchQuery" ng-keydown="SearchEvent()" placeholder="Поиск">
+                        <input type="button" class="form-control btn btn-success btn-sm" ng-click="search()" value="Поиск" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="row">
+                        <div class="col-sm-12 containerWithoutPageHeader">
+                            @Html.Partial("_DriversStateTable")
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-10 containerLeftBorder">
+                    <div class="row">
+                        <div class="containerForTableOnMainPage" id="dispatcherPanel">
+                            @Html.Partial("Partials/_OrdersTable")
+                        </div>
+                        <div class="containerForTableOnMainPage" id="searchResults">
+                            @Html.Partial("_SearchResults")
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="map" class="map-wrapper"></div>
+                    </div>
+                </div>
+                @Html.Partial("_DriverBlockingModal")
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    @Scripts.Render("~/bundles/mapTools")
+    @Scripts.Render("~/Scripts/AngularControllers/OrdersTableAppController.js")
+}

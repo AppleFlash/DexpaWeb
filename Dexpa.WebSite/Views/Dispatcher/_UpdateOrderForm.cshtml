@@ -1,0 +1,211 @@
+﻿<form name="newOrderForm" id="newOrderForm" novalidate ng-submit="update(order)">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">Изменение заказа #{{order.id}}</h4>
+        </div>
+        <div class="panel-body">
+            <div class="row bottomBorder">
+                <div class="col-sm-12">
+                    @Html.Partial("_OrderStateChanger")
+                </div>
+            </div>
+            <div class="row bottomBorder">
+                <label for="departureDate">Время подачи:</label>
+                <div class="form-group">
+                    <div class="col-sm-6">
+                        <input ng-model="order.Date" required type="text" class="form-control input-sm" id="departureDate" validate="true" validationinfo="Дата подачи" placeholder="Дата подачи" ng-blur="getTariffs()" />
+                    </div>
+                    <div class="col-sm-6">
+                        <input ng-model="order.Time" required type="text" class="form-control input-sm" id="departureTime" validate="true" validationinfo="Время подачи" placeholder="Время подачи" />
+                    </div>
+                </div>
+            </div>
+            <div class="row bottomBorder">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="customerPhone">Телефон:</label>
+                        <input ng-model="order.customer.phone" numbers-only="numbers-only" required type="text" class="form-control input-sm" id="customerPhone" ng-keyup="findCustomerByPhone()" ng-blur="formatPhones(order.customer.phone)" validate="false" validationinfo="Телефон" placeholder="Телефон" />
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="customerName">Имя клиента:</label>
+                        <input ng-model="order.customer.name" type="text" class="form-control input-sm" id="customerName" validate="false" validationinfo="Имя клиента" placeholder="Имя клиента" />
+                    </div>
+                </div>
+            </div>
+            <div class="row bottomBorder">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="discount">Скидка, %:</label>
+                        <input ng-model="order.discount" class="form-control input-sm" ng-blur="checkDiscount()" placeholder="Скидка" id="discount" />
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group" id="costField">
+                        <label for="cost">Сумма:</label>
+                        <input ng-model="order.cost" class="form-control input-sm"  placeholder="Сумма" id="cost" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div><label for="fromAddressDetails">Адрес подачи:</label> <span id="labelFrom"><div class="AddressLabel" ng-click="selectLabelModal('from')">Нет ярлыка</div><div class="clearLabel" ng-click="clearLabel('from')"><span>x</span></div></span></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input validate="true" validationinfo="Город" ng-model="order.fromAddressDetails.city" class="orderFormInput50 topLeftCorner" placeholder="Город"  />
+                            <input ng-model="order.fromAddressDetails.street" class="orderFormInput50 topRightCorner" placeholder="Улица" id="fromAddressDetails" ng-click="OnFocusAddress('fromAddressDetails')" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-control dropdownPanel dropdownPanel_fromAddressDetails">
+                                <li ng-repeat="fromAddressDetails in fromAddressDetailses" ng-click="selectAddress('fromAddressDetails',fromAddressDetails)">{{fromAddressDetails.address.fullName}}</li>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input ng-model="order.fromAddressDetails.house" class="orderFormInput25 bottomLeftCorner" placeholder="Дом" />
+                            <input ng-model="order.fromAddressDetails.housing" class="orderFormInput25" placeholder="Корпус" />
+                            <input ng-model="order.fromAddressDetails.building" class="orderFormInput25" placeholder="Строение" />
+                            <input ng-model="order.fromAddressDetails.staircase" class="orderFormInput25 bottomRightCorner" placeholder="Подъезд" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9">
+                    <input ng-model="order.fromAddressDetails.comment" class="form-control input-sm" placeholder="Комментарий" />
+                </div>
+                <div class="col-sm-3">
+                    <div id="SetFromPointBtn" ng-click="updateFromAddressDetails()" title="Показать на карте" class="btn btn-success form-control btn-displace">
+                        <span class="fa fa-map-marker"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row bottomBorder indent">
+                <div class="customerLabel" ng-repeat="customerLabel in customerLabels" ng-click="selectLabel('from',customerLabel)">{{customerLabel.name}}</div>
+            </div>
+            <div class="row">
+                <label for="toAddressDetails">Адрес назначения:</label> <span id="labelTo"><div class="AddressLabel" ng-click="selectLabelModal('to')">Нет ярлыка</div></span>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input ng-model="order.toAddressDetails.city" class="orderFormInput50 topLeftCorner" placeholder="Город"  />
+                            <input ng-model="order.toAddressDetails.street" class="orderFormInput50 topRightCorner" placeholder="Улица" id="toAddressDetails" ng-click="OnFocusAddress('toAddressDetails')"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-control dropdownPanel dropdownPanel_toAddressDetails">
+                                <li ng-repeat="toAddressDetails in toAddressDetailses" ng-click="selectAddress('toAddressDetails',toAddressDetails)">{{toAddressDetails.address.fullName}}</li>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input ng-model="order.toAddressDetails.house" class="orderFormInput25 bottomLeftCorner" placeholder="Дом" />
+                            <input ng-model="order.toAddressDetails.housing" class="orderFormInput25" placeholder="Корпус" />
+                            <input ng-model="order.toAddressDetails.building" class="orderFormInput25" placeholder="Строение" />
+                            <input ng-model="order.toAddressDetails.staircase" class="orderFormInput25 bottomRightCorner" placeholder="Подъезд" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9">
+                    <input ng-model="order.toAddressDetails.comment" class="form-control input-sm" placeholder="Комментарий" />
+                </div>
+                <div class="col-sm-3">
+                    <div id="SetToPointBtn" ng-click="updateToAddressDetails()" title="Показать на карте" class="btn btn-success form-control btn-displace">
+                        <span class="fa fa-map-marker"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row bottomBorder indent">
+                <div class="customerLabel" ng-repeat="customerLabel in customerLabels" ng-click="selectLabel('to',customerLabel)">{{customerLabel.name}}</div>
+            </div>
+            <div class="row bottomBorder">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="notice">Примечание:</label>
+                        <input ng-model="order.comments" type="text" class="form-control input-sm" id="notice">
+                    </div>
+                </div>
+            </div>
+            <div class="row bottomBorder">
+                <label for="orderSource">Источник заказа:</label>
+                <div class="form-group">
+                    <div class="col-sm-6">
+                        <select ng-disabled="order.source.source == 1" class="form-control input-sm" ng-model="order.source" ng-options="source.name for source in orderSourcesList track by source.source" id="orderSource" validate="true" validationinfo="Источник заказа" tabindex="2"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="row bottomBorder">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="tariff">Тариф:</label>
+                        <select class="form-control input-sm" ng-model="order.tariff" ng-options="tariff.name for tariff in tariffs track by tariff.id" id="tariff" validate="true" validationinfo="Тариф" tabindex="2"></select>
+                    </div>
+                </div>
+            </div>
+            @Html.Partial("Partials/_CarFeatures")
+            <div class="row bottomBorder">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="findAuto">Найти водителя:</label>
+                        <div>
+                            Водитель: <input id="driver" type="text" ng-model="driverQuery" class="form-control input-sm" id="driver" ng-click="openCloseDriverPanel($index, $event)"  />
+                            <div class="form-control dropdownPanel dropdownPanel_driver">
+                                <li id="dropdownPanelLoader"><img src="/Content/Images/waiting.gif" alt=""></li>
+                                <li ng-click="selectDriver()">-</li>
+                                <li ng-repeat="driver in drivers | filter:driverQuery | filter:filterDriversByOptions" ng-click="selectDriver(driver)">[{{driver.callsign}}] - {{driver.lastName}} {{driver.firstName}} {{driver.middleName}}</li>
+                            </div>
+                        </div>
+                        <input ng-model="order.driver.id" value="{{order.driver.id}}" type="hidden" class="form-control input-sm" id="findAuto" readonly="readonly" placeholder="Водитель" />
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <label for="distanceBtns">Радиус поиска водителей, км.:</label>
+                    <div class="row">
+                        <div id="distanceBtns" class="btn-group col-sm-12">
+                            <div ng-click='setRadius(0)' class="btn btn-success btn-xs setRadiusBtn">Все</div>
+                            <div ng-click='setRadius(2000)' class="btn btn-default btn-xs setRadiusBtn">2</div>
+                            <div ng-click='setRadius(5000)' class="btn btn-default btn-xs setRadiusBtn">5</div>
+                            <div ng-click='setRadius(10000)' class="btn btn-default btn-xs setRadiusBtn">10</div>
+                            <div ng-click='setRadius(15000)' class="btn btn-default btn-xs setRadiusBtn">15</div>
+                        </div>
+                    </div>
+                    <div>
+                        <select id="nearestDrivers" class="form-control" multiple size="5">
+                            <option ng-repeat="nearDr in nearestDrivers | orderBy: 'distance' | filter:filterDriversByOptions" ng-click='selectDriver(nearDr)'> {{nearDr.callsign}} - {{nearDr.distance}} км.</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row bottomBorder">
+                <label for="updateReason">Причина:</label>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <input ng-model="cancelUpdateReason" required type="text" class="form-control input-sm" id="updateReason" validate="false" validationinfo="Причина" placeholder="Причина" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <a href="@Url.Action("Index", "Dispatcher")" class="btn btn-success btn-sm pull-left"><i class="fa fa-chevron-left"></i> Назад</a>
+                    <div class="pull-right">
+                        <span class="waiting-indicator" ng-show="isVisible"><img src="~/Content/Images/waiting.gif" /></span>
+                        <input type="submit" ng-disabled="isVisible" class="btn btn-success btn-sm" value="Сохранить" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

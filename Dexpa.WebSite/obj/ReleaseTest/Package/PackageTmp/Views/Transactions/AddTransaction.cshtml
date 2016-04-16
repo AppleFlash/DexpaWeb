@@ -1,0 +1,58 @@
+﻿@using System.Web.UI.WebControls
+@{
+    ViewBag.Title = "Транзакции";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    var OPERATION = "@ViewData["id"]";
+    var DRIVERID = "@ViewData["driver"]";
+</script>
+
+<div class="loader" id="loader">
+    <img src="/Content/Images/loader.gif" alt="">
+</div>
+<div id="main_part">
+    <div ng-controller="TransactionsCtrl" ng-init="init();setOperation();setDriver();">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="container">
+                    <div class="row pageheader">
+                        <div class="col-sm-12">
+                            <h2>Касса</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="containerWithoutPageHeader">
+                            @Html.Partial("_TransactionsForm")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/AngularControllers/TransactionsController.js")
+    @Scripts.Render("~/Scripts/AngularControllers/DriversController.js")
+
+}
+
+<div class="modal fade" id="checkModal" tabindex="-1" role="dialog" aria-labelledby="checkModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="checkModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-sm" id="yesAnswer">Да</button>
+                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Нет</button>
+            </div>
+        </div>
+    </div>
+</div>

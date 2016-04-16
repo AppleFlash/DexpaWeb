@@ -1,0 +1,100 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Настройи";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Dexpa.WebSite.Helpers
+<div class="row" ng-app="DexpaApp" ng-controller="SettingsCtrl" ng-init="init()">
+    <div class="container">
+        <div class="row pageheader"><h2>Настройки</h2></div>
+        <div class="row ">
+            <div class="containerWithoutPageHeader">
+                <div class="panel panel-default">
+                    <div class="panel-body" ng-repeat="setting in settings">
+                                <div class="row bottomBorder">
+                                    <div class="leftIndent rightIndent"><h4><b>QIWI</b></h4></div>
+                                    <div class="col-xs-12 col-md-4">
+                                        <label class="control-label">Логин:</label>
+                                        <input class="form-control" type="text" readonly="readonly" ng-model="setting.qiwiLogin" />
+                                    </div>
+                                    <div class="col-xs-12 col-md-4">
+                                        <label class="control-label">Пароль:</label>
+                                        <input class="form-control" type="text" readonly="readonly" ng-model="setting.qiwiPassword" />
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-xs-6 col-sm-3 topIndent" readonly="readonly" ng-init="initTimePicker()">
+                                        <label class="control-label">Время снятия арендной платы:</label>
+                                        <input type="text" class="form-control input-sm" ng-model="setting.rentTransactionTime" id="timeTrans" ng-blur="checkTime(setting.rentTransactionTime)" disabled="disabled" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="leftIndent rightIndent"><h4><b>СМС-шлюз (SMSC.RU)</b></h4></div>
+                                    <div class="col-xs-12 col-md-4">
+                                        <label class="control-label">Логин:</label>
+                                        <input type="text" class="form-control" ng-model="setting.smscLogin" readonly="readonly" />
+                                    </div>
+                                    <div class="col-xs-12 col-md-4">
+                                        <label class="control-label">Пароль:</label>
+                                        <input type="text" class="form-control" ng-model="setting.smscPassword" readonly="readonly" />
+                                    </div>
+                                </div>
+                        
+                        <div class="row bottomBorder">
+                            <div class="leftIndent rightIndent"><h4><b>Yandex-taxi</b></h4></div>
+                            <div class="col-xs-12 col-md-4">
+                                <label class="control-label">Clid - идентификатор клиента:</label>
+                                <input type="text" class="form-control" ng-model="setting.yandexClid" readonly="readonly" />
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <label class="control-label">API-key:</label>
+                                <input type="text" class="form-control" ng-model="setting.yandexApiKey" readonly="readonly">
+                            </div>
+                        </div>
+                        <div class="row bottomBorder" >
+                            <div class="leftIndent rightIndent"><h4><b>Другие</b></h4></div>
+                            <div class="col-xs-6 col-sm-3">
+                                <label class="control-label">Проверка новых транзакций каждые:</label>
+                                <select class="form-control topIndent" ng-model="setting.qiwiCheckInterval" disabled="disabled">
+                                    <option>10 мин.</option>
+                                    <option>15 мин.</option>
+                                    <option>30 мин.</option>
+                                    <option>60 мин.</option>
+                                    <option>120 мин.</option>
+                                </select>
+                            </div>
+                            
+                            <div class="clearfix"></div>
+                            <div class="col-xs-6 col-sm-3 topIndent">
+                                <label class="control-label">Подсвечивать заказы в диспетчерской, если<br /> не назначен водитель за:</label>
+                                <select class="form-control" ng-model="setting.highPriorityOrderTime" disabled="disabled">
+                                    <option>1 ч.</option>
+                                    <option>2 ч.</option>
+                                    <option>3 ч.</option>
+                                    <option>5 ч.</option>
+                                    <option>10 ч.</option>
+                                </select>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-xs-6 col-sm-3 topIndent" >
+                                <label class="control-label">Стоимость технического обсулживания для водителя:</label>
+                                <input type="text" class="form-control input-sm" readonly="readonly"  validate="true" validateingo="Стоимость ТО" ng-model="setting.technicalSupportFeeSize"/>
+                            </div>
+                            <div style="clear: both"></div>
+                        </div>
+                        <div>
+                            <a href="@Request.UrlReferrer"><button type="button" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-chevron-left"></span>Назад</button></a>
+                            @if (GlobalConfiguration.roleAccessModel.CanEditSettings)
+                            {
+                                <a class="right-orient btn btn-success btn-sm" href="~/Settings/Edit/@ViewData["id"]"><i class="fa fa-pencil"></i> Редактировать</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @Scripts.Render("~/Scripts/AngularControllers/SettingsController.js")
+}

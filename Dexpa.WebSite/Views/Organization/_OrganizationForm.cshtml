@@ -1,0 +1,62 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <div class="row bottomBorder">
+            <div class="col-sm-6">
+                <label for="name" class="control-label">Название:</label>
+                <input type="text" class="form-control  input-sm" ng-model="organization.name" validate="true" validationinfo="Название" placeholder="Название" id="name" maxlength="48" />
+            </div>
+            <div class="col-sm-6">
+                <label for="tariff" class="control-label">Тариф:</label>
+                <select class="form-control input-sm" ng-model="organization.tariff" validate="true" validationinfo="Тариф" ng-options="tariff.name for tariff in tariffs track by tariff.id" id="tariff">
+                    @*<option ng-repeat="tariff in tariffs" value="{{tariff.id}}">{{tariff.name}}</option>*@
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <label for="description" class="control-label">Описание:</label>
+                <input type="text" class="form-control  input-sm" ng-model="organization.description" validate="false" validationinfo="Описание" placeholder="Описание" id="description" />
+            </div>
+            @*<div class="col-sm-6">
+                <label for="slipNumber" class="control-label">Номер СЛИП:</label>
+                <input type="text" class="form-control  input-sm" ng-model="organization.slipNumber" validate="true" validationinfo="Номер СЛИП" placeholder="Номер СЛИП" id="slipNumber" maxlength="48" />
+            </div>*@
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="datefrom" class="control-label">Дата заключения договора:</label>
+                <input type="text" class="form-control  input-sm" ng-model="organization.dateFrom" ng-blur="checkDate(organization.dateFrom)" validate="true" validationinfo="Дата заключения договора" placeholder="Дата заключения договора" id="datefrom">
+            </div>
+            <div class="col-sm-6">
+                <label for="dateto" class="control-label">Дата окончания договора:</label>
+                <input type="text" class="form-control  input-sm" ng-model="organization.dateTo" ng-blur="checkDate(organization.dateTo)" validate="true" validationinfo="Дата окончания договора" placeholder="Дата окончания договора" id="dateto">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row bottomBorder">
+    <div class="col-sm-6">
+        <label for="codeword" class="control-label">Кодовое слово:</label>
+        <input type="text" class="form-control  input-sm" ng-model="organization.codeword" validate="true" validationinfo="Кодовое слово" placeholder="Кодовое слово" id="codeword" maxlength="48" />
+    </div>
+    <div class="col-sm-6" id="customers">
+        <label for="bailee" class="control-label">Ответственные лица:</label>
+        <div class="clearfix"></div>
+        <a class="addCustomer" ng-click="AddCustomer(organization.id)"><span class="fa fa-plus"></span></a>
+        <input type="text" class="form-control input-sm" id="customer" placeholder="123456: Иван">
+        <ul class="customer-list">
+            <li ng-repeat="customer in customers">{{customer.phone}}: {{customer.name}} <span class="delete-customer fa fa-times" ng-click="DeleteCustomerModal(customer)"></span></li>
+        </ul>
+        @*<select class="form-control" multiple>
+            <option ng-repeat="customer in customers">{{customer.phone}}: {{customer.name}}</option>
+        </select>*@
+    </div>
+</div>
+<div>
+    <a href="@Url.Action("Index", "Organization")" class="btn btn-success btn-sm pull-left"><i class="fa fa-chevron-left"></i> К списку</a>
+    <div class="pull-right">
+        <span class="waiting-indicator" ng-show="isVisible"><img src="~/Content/Images/waiting.gif" /></span>
+        <input type="submit" class="btn btn-success btn-sm" ng-disabled="isDisabled" value="Сохранить" />
+    </div>
+</div>
+@Html.Partial("_DeleteModal")

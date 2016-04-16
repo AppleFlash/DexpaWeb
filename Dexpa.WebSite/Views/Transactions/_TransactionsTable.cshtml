@@ -1,0 +1,28 @@
+﻿<table class="table table-bordered table-hover smallFontSize">
+    <thead>
+        <tr>
+            <th class="text-center" ng-click="sortBy('type.type')"><span id="typetype"></span></th>
+            <th class="text-center" ng-click="sortBy('timestamp')">Дата <span id="timestamp"></span></th>
+            <th class="text-center" ng-click="sortBy('driver.callsign')">Позывной <span id="drivercallsign"></span></th>
+            <th class="text-center" ng-click="sortBy('driver.lastName')">Водитель <span id="driverlastName"></span></th>
+            <th class="text-center">Р/С</th>
+            <th class="text-center" ng-click="sortBy('driver.id')">Транзацкия <span id="driverid"></span></th>
+            <th class="text-center" ng-click="sortBy('paymentMethod.name')">Способ оплаты <span id="paymentMethodname"></span></th>
+            <th class="text-center" ng-click="sortBy('amount')">Сумма <span id="amount"></span></th>
+            <th class="text-center" ng-click="sortBy('comment')">Примечание <span id="comment"></span></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="transaction-{{(transaction.type.type == '0' ? 'plus' : 'minus')}}" ng-repeat="transaction in transactions | filter:query | filter:filterTransactionsByDriver" ng-click="goTo('/Transactions/Driver/', transaction.driver.id)">
+            <td class="centered"><span class="fa fa-{{(transaction.type.type == '0' ? 'plus' : 'minus')}}"></span></td>
+            <td class="centered">{{::transaction.timestamp}}</td>
+            <td class="centered">{{::transaction.driver.callsign}}</td>
+            <td>{{::transaction.driver.lastName}} {{::transaction.driver.firstName}} {{::transaction.driver.middleName}}</td>
+            <td></td>
+            <td class="text-right">{{::transaction.id}}</td>
+            <td>{{::transaction.paymentMethod.name}}</td>
+            <td class="text-right">{{::transaction.amount}}</td>
+            <td class="longStringNewLine">{{::transaction.comment}}</td>
+        </tr>
+    </tbody>
+</table>

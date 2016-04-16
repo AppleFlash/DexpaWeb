@@ -1,0 +1,404 @@
+2015-02-13 00:35:43.7659 ERROR Api error: status: InternalServerError, <!DOCTYPE html>
+<html>
+    <head>
+        <title>The model backing the 'ModelContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).</title>
+        <meta name="viewport" content="width=device-width" />
+        <style>
+         body {font-family:"Verdana";font-weight:normal;font-size: .7em;color:black;} 
+         p {font-family:"Verdana";font-weight:normal;color:black;margin-top: -5px}
+         b {font-family:"Verdana";font-weight:bold;color:black;margin-top: -5px}
+         H1 { font-family:"Verdana";font-weight:normal;font-size:18pt;color:red }
+         H2 { font-family:"Verdana";font-weight:normal;font-size:14pt;color:maroon }
+         pre {font-family:"Consolas","Lucida Console",Monospace;font-size:11pt;margin:0;padding:0.5em;line-height:14pt}
+         .marker {font-weight: bold; color: black;text-decoration: none;}
+         .version {color: gray;}
+         .error {margin-bottom: 10px;}
+         .expandable { text-decoration:underline; font-weight:bold; color:navy; cursor:hand; }
+         @media screen and (max-width: 639px) {
+          pre { width: 440px; overflow: auto; white-space: pre-wrap; word-wrap: break-word; }
+         }
+         @media screen and (max-width: 479px) {
+          pre { width: 280px; }
+         }
+        </style>
+    </head>
+
+    <body bgcolor="white">
+
+            <span><H1>Ошибка сервера в приложении '/'.<hr width=100% size=1 color=silver></H1>
+
+            <h2> <i>The model backing the 'ModelContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).</i> </h2></span>
+
+            <font face="Arial, Helvetica, Geneva, SunSans-Regular, sans-serif ">
+
+            <b> Описание: </b>Необработанное исключение при выполнении текущего веб-запроса. Изучите трассировку стека для получения дополнительных сведений о данной ошибке и о вызвавшем ее фрагменте кода.
+
+            <br><br>
+
+            <b> Сведения об исключении: </b>System.InvalidOperationException: The model backing the 'ModelContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).<br><br>
+
+            <b>Ошибка источника:</b> <br><br>
+
+            <table width=100% bgcolor="#ffffcc">
+               <tr>
+                  <td>
+                      <code><pre>
+
+Строка 38:             using (UserManager&lt;User&gt; userManager = _userManagerFactory())
+Строка 39:             {
+<font color=red>Строка 40:                 User user = await userManager.FindAsync(context.UserName, context.Password);
+</font>Строка 41: 
+Строка 42:                 if (user == null)</pre></code>
+
+                  </td>
+               </tr>
+            </table>
+
+            <br>
+
+            <b> Исходный файл: </b> c:\Users\User\Desktop\API\Dexpa.WebApi\Utils\ApplicationOAuthProvider.cs<b> &nbsp;&nbsp; Строка: </b> 40
+            <br><br>
+
+            <b>Трассировка стека:</b> <br><br>
+
+            <table width=100% bgcolor="#ffffcc">
+               <tr>
+                  <td>
+                      <code><pre>
+
+[InvalidOperationException: The model backing the &#39;ModelContext&#39; context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).]
+   System.Data.Entity.CreateDatabaseIfNotExists`1.InitializeDatabase(TContext context) +261
+   System.Data.Entity.Internal.&lt;&gt;c__DisplayClassf`1.&lt;CreateInitializationAction&gt;b__e() +165
+   System.Data.Entity.Internal.InternalContext.PerformInitializationAction(Action action) +110
+   System.Data.Entity.Internal.InternalContext.PerformDatabaseInitialization() +660
+   System.Data.Entity.Internal.LazyInternalContext.&lt;InitializeDatabase&gt;b__4(InternalContext c) +31
+   System.Data.Entity.Internal.RetryAction`1.PerformAction(TInput input) +143
+   System.Data.Entity.Internal.LazyInternalContext.InitializeDatabaseAction(Action`1 action) +292
+   System.Data.Entity.Internal.LazyInternalContext.InitializeDatabase() +123
+   System.Data.Entity.Internal.InternalContext.Initialize() +41
+   System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType) +39
+   System.Data.Entity.Internal.Linq.InternalSet`1.Initialize() +137
+   System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path) +41
+   System.Data.Entity.Infrastructure.DbQuery`1.Include(String path) +142
+   System.Data.Entity.QueryableExtensions.Include(IQueryable`1 source, String path) +205
+   System.Data.Entity.QueryableExtensions.Include(IQueryable`1 source, Expression`1 path) +305
+   Microsoft.AspNet.Identity.EntityFramework.UserStore`6.GetUserAggregateAsync(Expression`1 filter) +610
+   Microsoft.AspNet.Identity.EntityFramework.UserStore`6.FindByNameAsync(String userName) +1070
+   Microsoft.AspNet.Identity.UserManager`2.FindByNameAsync(String userName) +178
+   Microsoft.AspNet.Identity.&lt;FindAsync&gt;d__12.MoveNext() +171
+   System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task) +93
+   System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task) +52
+   System.Runtime.CompilerServices.TaskAwaiter`1.GetResult() +24
+   WebApplication2.Providers.&lt;GrantResourceOwnerCredentials&gt;d__0.MoveNext() in c:\Users\User\Desktop\API\Dexpa.WebApi\Utils\ApplicationOAuthProvider.cs:40
+   System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task) +93
+   System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task) +52
+   System.Runtime.CompilerServices.TaskAwaiter.GetResult() +21
+   Microsoft.Owin.Security.OAuth.&lt;InvokeTokenEndpointResourceOwnerPasswordCredentialsGrantAsync&gt;d__3a.MoveNext() +862
+   System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task) +93
+   System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task) +52
+   System.Runtime.CompilerServices.TaskAwaiter`1.GetResult() +24
+   Microsoft.Owin.Security.OAuth.&lt;InvokeTokenEndpointAsync&gt;d__1e.MoveNext() +2335
+   System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task) +93
+   System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task) +52
+   System.Runtime.CompilerServices.TaskAwaiter.GetResult() +21
+   Microsoft.Owin.Security.OAuth.&lt;InvokeAsync&gt;d__0.MoveNext() +1728
+   System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task) +93
+   System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task) +52
+   System.Runtime.CompilerServices.TaskAwaiter`1.GetResult() +24
+   Microsoft.Owin.Security.Infrastructure.&lt;Invoke&gt;d__0.MoveNext() +664
+   System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task) +93
+   System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task) +52
+   System.Runtime.CompilerServices.TaskAwaiter.GetResult() +21
+   Microsoft.Owin.Security.Infrastructure.&lt;Invoke&gt;d__0.MoveNext() +936
+   System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task) +93
+   System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task) +52
+   System.Runtime.CompilerServices.TaskAwaiter.GetResult() +21
+   Microsoft.Owin.Cors.&lt;Invoke&gt;d__0.MoveNext() +1225
+   System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() +22
+   Microsoft.Owin.Host.SystemWeb.Infrastructure.ErrorState.Rethrow() +33
+   Microsoft.Owin.Host.SystemWeb.IntegratedPipeline.StageAsyncResult.End(IAsyncResult ar) +150
+   Microsoft.Owin.Host.SystemWeb.IntegratedPipeline.IntegratedPipelineContext.EndFinalWork(IAsyncResult ar) +42
+   System.Web.AsyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +415
+   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) +155
+</pre></code>
+
+                  </td>
+               </tr>
+            </table>
+
+            <br>
+
+            <hr width=100% size=1 color=silver>
+
+            <b>Информация о версии:</b>&nbsp;Платформа Microsoft .NET Framework, версия:4.0.30319; ASP.NET, версия:4.0.30319.18408
+
+            </font>
+
+    </body>
+</html>
+<!-- 
+[InvalidOperationException]: The model backing the &#39;ModelContext&#39; context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+   в System.Data.Entity.CreateDatabaseIfNotExists`1.InitializeDatabase(TContext context)
+   в System.Data.Entity.Internal.InternalContext.<>c__DisplayClassf`1.<CreateInitializationAction>b__e()
+   в System.Data.Entity.Internal.InternalContext.PerformInitializationAction(Action action)
+   в System.Data.Entity.Internal.InternalContext.PerformDatabaseInitialization()
+   в System.Data.Entity.Internal.LazyInternalContext.<InitializeDatabase>b__4(InternalContext c)
+   в System.Data.Entity.Internal.RetryAction`1.PerformAction(TInput input)
+   в System.Data.Entity.Internal.LazyInternalContext.InitializeDatabaseAction(Action`1 action)
+   в System.Data.Entity.Internal.LazyInternalContext.InitializeDatabase()
+   в System.Data.Entity.Internal.InternalContext.Initialize()
+   в System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   в System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   в System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   в System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   в System.Data.Entity.QueryableExtensions.Include[T](IQueryable`1 source, String path)
+   в System.Data.Entity.QueryableExtensions.Include[T,TProperty](IQueryable`1 source, Expression`1 path)
+   в Microsoft.AspNet.Identity.EntityFramework.UserStore`6.GetUserAggregateAsync(Expression`1 filter)
+   в Microsoft.AspNet.Identity.EntityFramework.UserStore`6.FindByNameAsync(String userName)
+   в Microsoft.AspNet.Identity.UserManager`2.FindByNameAsync(String userName)
+   в Microsoft.AspNet.Identity.UserManager`2.<FindAsync>d__12.MoveNext()
+--- Конец трассировка стека из предыдущего расположения, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   в WebApplication2.Providers.ApplicationOAuthProvider.<GrantResourceOwnerCredentials>d__0.MoveNext() в c:\Users\User\Desktop\API\Dexpa.WebApi\Utils\ApplicationOAuthProvider.cs:строка 40
+--- Конец трассировка стека из предыдущего расположения, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   в Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerHandler.<InvokeTokenEndpointResourceOwnerPasswordCredentialsGrantAsync>d__3a.MoveNext()
+--- Конец трассировка стека из предыдущего расположения, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   в Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerHandler.<InvokeTokenEndpointAsync>d__1e.MoveNext()
+--- Конец трассировка стека из предыдущего расположения, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   в Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerHandler.<InvokeAsync>d__0.MoveNext()
+--- Конец трассировка стека из предыдущего расположения, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   в Microsoft.Owin.Security.Infrastructure.AuthenticationMiddleware`1.<Invoke>d__0.MoveNext()
+--- Конец трассировка стека из предыдущего расположения, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   в Microsoft.Owin.Security.Infrastructure.AuthenticationMiddleware`1.<Invoke>d__0.MoveNext()
+--- Конец трассировка стека из предыдущего расположения, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   в Microsoft.Owin.Cors.CorsMiddleware.<Invoke>d__0.MoveNext()
+--- Конец трассировка стека из предыдущего расположения, где возникло исключение ---
+   в System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   в Microsoft.Owin.Host.SystemWeb.Infrastructure.ErrorState.Rethrow()
+   в Microsoft.Owin.Host.SystemWeb.IntegratedPipeline.StageAsyncResult.End(IAsyncResult ar)
+   в Microsoft.Owin.Host.SystemWeb.IntegratedPipeline.IntegratedPipelineContext.EndFinalWork(IAsyncResult ar)
+   в System.Web.HttpApplication.AsyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+--> 
+2015-02-13 01:03:05.6428 ERROR Api error: status: InternalServerError, <!DOCTYPE html>
+<html>
+    <head>
+        <title>The model backing the 'ModelContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).</title>
+        <meta name="viewport" content="width=device-width" />
+        <style>
+         body {font-family:"Verdana";font-weight:normal;font-size: .7em;color:black;} 
+         p {font-family:"Verdana";font-weight:normal;color:black;margin-top: -5px}
+         b {font-family:"Verdana";font-weight:bold;color:black;margin-top: -5px}
+         H1 { font-family:"Verdana";font-weight:normal;font-size:18pt;color:red }
+         H2 { font-family:"Verdana";font-weight:normal;font-size:14pt;color:maroon }
+         pre {font-family:"Consolas","Lucida Console",Monospace;font-size:11pt;margin:0;padding:0.5em;line-height:14pt}
+         .marker {font-weight: bold; color: black;text-decoration: none;}
+         .version {color: gray;}
+         .error {margin-bottom: 10px;}
+         .expandable { text-decoration:underline; font-weight:bold; color:navy; cursor:hand; }
+         @media screen and (max-width: 639px) {
+          pre { width: 440px; overflow: auto; white-space: pre-wrap; word-wrap: break-word; }
+         }
+         @media screen and (max-width: 479px) {
+          pre { width: 280px; }
+         }
+        </style>
+    </head>
+
+    <body bgcolor="white">
+
+            <span><H1>Ошибка сервера в приложении '/'.<hr width=100% size=1 color=silver></H1>
+
+            <h2> <i>The model backing the 'ModelContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).</i> </h2></span>
+
+            <font face="Arial, Helvetica, Geneva, SunSans-Regular, sans-serif ">
+
+            <b> Описание: </b>Необработанное исключение при выполнении текущего веб-запроса. Изучите трассировку стека для получения дополнительных сведений о данной ошибке и о вызвавшем ее фрагменте кода.
+
+            <br><br>
+
+            <b> Сведения об исключении: </b>System.InvalidOperationException: The model backing the 'ModelContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).<br><br>
+
+            <b>Ошибка источника:</b> <br><br>
+
+            <table width=100% bgcolor="#ffffcc">
+               <tr>
+                  <td>
+                      <code><pre>
+
+Строка 38:             using (UserManager&lt;User&gt; userManager = _userManagerFactory())
+Строка 39:             {
+<font color=red>Строка 40:                 User user = await userManager.FindAsync(context.UserName, context.Password);
+</font>Строка 41: 
+Строка 42:                 if (user == null)</pre></code>
+
+                  </td>
+               </tr>
+            </table>
+
+            <br>
+
+            <b> Исходный файл: </b> c:\Users\User\Desktop\API\Dexpa.WebApi\Utils\ApplicationOAuthProvider.cs<b> &nbsp;&nbsp; Строка: </b> 40
+            <br><br>
+
+            <b>Трассировка стека:</b> <br><br>
+
+            <table width=100% bgcolor="#ffffcc">
+               <tr>
+                  <td>
+                      <code><pre>
+
+[InvalidOperationException: The model backing the &#39;ModelContext&#39; context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).]
+   System.Data.Entity.CreateDatabaseIfNotExists`1.InitializeDatabase(TContext context) +261
+   System.Data.Entity.Internal.&lt;&gt;c__DisplayClassf`1.&lt;CreateInitializationAction&gt;b__e() +165
+   System.Data.Entity.Internal.InternalContext.PerformInitializationAction(Action action) +110
+   System.Data.Entity.Internal.InternalContext.PerformDatabaseInitialization() +660
+   System.Data.Entity.Internal.LazyInternalContext.&lt;InitializeDatabase&gt;b__4(InternalContext c) +31
+   System.Data.Entity.Internal.RetryAction`1.PerformAction(TInput input) +143
+   System.Data.Entity.Internal.LazyInternalContext.InitializeDatabaseAction(Action`1 action) +292
+   System.Data.Entity.Internal.LazyInternalContext.InitializeDatabase() +123
+   System.Data.Entity.Internal.InternalContext.Initialize() +41
+   System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType) +39
+   System.Data.Entity.Internal.Linq.InternalSet`1.Initialize() +137
+   System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path) +41
+   System.Data.Entity.Infrastructure.DbQuery`1.Include(String path) +142
+   System.Data.Entity.QueryableExtensions.Include(IQueryable`1 source, String path) +205
+   System.Data.Entity.QueryableExtensions.Include(IQueryable`1 source, Expression`1 path) +305
+   Microsoft.AspNet.Identity.EntityFramework.UserStore`6.GetUserAggregateAsync(Expression`1 filter) +610
+   Microsoft.AspNet.Identity.EntityFramework.UserStore`6.FindByNameAsync(String userName) +1070
+   Microsoft.AspNet.Identity.UserManager`2.FindByNameAsync(String userName) +178
+   Microsoft.AspNet.Identity.&lt;FindAsync&gt;d__12.MoveNext() +171
+   System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task) +93
+   System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task) +52
+   System.Runtime.CompilerServices.TaskAwaiter`1.GetResult() +24
+   WebApplication2.Providers.&lt;GrantResourceOwnerCredentials&gt;d__0.MoveNext() in c:\Users\User\Desktop\API\Dexpa.WebApi\Utils\ApplicationOAuthProvider.cs:40
+   System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task) +93
+   System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task) +52
+   System.Runtime.CompilerServices.TaskAwaiter.GetResult() +21
+   Microsoft.Owin.Security.OAuth.&lt;InvokeTokenEndpointResourceOwnerPasswordCredentialsGrantAsync&gt;d__3a.MoveNext() +862
+   System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task) +93
+   System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task) +52
+   System.Runtime.CompilerServices.TaskAwaiter`1.GetResult() +24
+   Microsoft.Owin.Security.OAuth.&lt;InvokeTokenEndpointAsync&gt;d__1e.MoveNext() +2335
+   System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task) +93
+   System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task) +52
+   System.Runtime.CompilerServices.TaskAwaiter.GetResult() +21
+   Microsoft.Owin.Security.OAuth.&lt;InvokeAsync&gt;d__0.MoveNext() +1726
+   System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task) +93
+   System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task) +52
+   System.Runtime.CompilerServices.TaskAwaiter`1.GetResult() +24
+   Microsoft.Owin.Security.Infrastructure.&lt;Invoke&gt;d__0.MoveNext() +664
+   System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task) +93
+   System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task) +52
+   System.Runtime.CompilerServices.TaskAwaiter.GetResult() +21
+   Microsoft.Owin.Security.Infrastructure.&lt;Invoke&gt;d__0.MoveNext() +936
+   System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task) +93
+   System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task) +52
+   System.Runtime.CompilerServices.TaskAwaiter.GetResult() +21
+   Microsoft.Owin.Cors.&lt;Invoke&gt;d__0.MoveNext() +1225
+   System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw() +22
+   Microsoft.Owin.Host.SystemWeb.Infrastructure.ErrorState.Rethrow() +33
+   Microsoft.Owin.Host.SystemWeb.IntegratedPipeline.StageAsyncResult.End(IAsyncResult ar) +150
+   Microsoft.Owin.Host.SystemWeb.IntegratedPipeline.IntegratedPipelineContext.EndFinalWork(IAsyncResult ar) +42
+   System.Web.AsyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute() +415
+   System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean&amp; completedSynchronously) +155
+</pre></code>
+
+                  </td>
+               </tr>
+            </table>
+
+            <br>
+
+            <hr width=100% size=1 color=silver>
+
+            <b>Информация о версии:</b>&nbsp;Платформа Microsoft .NET Framework, версия:4.0.30319; ASP.NET, версия:4.0.30319.18408
+
+            </font>
+
+    </body>
+</html>
+<!-- 
+[InvalidOperationException]: The model backing the &#39;ModelContext&#39; context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+   в System.Data.Entity.CreateDatabaseIfNotExists`1.InitializeDatabase(TContext context)
+   в System.Data.Entity.Internal.InternalContext.<>c__DisplayClassf`1.<CreateInitializationAction>b__e()
+   в System.Data.Entity.Internal.InternalContext.PerformInitializationAction(Action action)
+   в System.Data.Entity.Internal.InternalContext.PerformDatabaseInitialization()
+   в System.Data.Entity.Internal.LazyInternalContext.<InitializeDatabase>b__4(InternalContext c)
+   в System.Data.Entity.Internal.RetryAction`1.PerformAction(TInput input)
+   в System.Data.Entity.Internal.LazyInternalContext.InitializeDatabaseAction(Action`1 action)
+   в System.Data.Entity.Internal.LazyInternalContext.InitializeDatabase()
+   в System.Data.Entity.Internal.InternalContext.Initialize()
+   в System.Data.Entity.Internal.InternalContext.GetEntitySetAndBaseTypeForType(Type entityType)
+   в System.Data.Entity.Internal.Linq.InternalSet`1.Initialize()
+   в System.Data.Entity.Internal.Linq.InternalSet`1.Include(String path)
+   в System.Data.Entity.Infrastructure.DbQuery`1.Include(String path)
+   в System.Data.Entity.QueryableExtensions.Include[T](IQueryable`1 source, String path)
+   в System.Data.Entity.QueryableExtensions.Include[T,TProperty](IQueryable`1 source, Expression`1 path)
+   в Microsoft.AspNet.Identity.EntityFramework.UserStore`6.GetUserAggregateAsync(Expression`1 filter)
+   в Microsoft.AspNet.Identity.EntityFramework.UserStore`6.FindByNameAsync(String userName)
+   в Microsoft.AspNet.Identity.UserManager`2.FindByNameAsync(String userName)
+   в Microsoft.AspNet.Identity.UserManager`2.<FindAsync>d__12.MoveNext()
+--- Конец трассировка стека из предыдущего расположения, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   в WebApplication2.Providers.ApplicationOAuthProvider.<GrantResourceOwnerCredentials>d__0.MoveNext() в c:\Users\User\Desktop\API\Dexpa.WebApi\Utils\ApplicationOAuthProvider.cs:строка 40
+--- Конец трассировка стека из предыдущего расположения, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   в Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerHandler.<InvokeTokenEndpointResourceOwnerPasswordCredentialsGrantAsync>d__3a.MoveNext()
+--- Конец трассировка стека из предыдущего расположения, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   в Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerHandler.<InvokeTokenEndpointAsync>d__1e.MoveNext()
+--- Конец трассировка стека из предыдущего расположения, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   в Microsoft.Owin.Security.OAuth.OAuthAuthorizationServerHandler.<InvokeAsync>d__0.MoveNext()
+--- Конец трассировка стека из предыдущего расположения, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   в Microsoft.Owin.Security.Infrastructure.AuthenticationMiddleware`1.<Invoke>d__0.MoveNext()
+--- Конец трассировка стека из предыдущего расположения, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   в Microsoft.Owin.Security.Infrastructure.AuthenticationMiddleware`1.<Invoke>d__0.MoveNext()
+--- Конец трассировка стека из предыдущего расположения, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   в Microsoft.Owin.Cors.CorsMiddleware.<Invoke>d__0.MoveNext()
+--- Конец трассировка стека из предыдущего расположения, где возникло исключение ---
+   в System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   в Microsoft.Owin.Host.SystemWeb.Infrastructure.ErrorState.Rethrow()
+   в Microsoft.Owin.Host.SystemWeb.IntegratedPipeline.StageAsyncResult.End(IAsyncResult ar)
+   в Microsoft.Owin.Host.SystemWeb.IntegratedPipeline.IntegratedPipelineContext.EndFinalWork(IAsyncResult ar)
+   в System.Web.HttpApplication.AsyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   в System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+--> 

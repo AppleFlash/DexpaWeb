@@ -1,0 +1,57 @@
+﻿@using Dexpa.WebSite.Helpers
+@{
+    ViewBag.Title = "История робота";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="loader" id="loader">
+    <img src="/Content/Images/loader.gif" alt="">
+</div>
+
+<div id="main_part" ng-controller="RobotHistoryCtrl" ng-init="init()">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="row pageheader">
+                <div class="form-inline">
+                    <div class="btn-group filter-margin">
+                        <label for="filterFromDate" class="filter-margin">Период:</label>
+                        <input ng-model="fromDate" type="text" class="form-control input-sm" id="filterFromDate" ng-change="getOrders()" />
+                        <label for="filterToDate">-</label>
+                        <input ng-model="toDate" type="text" class="form-control input-sm" id="filterToDate" ng-change="getOrders()" />
+                    </div>
+                    <div class="btn-group filter-margin" id="reportLoader">
+                        <div class="form-group">
+                            <img src="/Content/Images/waiting.gif" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9 containerLeftBorder">
+                    <div class="row">
+                        <div class="containerForTableOnMainPage" id="dispatcherPanel">
+                            @Html.Partial("RobotHistory/_RobotHistoryOrders")
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="map" class="map-wrapper"></div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="row">
+                        <div class="col-sm-12 containerWithoutPageHeader">
+                            @Html.Partial("RobotHistory/_RobotHistoryTable")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    @Scripts.Render("~/bundles/mapTools")
+    <script src="~/Scripts/AngularControllers/RobotHistoryController.js"></script>
+}
+

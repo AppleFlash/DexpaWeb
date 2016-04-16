@@ -1,0 +1,429 @@
+﻿@using Dexpa.WebSite.Helpers
+@using Dexpa.WebSite.Models.RolesAndAccess
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row bottomBorder">
+            <div class="col-xs-6 col-md-4">
+                <label for="name" class="control-label">Название:</label>
+                <input type="text" class="form-control input-sm" ng-model="tariff.name" validate="true" validationinfo="Название" placeholder="Название" id="name" maxlength="48" />
+            </div>
+            <div class="col-xs-6 col-md-4">
+                <label for="abbreviation" class="control-label">Сокращение:</label>
+                <input type="text" class="form-control input-sm" ng-model="tariff.abbreviation" validate="true" validationinfo="Сокращение" placeholder="Сокращение" id="abbreviation" maxlength="48" />
+            </div>
+            <div class="col-xs-6 col-md-4">
+                <label for="yandexId" class="control-label">Yandex Id:</label>
+                <input type="text" class="form-control input-sm" ng-model="tariff.yandexId" validate="false" validationinfo="Yandex Id" placeholder="Yandex Id" id="yandexId" maxlength="48" />
+            </div>
+        </div>
+        <div class="row bottomBorder">
+            <h4 class="leftIndent rightIndent">Время работы</h4>
+            <div class="clearfix"></div>
+            <div class="indent">
+                <label class="control-label">Часы:</label>
+                <div>
+                    <div class="col-xs-6 col-md-2 form-inline">
+                        <label class="control-label" style="margin-top: 10px">с</label>
+                        <input type="text" class="form-control input-sm" validate="true" validationinfo="Часы" ng-model="tariff.timeFrom" ng-blur="checkTime(tariff.timeFrom)" id="timeFrom" placeholder="00:00" />
+                    </div>
+                    <div class="col-xs-6 col-md-2 form-inline">
+                        <label class="control-label" style="margin-top: 10px">до</label>
+                        <input type="text" class="form-control input-sm" validate="true" validationinfo="Часы" ng-model="tariff.timeTo" ng-blur="checkTime(tariff.timeTo)" id="timeTo" placeholder="00:00" />
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="indent">
+                <label class="control-label">Дни:</label>
+                <div>
+                    <div class="col-xs-6 col-md-1 form-inline">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="tariff.days.monday"> <strong>Пн</strong>
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="tariff.days.tuesday"> <strong>Вт</strong>
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="tariff.days.wednesday"> <strong>Ср</strong>
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="tariff.days.thursday"> <strong>Чт</strong>
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="tariff.days.friday"> <strong>Пт</strong>
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="tariff.days.saturday"> <strong>Сб</strong>
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="tariff.days.sunday"> <strong>Вск</strong>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bottomBorder">
+            <h4 class="leftIndent rightIndent">Минималка</h4>
+            <div class="col-xs-6 col-md-4">
+                <input type="text" class="form-control input-sm" validate="true" validationinfo="Минималка" ng-model="tariff.minimumCost" placeholder="Минималка" id="minimum" maxlength="48" />
+            </div>
+            <div class="clearfix"></div>
+            <h5 class="leftIndent rightIndent">Включено</h5>
+            <div class="col-xs-6 col-md-4">
+                <div class="col-xs-6 col-md-11">
+                    <input type="text" class="form-control input-sm" validate="true" validationinfo="Включено" ng-model="tariff.includeMinutes" placeholder="" id="includeMinutes" maxlength="48" numbers-only="numbers-only" />
+                </div>
+                <div class="col-xs-6 col-md-1" style="margin-top:10px">
+                    <span>мин</span>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-1">
+                <select class="form-control input-sm" ng-model="tariff.includeMinutesAndKilometers">
+                    <option>И</option>
+                    <option selected="selected">ИЛИ</option>
+                </select>
+            </div>
+            <div class="col-xs-6 col-md-4">
+                <div class="col-xs-6 col-md-11">
+                    <input type="text" class="form-control input-sm" validate="true" validationinfo="Включено" ng-model="tariff.includeKilometers" placeholder="" id="includeKilometers" maxlength="48" numbers-only="numbers-only" />
+                </div>
+                <div class="col-xs-6 col-md-1" style="margin-top:10px">
+                    <span>км</span>
+                </div>
+            </div>
+        </div>
+        <div class="row bottomBorder">
+            <h4 class="leftIndent rightIndent">Ожидание</h4>
+            <div class="col-xs-6 col-md-4">
+                <label for="freeWaiting" class="control-label">Бесплатное, мин</label>
+                <input type="text" class="form-control input-sm" validate="true" validationinfo="Бесплатное ожидание" ng-model="tariff.freeWaitingMinutes" placeholder="" id="freeWaiting" maxlength="48" numbers-only="numbers-only" />
+            </div>
+            <div class="col-xs-6 col-md-4">
+                <label for="payWaiting" class="control-label">Платное, мин/руб</label>
+                <input type="text" class="form-control input-sm" validate="true" validationinfo="Платное ожидание" ng-model="tariff.paidWaitingCost" placeholder="" id="payWaiting" maxlength="48" />
+            </div>
+        </div>
+        <div class="row bottomBorder">
+            <h4 class="leftIndent rightIndent">Зоны</h4>
+            <div class="leftIndent rightIndent">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <td style="width: 24px">
+                                <input type="checkbox" ng-click="checkAll()"/>
+                            </td>
+                            <td>
+                                Зоны
+                            </td>
+                            <td>
+                                Мин/руб
+                            </td>
+                            <td>
+                                Км/руб
+                            </td>
+                            <td>
+                                Скорость
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="tariffZone in tariffZones">
+                            <td>
+                                <input id="tariffCheckbox-{{tariffZone.tariffZoneType.type}}" ng-checked="{{(tariffZone.isActive?true:false)}}" type="checkbox" />
+                            </td>
+                            <td>
+                                {{tariffZone.tariffZoneType.name}}
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm" ng-model="tariffZone.minuteCost" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm" ng-model="tariffZone.kilometerCost" />
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm" ng-model="tariffZone.minVelocity" numbers-only="numbers-only" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row bottomBorder">
+            <h4 class="leftIndent rightIndent">Регионы</h4>
+            <div class="leftIndent rightIndent">
+                <div class="col-md-4 marginBot10">
+                    <label for="freeWaiting" class="control-label">Включено минут</label>
+                    <input type="text" class="form-control input-sm" validate="true" validationinfo="Регионы. Включено минут" ng-model="tariff.regionIncludedFreeMinutes" placeholder="" id="regionIncludedFreeMinutes" maxlength="48" numbers-only="numbers-only" />
+                </div>
+                <div class="col-md-4 marginBot10">
+                    <label for="payWaiting" class="control-label">Бесплатное ожидание в аэропорту, мин</label>
+                    <input type="text" class="form-control input-sm" validate="true" validationinfo="Регионы. Бесплатное ожидание" ng-model="tariff.airportFreeWaiting" placeholder="" id="airportFreeWaiting" maxlength="48" numbers-only="numbers-only" />
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="leftIndent rightIndent" id="tariffRegions">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <td class="table-diagonal-cell-bg"></td>
+                            <td ng-repeat="region in regions">{{region.name}}</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ВАО</td>
+                            <td><input type="text" class="form-control input-sm" id="1to1" /></td>
+                            <td><input type="text" class="form-control input-sm" id="1to2" /></td>
+                            <td><input type="text" class="form-control input-sm" id="1to3" /></td>
+                            <td><input type="text" class="form-control input-sm" id="1to4" /></td>
+                            <td><input type="text" class="form-control input-sm" id="1to5" /></td>
+                            <td><input type="text" class="form-control input-sm" id="1to6" /></td>
+                            <td><input type="text" class="form-control input-sm" id="1to7" /></td>
+                            <td><input type="text" class="form-control input-sm" id="1to8" /></td>
+                            <td><input type="text" class="form-control input-sm" id="1to9" /></td>
+                            <td><input type="text" class="form-control input-sm" id="1to10" /></td>
+                            <td><input type="text" class="form-control input-sm" id="1to11" /></td>
+                            <td><input type="text" class="form-control input-sm" id="1to12" /></td>
+                        </tr>
+                        <tr>
+                            <td>ЗАО</td>
+                            <td><input type="text" class="form-control input-sm" id="2to1" /></td>
+                            <td><input type="text" class="form-control input-sm" id="2to2" /></td>
+                            <td><input type="text" class="form-control input-sm" id="2to3" /></td>
+                            <td><input type="text" class="form-control input-sm" id="2to4" /></td>
+                            <td><input type="text" class="form-control input-sm" id="2to5" /></td>
+                            <td><input type="text" class="form-control input-sm" id="2to6" /></td>
+                            <td><input type="text" class="form-control input-sm" id="2to7" /></td>
+                            <td><input type="text" class="form-control input-sm" id="2to8" /></td>
+                            <td><input type="text" class="form-control input-sm" id="2to9" /></td>
+                            <td><input type="text" class="form-control input-sm" id="2to10" /></td>
+                            <td><input type="text" class="form-control input-sm" id="2to11" /></td>
+                            <td><input type="text" class="form-control input-sm" id="2to12" /></td>
+                        </tr>
+                        <tr>
+                            <td>САО</td>
+                            <td><input type="text" class="form-control input-sm" id="3to1" /></td>
+                            <td><input type="text" class="form-control input-sm" id="3to2" /></td>
+                            <td><input type="text" class="form-control input-sm" id="3to3" /></td>
+                            <td><input type="text" class="form-control input-sm" id="3to4" /></td>
+                            <td><input type="text" class="form-control input-sm" id="3to5" /></td>
+                            <td><input type="text" class="form-control input-sm" id="3to6" /></td>
+                            <td><input type="text" class="form-control input-sm" id="3to7" /></td>
+                            <td><input type="text" class="form-control input-sm" id="3to8" /></td>
+                            <td><input type="text" class="form-control input-sm" id="3to9" /></td>
+                            <td><input type="text" class="form-control input-sm" id="3to10" /></td>
+                            <td><input type="text" class="form-control input-sm" id="3to11" /></td>
+                            <td><input type="text" class="form-control input-sm" id="3to12" /></td>
+                        </tr>
+                        <tr>
+                            <td>СВАО</td>
+                            <td><input type="text" class="form-control input-sm" id="4to1" /></td>
+                            <td><input type="text" class="form-control input-sm" id="4to2" /></td>
+                            <td><input type="text" class="form-control input-sm" id="4to3" /></td>
+                            <td><input type="text" class="form-control input-sm" id="4to4" /></td>
+                            <td><input type="text" class="form-control input-sm" id="4to5" /></td>
+                            <td><input type="text" class="form-control input-sm" id="4to6" /></td>
+                            <td><input type="text" class="form-control input-sm" id="4to7" /></td>
+                            <td><input type="text" class="form-control input-sm" id="4to8" /></td>
+                            <td><input type="text" class="form-control input-sm" id="4to9" /></td>
+                            <td><input type="text" class="form-control input-sm" id="4to10" /></td>
+                            <td><input type="text" class="form-control input-sm" id="4to11" /></td>
+                            <td><input type="text" class="form-control input-sm" id="4to12" /></td>
+                        </tr>
+                        <tr>
+                            <td>СЗАО</td>
+                            <td><input type="text" class="form-control input-sm" id="5to1" /></td>
+                            <td><input type="text" class="form-control input-sm" id="5to2" /></td>
+                            <td><input type="text" class="form-control input-sm" id="5to3" /></td>
+                            <td><input type="text" class="form-control input-sm" id="5to4" /></td>
+                            <td><input type="text" class="form-control input-sm" id="5to5" /></td>
+                            <td><input type="text" class="form-control input-sm" id="5to6" /></td>
+                            <td><input type="text" class="form-control input-sm" id="5to7" /></td>
+                            <td><input type="text" class="form-control input-sm" id="5to8" /></td>
+                            <td><input type="text" class="form-control input-sm" id="5to9" /></td>
+                            <td><input type="text" class="form-control input-sm" id="5to10" /></td>
+                            <td><input type="text" class="form-control input-sm" id="5to11" /></td>
+                            <td><input type="text" class="form-control input-sm" id="5to12" /></td>
+                        </tr>
+                        <tr>
+                            <td>ЦАО</td>
+                            <td><input type="text" class="form-control input-sm" id="6to1" /></td>
+                            <td><input type="text" class="form-control input-sm" id="6to2" /></td>
+                            <td><input type="text" class="form-control input-sm" id="6to3" /></td>
+                            <td><input type="text" class="form-control input-sm" id="6to4" /></td>
+                            <td><input type="text" class="form-control input-sm" id="6to5" /></td>
+                            <td><input type="text" class="form-control input-sm" id="6to6" /></td>
+                            <td><input type="text" class="form-control input-sm" id="6to7" /></td>
+                            <td><input type="text" class="form-control input-sm" id="6to8" /></td>
+                            <td><input type="text" class="form-control input-sm" id="6to9" /></td>
+                            <td><input type="text" class="form-control input-sm" id="6to10" /></td>
+                            <td><input type="text" class="form-control input-sm" id="6to11" /></td>
+                            <td><input type="text" class="form-control input-sm" id="6to12" /></td>
+                        </tr>
+                        <tr>
+                            <td>ЮАО</td>
+                            <td><input type="text" class="form-control input-sm" id="7to1" /></td>
+                            <td><input type="text" class="form-control input-sm" id="7to2" /></td>
+                            <td><input type="text" class="form-control input-sm" id="7to3" /></td>
+                            <td><input type="text" class="form-control input-sm" id="7to4" /></td>
+                            <td><input type="text" class="form-control input-sm" id="7to5" /></td>
+                            <td><input type="text" class="form-control input-sm" id="7to6" /></td>
+                            <td><input type="text" class="form-control input-sm" id="7to7" /></td>
+                            <td><input type="text" class="form-control input-sm" id="7to8" /></td>
+                            <td><input type="text" class="form-control input-sm" id="7to9" /></td>
+                            <td><input type="text" class="form-control input-sm" id="7to10" /></td>
+                            <td><input type="text" class="form-control input-sm" id="7to11" /></td>
+                            <td><input type="text" class="form-control input-sm" id="7to12" /></td>
+                        </tr>
+                        <tr>
+                            <td>ЮВАО</td>
+                            <td><input type="text" class="form-control input-sm" id="8to1" /></td>
+                            <td><input type="text" class="form-control input-sm" id="8to2" /></td>
+                            <td><input type="text" class="form-control input-sm" id="8to3" /></td>
+                            <td><input type="text" class="form-control input-sm" id="8to4" /></td>
+                            <td><input type="text" class="form-control input-sm" id="8to5" /></td>
+                            <td><input type="text" class="form-control input-sm" id="8to6" /></td>
+                            <td><input type="text" class="form-control input-sm" id="8to7" /></td>
+                            <td><input type="text" class="form-control input-sm" id="8to8" /></td>
+                            <td><input type="text" class="form-control input-sm" id="8to9" /></td>
+                            <td><input type="text" class="form-control input-sm" id="8to10" /></td>
+                            <td><input type="text" class="form-control input-sm" id="8to11" /></td>
+                            <td><input type="text" class="form-control input-sm" id="8to12" /></td>
+                        </tr>
+                        <tr>
+                            <td>ЮЗАО</td>
+                            <td><input type="text" class="form-control input-sm" id="9to1" /></td>
+                            <td><input type="text" class="form-control input-sm" id="9to2" /></td>
+                            <td><input type="text" class="form-control input-sm" id="9to3" /></td>
+                            <td><input type="text" class="form-control input-sm" id="9to4" /></td>
+                            <td><input type="text" class="form-control input-sm" id="9to5" /></td>
+                            <td><input type="text" class="form-control input-sm" id="9to6" /></td>
+                            <td><input type="text" class="form-control input-sm" id="9to7" /></td>
+                            <td><input type="text" class="form-control input-sm" id="9to8" /></td>
+                            <td><input type="text" class="form-control input-sm" id="9to9" /></td>
+                            <td><input type="text" class="form-control input-sm" id="9to10" /></td>
+                            <td><input type="text" class="form-control input-sm" id="9to11" /></td>
+                            <td><input type="text" class="form-control input-sm" id="9to12" /></td>
+                        </tr>
+                        <tr>
+                            <td>аэропорт Внуково</td>
+                            <td><input type="text" class="form-control input-sm" id="10to1" /></td>
+                            <td><input type="text" class="form-control input-sm" id="10to2" /></td>
+                            <td><input type="text" class="form-control input-sm" id="10to3" /></td>
+                            <td><input type="text" class="form-control input-sm" id="10to4" /></td>
+                            <td><input type="text" class="form-control input-sm" id="10to5" /></td>
+                            <td><input type="text" class="form-control input-sm" id="10to6" /></td>
+                            <td><input type="text" class="form-control input-sm" id="10to7" /></td>
+                            <td><input type="text" class="form-control input-sm" id="10to8" /></td>
+                            <td><input type="text" class="form-control input-sm" id="10to9" /></td>
+                            <td><input type="text" class="form-control input-sm" id="10to10" /></td>
+                            <td><input type="text" class="form-control input-sm" id="10to11" /></td>
+                            <td><input type="text" class="form-control input-sm" id="10to12" /></td>
+                        </tr>
+                        <tr>
+                            <td>аэропорт Домодедово</td>
+                            <td><input type="text" class="form-control input-sm" id="11to1" /></td>
+                            <td><input type="text" class="form-control input-sm" id="11to2" /></td>
+                            <td><input type="text" class="form-control input-sm" id="11to3" /></td>
+                            <td><input type="text" class="form-control input-sm" id="11to4" /></td>
+                            <td><input type="text" class="form-control input-sm" id="11to5" /></td>
+                            <td><input type="text" class="form-control input-sm" id="11to6" /></td>
+                            <td><input type="text" class="form-control input-sm" id="11to7" /></td>
+                            <td><input type="text" class="form-control input-sm" id="11to8" /></td>
+                            <td><input type="text" class="form-control input-sm" id="11to9" /></td>
+                            <td><input type="text" class="form-control input-sm" id="11to10" /></td>
+                            <td><input type="text" class="form-control input-sm" id="11to11" /></td>
+                            <td><input type="text" class="form-control input-sm" id="11to12" /></td>
+                        </tr>
+                        <tr>
+                            <td>аэропорт Шереметьево</td>
+                            <td><input type="text" class="form-control input-sm" id="12to1" /></td>
+                            <td><input type="text" class="form-control input-sm" id="12to2" /></td>
+                            <td><input type="text" class="form-control input-sm" id="12to3" /></td>
+                            <td><input type="text" class="form-control input-sm" id="12to4" /></td>
+                            <td><input type="text" class="form-control input-sm" id="12to5" /></td>
+                            <td><input type="text" class="form-control input-sm" id="12to6" /></td>
+                            <td><input type="text" class="form-control input-sm" id="12to7" /></td>
+                            <td><input type="text" class="form-control input-sm" id="12to8" /></td>
+                            <td><input type="text" class="form-control input-sm" id="12to9" /></td>
+                            <td><input type="text" class="form-control input-sm" id="12to10" /></td>
+                            <td><input type="text" class="form-control input-sm" id="12to11" /></td>
+                            <td><input type="text" class="form-control input-sm" id="12to12" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row bottomBorder" id="additionalOptions">
+            <h4 class="leftIndent rightIndent">Дополнительные опции</h4>
+            <div class="col-xs-6 col-md-3">
+                <label for="WiFi" class="control-label">Наличие Wi-Fi:</label>
+                <input type="text" class="form-control input-sm" validate="true" validationinfo="Наличие Wi-Fi" ng-model="tariff.tariffOptions.wifi" placeholder="" id="WiFi" maxlength="48" />
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-xs-6 col-md-3">
+                <label for="ChildrenSeat" class="control-label">Наличие детского кресла:</label>
+                <input type="text" class="form-control input-sm" validate="true" validationinfo="Наличие детского кресла" ng-model="tariff.tariffOptions.childrenSeat" placeholder="" id="ChilddrenSeat" maxlength="48" />
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-xs-6 col-md-3">
+                <label for="Conditioner" class="control-label">Кондиционер:</label>
+                <input type="text" class="form-control input-sm" validate="true" validationinfo="Кондиционер" ng-model="tariff.tariffOptions.conditioner" placeholder="" id="Conditioner" maxlength="48" />
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-xs-6 col-md-3">
+                <label for="StationWagon" class="control-label">Подача такси с кузовом "Универсал":</label>
+                <input type="text" class="form-control input-sm" validate="true" validationinfo="Подача такси с кузовом 'Универсал'" ng-model="tariff.tariffOptions.stationWagon" placeholder="" id="StationWagon" maxlength="48" />
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-xs-6 col-md-3">
+                <label for="WithAnimals" class="control-label">Перевозка животных:</label>
+                <input type="text" class="form-control input-sm" validate="true" validationinfo="Перевозка животных" ng-model="tariff.tariffOptions.withAnimals" placeholder="" id="WithAnimals" maxlength="48" />
+            </div>
+            <span class="note">при наличии намордника и подстилки для крупных и контейнера для малых и средних</span>
+            <div class="clearfix"></div>
+            <div class="col-xs-6 col-md-3">
+                <label for="Skis" class="control-label">Перевозка лыж в салоне:</label>
+                <input type="text" class="form-control input-sm" validate="true" validationinfo="Перевозка лыж в салоне" ng-model="tariff.tariffOptions.skis" placeholder="" id="Skis" maxlength="48" />
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-xs-6 col-md-3">
+                <label for="Baggage" class="control-label">Перевозка багажа в салоне:</label>
+                <input type="text" class="form-control input-sm" validate="true" validationinfo="Перевозка багажа в салоне" ng-model="tariff.tariffOptions.baggage" placeholder="" id="Baggage" maxlength="48" />
+            </div>
+            <span class="note">кроме сумок и "ручной клади"</span>
+            <div class="clearfix"></div>
+            <div class="col-xs-6 col-md-3">
+                <label for="Smoke" class="control-label">Курение в салоне:</label>
+                <input type="text" class="form-control input-sm" validate="true" validationinfo="Курение в салоне" ng-model="tariff.tariffOptions.smoke" placeholder="" id="Smoke" maxlength="48" />
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <a href="@Url.Action("Tariffs","Admin")" class="btn btn-success btn-sm pull-left"><i class="fa fa-chevron-left"></i> К списку</a>
+                @if (GlobalConfiguration.roleAccessModel.CanEditAdminFunctions.HasFlag(AdminEditAccessEnums.Tariffs))
+                {
+                    <div class="pull-right">
+                        <span class="waiting-indicator" ng-show="isVisible"><img src="~/Content/Images/waiting.gif" /></span>
+                        <input type="submit" class="btn btn-success btn-sm" ng-disabled="isVisible" value="Сохранить">
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

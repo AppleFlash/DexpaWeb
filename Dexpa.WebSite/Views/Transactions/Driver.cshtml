@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Транзакции";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">var DRIVER_ID = "@ViewData["id"]"</script>
+
+<div class="loader" id="loader">
+    <img src="/Content/Images/loader.gif" alt="">
+</div>
+<div id="main_part">
+    <div ng-controller="TransactionsCtrl" ng-init="DriverTransactionsInit(@ViewData["id"])">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="container">
+                    @Html.Partial("_ShowDriverTransactions")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/AngularControllers/TransactionsController.js")
+    @Scripts.Render("~/Scripts/AngularControllers/DriversController.js")
+
+}

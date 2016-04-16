@@ -1,0 +1,43 @@
+﻿<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th class="text-center" ng-click="sortBy('departureDate')">Дата <i ng-show="predicate == 'departureDate'" ng-class="iconStyle"></i></th>
+            <th class="text-center" ng-click="sortBy('state.name')">Статус / время <i ng-show="predicate == 'state.name'" ng-class="iconStyle"></i></th>
+            <th class="text-center" ng-click="sortBy('departureDate')">t контр. <i ng-show="predicate == 'departureDate'" ng-class="iconStyle"></i></th>
+            <th></th>
+            <th class="text-center" ng-click="sortBy('startWaitTime')">На месте <i ng-show="predicate == 'driver.startWaitTime'" ng-class="iconStyle"></i></th>
+            <th class="text-center" ng-click="sortBy('driver.callsign')">Позывной, тел. водителя <i ng-show="predicate == 'driver.callsign'" ng-class="iconStyle"></i></th>
+            <th class="text-center" ng-click="sortBy('fromAddress')">Адрес подачи <i ng-show="predicate == 'fromAddress'" ng-class="iconStyle"></i></th>
+            <th class="text-center" ng-click="sortBy('fromAddress')">Куда ехать <i ng-show="predicate == 'fromAddress'" ng-class="iconStyle"></i></th>
+            <th class="text-center" ng-click="sortBy('tariff')">Тариф <i ng-show="predicate == 'tariff'" ng-class="iconStyle"></i></th>
+            <th class="text-center" ng-click="sortBy('isOrganization')">Оплата <i ng-show="predicate == 'cost'" ng-class="iconStyle"></i></th>
+            <th class="text-center" ng-click="sortBy('cost')">Сумма <i ng-show="predicate == 'cost'" ng-class="iconStyle"></i></th>
+            <th class="text-center" ng-click="sortBy('id')">№ заказа <i ng-show="predicate == 'id'" ng-class="iconStyle"></i></th>
+            <th class="text-center">ОКЗ <i ng-show="predicate == 'id'" ng-class="iconStyle"></i></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="order in orders | filter : filterOrdersByState | filter : filterOrdersByDriver | orderBy : predicate : reverse "
+            ng-click='selectOrder(order.id);selectOrderForCall(order)' id="{{order.id}}" class="orderRow"
+            ng-dblclick="goTo('/Dispatcher/UpdateOrder/', order.id)"
+            ng-class="{dispOrder:order.priorityColor==4, yandexOrder:order.priorityColor==3, organizationOrder:order.priorityColor==2, bgRed: order.priorityColor==1}">
+
+            <td title="Дата">{{order.departureDate | onlyData}}</td>
+            <td title="Статус / Время">{{order.state.name}} {{order.lastHistoryTime | onlyTime}}</td>
+            <td title="Контрольное время" ng-class="{bgRed:order.isFreeWaitOver}">{{order.departureDate | onlyTime}}</td>
+            <td class="text-success"><i class="fa fa-check-square-o" ng-show="order.driverApproved" title="Подтвержден водителем"></i></td>
+            <td title="На месте">{{order.startWaitTime  | onlyTime}}</td>
+            <td title="Позывной, телефон водителя">{{order.driver | formatDriver}}</td>
+            <td title="Адрес подачи">{{order.fromAddress}}</td>
+            <td title="Куда ехать">{{order.toAddress}}</td>
+            <td title="Тариф">{{order.tariffName}}</td>
+            <td class="text-center">
+                <i class="fa fa-rub" ng-show="!order.isOrganization" title="Наличный рачсчет"></i>
+                <i class="fa fa-credit-card" ng-show="order.isOrganization" title="Безналичный рачсчет"></i>
+            </td>
+            <td title="Сумма" class="text-right">{{order.cost.toFixed(2)}}</td>
+            <td title="№ заказа">{{order.id}}</td>
+            <td title="Общее количество заказов клиента"></td>
+        </tr>
+    </tbody>
+</table>

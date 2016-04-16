@@ -1,0 +1,29 @@
+﻿<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th class="text-center" ng-click="userTableSortBy('UserName')">Логин <span id="UserName"></span></th>
+            <th class="text-center" ng-click="userTableSortBy('Role')">Роль <span id="Role"></span></th>
+            <th class="text-center" ng-click="userTableSortBy('LastName')">Фамилия <span id="LastName"></span></th>
+            <th class="text-center" ng-click="userTableSortBy('Name')">Имя <span id="Name"></span></th>
+            <th class="text-center" ng-click="userTableSortBy('MiddleName')">Отчество <span id="MiddleName"></span></th>
+            <th class="text-center" ng-click="userTableSortBy('PhoneNumber')">Телефон <span id="PhoneNumber"></span></th>
+            <th class="text-center" ng-click="userTableSortBy('Email')">Email <span id="Email"></span></th>
+            <th class="text-center" ng-click="userTableSortBy('HasAccess')">Доступ разрешен <span id="HasAccess"></span></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="user in users | filter:query" ng-click="ManageUser(user.UserName)">
+            <td>{{user.UserName}}</td>
+            <td>{{user.Role}}</td>
+            <td>{{user.LastName}}</td>
+            <td>{{user.Name}}</td>
+            <td>{{user.MiddleName}}</td>
+            <td>{{user.PhoneNumber}}</td>
+            <td>{{user.Email}}</td>
+            <td ng-if="user.HasAccess"><i class="fa fa-check-square-o"></i></td>
+            <td ng-if="!user.HasAccess"><i class="fa fa-square-o"></i></td>
+        </tr>
+    </tbody>
+</table>
+
+

@@ -1,0 +1,124 @@
+﻿#NewOrderForm {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.bottomBorder {
+    border-bottom: 2px solid grey;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+li {
+    list-style-type: none;
+}
+
+.table > tbody > tr > td {
+    vertical-align: middle !important;
+}
+
+.driversPhones {
+    padding: 0;
+    margin: 0;
+}
+
+.btn-displace {
+    margin-top: 2px;
+}
+
+.input-displace {
+    margin-left: -10px;
+}
+
+.warningText {
+    color: rgb(211, 184, 0);
+}
+
+.dangerText {
+    color: red;
+}
+
+.successText {
+    color: rgb(0, 187, 33);
+}
+
+.orderFormInput50 {
+    width: 50%;
+    padding: 0px;
+    float: left;
+    border: 1px solid #ccc;
+    padding: 7px 10px;
+    color: #555;
+    font-size: 12px;
+}
+
+.orderFormInput50[readonly] {
+    background-color: #eee;
+    opacity: 1;
+}
+
+.orderFormInput25[readonly] {
+    background-color: #eee;
+    opacity: 1;
+}
+
+.orderFormInput25 {
+    width: 25%;
+    margin-top: -1px;
+    padding: 7px 10px;
+    float: left;
+    border: 1px solid #ccc;
+    color: #555;
+    font-size: 12px;
+}
+
+.orderFormInput25[readonly] {
+    background-color: #eee;
+    opacity: 1;
+}
+
+.orderFormInput50:focus {
+    border-color: #999;
+    outline: 0;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -moz-box-shadow: 3px 3px 0 rgba(12,12,12,0.05);
+    -webkit-box-shadow: 3px 3px 0 rgba(12,12,12,0.05);
+    box-shadow: 3px 3px 0 rgba(12,12,12,0.05);
+}
+
+.orderFormInput25:focus {
+    border-color: #999;
+    outline: 0;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -moz-box-shadow: 3px 3px 0 rgba(12,12,12,0.05);
+    -webkit-box-shadow: 3px 3px 0 rgba(12,12,12,0.05);
+    box-shadow: 3px 3px 0 rgba(12,12,12,0.05);
+}
+
+.topLeftCorner {
+    -webkit-border-top-left-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    border-top-left-radius: 3px;
+}
+
+.topRightCorner {
+    -webkit-border-top-right-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    border-top-right-radius: 3px;
+}
+
+.bottomLeftCorner {
+    -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.bottomRightCorner {
+    -webkit-border-bottom-right-radius: 3px;
+    -moz-border-radius-bottomright: 3px;
+    border-bottom-right-radius: 3px;
+}

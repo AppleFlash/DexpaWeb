@@ -1,0 +1,23 @@
+﻿<div class="searchPanel">
+    <div class="searchForm bottomBorder">
+        <div class="col-sm-11">
+            <input type="text" class="form-control input-sm" ng-model="searchQuery" ng-keydown="SearchEvent()" />
+        </div>
+        <div class="col-sm-1">
+            <input type="button" class="form-control btn btn-success btn-sm searchButton-displace" ng-click="search()" value="Поиск" />
+        </div>
+        <div class="clearfix"></div>
+        <div class="searchResults">Результатов: {{searchResults.length}}</div>
+    </div>
+    <div class="searchResults">
+        <div class="searchLoader" id="searchLoader">
+            <img src="/Content/Images/loader.gif" alt="">
+        </div>
+        <div id="results">
+            <div class="searchResult" ng-repeat="result in searchResults">
+                <h4><a href="{{(result.link!=null?result.link:'#')}}" ng-click="searchAction(result.actionType, result.param)" target="{{result.newTab}}">{{result.text}}</a></h4>
+                <div><span class="searchResultType">{{result.type}}</span></div>
+            </div>
+        </div>
+    </div>
+</div>

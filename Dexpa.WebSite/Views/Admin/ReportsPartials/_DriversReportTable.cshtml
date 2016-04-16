@@ -1,0 +1,106 @@
+﻿<div class="row pageheader">
+    <div class="form-inline">
+        <div class="btn-group filter-margin">
+            <label for="filterFromDate" class="filter-margin">Период:</label>
+            <input ng-model="fromDate" type="text" class="form-control input-sm" id="filterFromDate" ng-change="getDriversReportDate()" />
+            <label for="filterToDate">-</label>
+            <input ng-model="toDate" type="text" class="form-control input-sm" id="filterToDate" ng-change="getDriversReportDate()" />
+        </div>
+        <div class="btn-group filter-margin">
+            <label for="driver" class="filter-margin">Водитель:</label>
+            <div class="form-group">
+                <input type="text" class="input-sm form-control driverOnTransaction" ng-model="driverQuery" placeholder="Водитель" id="driver" />
+                <div class="form-control dropdownPanel dropdownPanel_driver">
+                    <li ng-click="getReportByDriver(undefined, true)">-</li>
+                    <li id="dropdownPanelLoader"><img src="/Content/Images/waiting.gif" alt=""></li>
+                    <li ng-repeat="driver in drivers | filter:driverQuery" ng-click="getReportByDriver(driver,true)">{{driver.name}}</li>
+                </div>
+            </div>
+        </div>
+        <div class="btn-group filter-margin">
+            <label for="wc" class="filter-margin">Условия работы:</label>
+            <select class="form-control input-sm" ng-model="selectedWorkCondition" ng-change="filterByWC()" ng-options="formatWC(wc) for wc in workConditions track by wc.id">
+                @*<option ng-repeat="wc in workConditions">{{wc.name}}</option>*@
+            </select>
+        </div>
+        <div class="btn-group filter-margin">
+            <div class="form-control btn btn-success btn-sm" ng-click="Export('PDF','drivers')">Экспорт в PDF</div>
+            <div class="form-control btn btn-success btn-sm" ng-click="Export('Excel','drivers')">Экспорт в Excel</div>
+        </div>
+    </div>
+</div>
+
+@*<div class="loader" id="loader">
+        <img src="/Content/Images/loader.gif" alt="">
+    </div>*@
+
+<div class="row">
+    <div class="containerWithoutPageHeader">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <td class="centered td-vertical-middle" rowspan="2" ng-click="sortBy('id')"># <span id="id"></span></td>
+                    <td class="centered td-vertical-middle" rowspan="2" ng-click="sortBy('driverWorkConditions')">Условия работы <span id="driverWorkConditions"></span></td>
+                    <td class="centered td-vertical-middle" rowspan="2" ng-click="sortBy('driverCallsign')">Позывной <span id="driverCallsign"></span></td>
+                    <td class="centered td-vertical-middle" rowspan="2" ng-click="sortBy('driverName')">ФИО <span id="driverName"></span></td>
+                    <td class="centered td-vertical-middle" rowspan="2" ng-click="sortBy('amount')">Сумма в кассу <span id="amount"></span></td>
+                    <td class="centered td-vertical-middle" rowspan="2" ng-click="sortBy('percent')">Проценты <span id="percent"></span></td>
+                    <td class="centered td-vertical-middle" rowspan="2" ng-click="sortBy('rent')">Аренда <span id="rent"></span></td>
+                    <td class="centered td-vertical-middle" rowspan="2" ng-click="sortBy('debt')">Долг <span id="debt"></span></td>
+                    <td class="centered td-vertical-middle" rowspan="2" ng-click="sortBy('techSupport')">Техническая поддержка <span id="techSupport"></span></td>
+                    <td class="centered td-vertical-middle" rowspan="2" ng-click="sortBy('taxometrAmount')">Сумма по таксометру <span id="taxometrAmount"></span></td>
+                    <td class="centered td-vertical-middle" colspan="4">Заказы</td>
+                    <td class="centered td-vertical-middle" rowspan="2" ng-click="sortBy('rating')">Рейтинг <span id="rating"></span></td>
+                    <td class="centered td-vertical-middle" rowspan="2" ng-click="sortBy('averageRating')">Средняя оценка <span id="averageRating"></span></td>
+                    <td class="centered td-vertical-middle" rowspan="2" ng-click="sortBy('partGoodTrack')">Доля хороших треков <span id="partGoodTrack"></span></td>
+                </tr>
+                <tr>
+                    <td class="centered" ng-click="sortBy('allOrders')">Всего <span id="allOrders"></span></td>
+                    <td class="centered" ng-click="sortBy('doneOrders')">Выполнено <span id="doneOrders"></span></td>
+                    <td class="centered" ng-click="sortBy('clientCanceled')">Отмена клиентом <span id="clientCanceled"></span></td>
+                    <td class="centered" ng-click="sortBy('driverCanceled')">Отмена водителем <span id="driverCanceled"></span></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="driverReport in reports">
+                    <td>{{driverReport.id}}</td>
+                    <td>{{driverReport.driverWorkConditions}}</td>
+                    <td>{{driverReport.driverCallsign}}</td>
+                    <td>{{driverReport.driverName}}</td>
+                    <td class="text-right">{{driverReport.amount.toFixed(2)}}</td>
+                    <td class="text-right">{{driverReport.percent.toFixed(2)}}</td>
+                    <td class="text-right">{{driverReport.rent.toFixed(2)}}</td>
+                    <td class="text-right">{{driverReport.debt.toFixed(2)}}</td>
+                    <td class="text-right">{{driverReport.techSupport.toFixed(2)}}</td>
+                    <td class="text-right">{{driverReport.taxometrAmount.toFixed(2)}}</td>
+                    <td class="text-right">{{driverReport.allOrders}}</td>
+                    <td class="text-right">{{driverReport.doneOrders}}</td>
+                    <td class="text-right">{{driverReport.clientCanceled}}</td>
+                    <td class="text-right">{{driverReport.driverCanceled}}</td>
+                    <td class="text-right">{{driverReport.rating}}</td>
+                    <td class="text-right">{{driverReport.averageRating}}</td>
+                    <td class="text-right">{{driverReport.partGoodTrack}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Всего водителей: {{driverCount}}</td>
+                    <td>Всего: {{allAmount.toFixed(2)}}</td>
+                    <td></td>
+                    <td>Всего: {{rentAmount.toFixed(2)}}</td>
+                    <td></td>
+                    <td>Всего: {{techSupportAmount.toFixed(2)}}</td>
+                    <td>Всего: {{taxometrAmount.toFixed(2)}}</td>
+                    <td>Всего: {{allOrdersCount}}</td>
+                    <td>Всего: {{doneOrdersCount}}</td>
+                    <td>Всего: {{clientCanceledOrdersCount}}</td>
+                    <td>Всего: {{driverCanceledOrdersCount}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
